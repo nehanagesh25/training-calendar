@@ -40,8 +40,8 @@ export function provideConfig() {
       provide: DateAdapter,
       useFactory: adapterFactory
     }),
-    NgbModule,   
-    FormsModule, 
+    NgbModule.forRoot(),
+    FormsModule,
     FlatpickrModule.forRoot()
   ],
   providers: [AuthService,{
