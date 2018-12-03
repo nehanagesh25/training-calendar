@@ -27,7 +27,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
       provide: DateAdapter,
       useFactory: adapterFactory
     }),
-    NgbModule,
+    NgbModule.forRoot(),
     FormsModule,
     FlatpickrModule.forRoot()
   ],
