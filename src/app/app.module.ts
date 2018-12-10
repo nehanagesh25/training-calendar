@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './Router/Router';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import{AdminDashboardComponent}from'./admin/dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { CalendarModule,DateAdapter } from 'angular-calendar';
 import { adapterFactory} from 'angular-calendar/date-adapters/date-fns';
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { AuthService,AuthServiceConfig,SocialLoginModule } from 'angularx-social-login';
 import { GoogleLoginProvider} from "angularx-social-login";
+import { AdminComponent } from './admin/admin.component';
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -27,7 +29,9 @@ export function provideConfig() {
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginComponent
+    AdminDashboardComponent,
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

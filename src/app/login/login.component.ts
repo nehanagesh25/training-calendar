@@ -30,6 +30,8 @@ export class LoginComponent implements OnInit {
     signOut(): void {
       this.authService.signOut();
     }
-  
+  AdminLogin(){
+    this.router.navigate(['AdminDashboard']);
+  }
   }
   

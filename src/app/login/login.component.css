@@ -38,6 +38,8 @@
     left: 0;
     right: 0;
     margin: auto;
+    padding: 25px;
+    margin-top: 20px;
 }
 
 
@@ -63,7 +65,7 @@
 .loginBtn:before {
   content: "";
   box-sizing: border-box;
-  position: absolute;
+  position: absolute; 
   top: 0;
   left: 0;
   width: 34px;
