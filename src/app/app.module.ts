@@ -16,6 +16,10 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { AuthService,AuthServiceConfig,SocialLoginModule } from 'angularx-social-login';
 import { GoogleLoginProvider} from "angularx-social-login";
 import { AdminComponent } from './admin/admin.component';
+import { CreateCoursesComponent } from './admin/create-courses/create-courses.component';
+import { DashboardDetailsViewComponent } from './admin/dashboard-details-view/dashboard-details-view.component';
+import{AuthGaurd}from '../app/Services/Auth.guard'
+import { from } from 'rxjs';
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -31,7 +35,9 @@ export function provideConfig() {
     DashboardComponent,
     AdminDashboardComponent,
     LoginComponent,
-    AdminComponent
+    AdminComponent,
+    CreateCoursesComponent,
+    DashboardDetailsViewComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +57,7 @@ export function provideConfig() {
   providers: [AuthService,{
     provide: AuthServiceConfig,
     useFactory: provideConfig
-  }],
+  },AuthGaurd],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

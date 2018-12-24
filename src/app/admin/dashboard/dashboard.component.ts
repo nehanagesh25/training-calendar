@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,10 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
-
-  constructor() { }
+public falg=0;
+  constructor(private router:Router) { }
 
   ngOnInit() {
+  }
+  CreateEvents(){
+    console.log("Click")
+    //this.router.navigate(['dashdetail']);
+    this.falg=1;
+
+    
+  }
+  Dash(){
+    this.router.navigate(['AdminDashboard'])
   }
 
 }

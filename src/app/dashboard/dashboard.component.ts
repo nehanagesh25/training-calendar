@@ -3,8 +3,8 @@ import {startOfDay,endOfDay,subDays,addDays,endOfMonth,isSameDay,isSameMonth, ad
 import { Subject, from } from 'rxjs';
 import {CalendarEvent,CalendarEventAction,CalendarEventTimesChangedEvent,CalendarView} from 'angular-calendar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
-
-
+import { AuthService } from 'angularx-social-login';
+import { Router} from '@angular/router';
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -19,6 +19,7 @@ const colors: any = {
     secondary: '#FDF1BA'
   }
 };
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -101,7 +102,7 @@ export class DashboardComponent implements OnInit {
   ];
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modal: NgbModal,private authService: AuthService,private router:Router) {}
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -145,4 +146,10 @@ export class DashboardComponent implements OnInit {
     this.refresh.next();
   }
 
+  signOut(): void {
+    
+    this.authService.signOut();
+    this.router.navigate(['login']);
+    localStorage.removeItem("isLogin");
+  }
 }

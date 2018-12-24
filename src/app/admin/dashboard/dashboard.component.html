@@ -13,14 +13,14 @@
                 </div>
                 <ul class="nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="dashboard.html">
+                        <a class="nav-link" type="button" (click)="Dash()" >
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./user.html">
-                            <i class="nc-icon nc-circle-09"></i>
+                        <a class="nav-link" type="button" (click)="CreateEvents()">
+                            <i class="nc-icon nc-circle-09"> </i>
                             <p>Create Events </p>
                         </a>
                     </li>                               
@@ -28,6 +28,7 @@
                 </ul>
             </div>
         </div>
+         
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg " color-on-scroll="500">
@@ -51,14 +52,20 @@
                                 <li class="nav-item">
                                 <a class="nav-link" href="#pablo">
                                     <span class="no-icon">Log out</span>
+                                  
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
+            
             <!-- End Navbar -->
-            <div class="content">
+            <div *ngIf="flag">
+                <app-dashboard-details-view></app-dashboard-details-view>
+            </div>
+            <div *ngIf="!flag">
+                <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-4">
@@ -110,6 +117,7 @@
                    
                 </div>
             </div>
+        </div>
             <footer class="footer">
                 <div class="container">
                     <nav>
@@ -141,4 +149,4 @@
             </footer>
         </div>
     </div>
- 
+   

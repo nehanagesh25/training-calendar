@@ -23,10 +23,10 @@
               <h3>Admin Login</h3>
               <fieldset>
 
-                <input id="textinput" name="textinput" type="text" placeholder="Enter User Name" class="form-control input-md">
+                <input id="textinput" name="textinput" type="text" placeholder="Enter User Name" class="form-control input-md" [(ngModel)]="User_Name">
                 <div class="spacing"><input type="checkbox" name="checkboxes" id="checkboxes-0" value="1"><small>
                     Remember me</small></div>
-                <input id="textinput" name="textinput" type="text" placeholder="Enter Password" class="form-control input-md">
+                <input id="textinput" name="textinput" type="text" placeholder="Enter Password" class="form-control input-md" [(ngModel)]="Password">
                 <div class="spacing"><a href="#"><small> Forgot Password?</small></a><br /></div>
                 <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right" (click)="AdminLogin()"> Sign In</button>
 
