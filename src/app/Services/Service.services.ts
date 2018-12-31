@@ -32,9 +32,9 @@ export class ServicesService {
 
 
     //Course Running  Today Post Method
-    public TodayCourse(data) {
+    public TodayCourse() {
         let url = Appsettings.BASE_URL + Appsettings.CourseByToday;
-        return this.http.post(url, data);
+        return this.http.get(url);
     }
     // UpdateCourse Post Method
     public UpdateCourse(data) {

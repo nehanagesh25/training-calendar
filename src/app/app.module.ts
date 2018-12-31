@@ -17,13 +17,13 @@ import { AuthService,AuthServiceConfig,SocialLoginModule } from 'angularx-social
 import { GoogleLoginProvider} from "angularx-social-login";
 import { AdminComponent } from './admin/admin.component';
 import { CreateCoursesComponent } from './admin/create-courses/create-courses.component';
-import { DashboardDetailsViewComponent } from './admin/dashboard-details-view/dashboard-details-view.component';
 import{AuthGaurd}from '../app/Services/Auth.guard'
-import { from } from 'rxjs';
+import { FileSelectDirective } from 'ng2-file-upload';
+
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('624796833023-clhjgupm0pu6vgga7k5i5bsfp6qp6egh.apps.googleusercontent.com')
+    provider: new GoogleLoginProvider('128162980094-vjrucn62c4k641l2qled3hc32ot1u59s.apps.googleusercontent.com')
   }
 ]);
 export function provideConfig() {
@@ -37,7 +37,7 @@ export function provideConfig() {
     LoginComponent,
     AdminComponent,
     CreateCoursesComponent,
-    DashboardDetailsViewComponent
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

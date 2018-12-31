@@ -1,0 +1,28 @@
+.form-control{
+    size: 30in;
+    width: 20%;
+}
+.wrap-create-course{
+    display: flex;
+    flex-direction: column;
+    padding: 2.6rem;
+}
+select{
+    width: 20%;     
+}
+.form-group {
+display: grid;
+grid-auto-rows: 20px;
+}
+.btn-success.disabled, .btn-success:disabled{
+    width: 100px;
+}
+
+button {
+    padding: 12px 25px;
+    margin-left: 30px;
+    background-color: #ddd;
+    border: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.3rem;
+}

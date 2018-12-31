@@ -3,7 +3,7 @@ import {startOfDay,endOfDay,subDays,addDays,endOfMonth,isSameDay,isSameMonth, ad
 import { Subject, from } from 'rxjs';
 import {CalendarEvent,CalendarEventAction,CalendarEventTimesChangedEvent,CalendarView} from 'angular-calendar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
-import { AuthService } from 'angularx-social-login';
+import { AuthService, GoogleLoginProvider } from 'angularx-social-login';
 import { Router} from '@angular/router';
 const colors: any = {
   red: {
@@ -148,8 +148,18 @@ export class DashboardComponent implements OnInit {
 
   signOut(): void {
     
+   
     this.authService.signOut();
-    this.router.navigate(['login']);
+    debugger
     localStorage.removeItem("isLogin");
+    
+    this.router.navigate(['login']);
+    window.localStorage.clear();
+    window.sessionStorage.clear();
+   
+    
+  }
+  close(){
+    
   }
 }
