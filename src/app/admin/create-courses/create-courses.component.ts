@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 import{ServicesService}from '../../Services/Service.services'
-const URL = 'http://localhost:3000/api/upload';
+import { Appsettings } from 'src/app/App.seetings';
+import { course } from './Shared/Course';
+import { parse } from 'date-fns';
+const URL = Appsettings.BASE_URL+Appsettings.SaveFile;
 @Component({
   selector: 'app-create-courses',
   templateUrl: './create-courses.component.html',
@@ -12,12 +15,27 @@ export class CreateCoursesComponent implements OnInit {
 
   constructor(private router:Router,private serv:ServicesService) { }
   public Trainers:any;
+public CourseName:any;
+public Discreption:any;
+public Dureation:any;
+public FromDate:any;
+public ToDate:any;
+public MaxEnroll:any;
+public MiniumEnroll:any;
+public LastDate:any;
+public Venue:any;
+public id;
+public courseid;
+   public path;
+ 
   public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
   ngOnInit() {
-    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    
+    this.uploader.onAfterAddingFile = (File) => { File.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-         console.log('ImageUpload:uploaded:', item, status, response);
-         alert('File uploaded successfully');
+      this.path=item.file.name;
+         console.log('ImageUpload:uploaded:', item, status, response);  
+
   }
   this.serv.GetAllTrainers().subscribe((Response)=>{
     console.log(Response);
@@ -27,5 +45,42 @@ export class CreateCoursesComponent implements OnInit {
 }
   Dash(){
     this.router.navigate(['AdminDashboard'])
+  }
+  SubmitCourses(){
+   
+    var data={'Course_Name':this.CourseName,'Trainer_ID':this.id,'Description':this.Discreption,'Duration':this.Dureation,'Attachment':this.path}
+    console.log(data);
+    this.serv.AddCourse(data).subscribe((res)=>{
+     
+      console.log(res);
+      this.courseid=this.getcourse();
+    })
+  }
+  filterForeCasts(value){
+    this.id=value;
+    console.log(this.id);
+  }
+  getcourse(){
+     this.serv.GetCourseid().subscribe((res)=>{
+      this.courseid=+res;
+
+       var data={"Trainer_ID":this.id,"Course_ID":this.courseid,"FromDate":this.FromDate,"ToDate":this.ToDate,"Venue":this.Venue,"Last_date_to_enroll":this.LastDate,"Max_enroll":this.MaxEnroll,"Min_enroll":this.MiniumEnroll,"Status": 1 }
+     this.serv.CreateEnrollmaster(data).subscribe((Response)=>{
+       if(Response){
+         this.CourseName=null;
+         this.Discreption=null;
+         this.Dureation=null;
+         this.FromDate=null;
+         this.LastDate=null;
+         this.MaxEnroll=null;
+         this.MiniumEnroll=null;
+         this.ToDate=null;
+         this.FromDate=null;         
+       }
+       else{
+         alert("Error");
+       }
+     })
+      })
   }
 }

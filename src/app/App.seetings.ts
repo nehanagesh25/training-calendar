@@ -12,6 +12,8 @@ export class Appsettings{
     public static CourseByToday='Course/GetBydate';
     public static UpdateCourse='Course/UpdateCourse';
     public static DeleteCourse='Course/DeleteCourse';
+    public static SaveFile='Course/Save';
+    public static LastRecord='Course/LastRecord';
     //Enroll Master API
     public static CreateEnrollmaster='Enrollmasters/CreateEnrollmaster';
     public static Updatemaster='Enrollmasters/Updatemaster';

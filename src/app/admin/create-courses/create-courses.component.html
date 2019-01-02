@@ -1,33 +1,50 @@
 <section class="wrap-create-course">
   <div class="form-group">
     <label for="usr">CourseName:</label>
-    <input type="text" class="form-control" id="usr">
+    <input type="text" class="form-control" id="usr" [(ngModel)]="CourseName">
+   
   </div>
   <div class="form-group">
     <label for="pwd">Discreption</label>
-    <input type="password" class="form-control" id="pwd">
+    <input type="text" class="form-control" id="pwd" [(ngModel)]="Discreption">
   </div>
   <div class="form-group">
     <label for="pwd">Dureation</label>
-    <input type="text" class="form-control" id="pwd">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Discreption</label>
-    <input type="text" class="form-control" id="pwd">
+    <input type="number" class="form-control" id="pwd"  [(ngModel)]="Dureation">
   </div>
   <div class="form-group">
     <label for="pwd">FromDate</label>
-    <input type="date" class="form-control" id="pwd">
+    <input type="date" class="form-control" id="pwd"  [(ngModel)]="FromDate">
+    {{FromDate}}
   </div>
   <div class="form-group">
     <label for="pwd">ToDate</label>
-    <input type="date" class="form-control" id="pwd">
+    <input type="date" class="form-control" id="pwd"  [(ngModel)]="ToDate">
+  </div>
+  <div class="form-group">
+    <label for="pwd">MaxEnroll</label>
+    <input type="number" class="form-control" id="pwd"  [(ngModel)]="MaxEnroll">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Minium Enroll</label>
+    <input type="number" class="form-control" id="pwd"  [(ngModel)]="MiniumEnroll">
+  </div>
+  <div class="form-group">
+    <label for="pwd">LastDate To Enroll</label>
+    <input type="date" class="form-control" id="pwd"  [(ngModel)]="LastDate">
+  </div>
+  <div class="form-group">
+    <label for="pwd">Venue</label>
+    <input type="number" class="form-control" id="pwd"  [(ngModel)]="Venue">
   </div>
   <div class="form-group">
   <label for="pwd">Trainer</label>
-  <select >
-    <option [value]="country.Trainer_Name" *ngFor="let country of Trainers">{{country.Trainer_Name}}</option>
+  <select (change)="filterForeCasts($event.target.value)">
+    <option [value]="Trainer.Trainer_ID" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
+   
   </select>
+  {{value}}
+  
 </div>
 <label for="pwd">Upload Discreption</label>
 <input type="file" class="btn"name="photo" ng2FileSelect [uploader]="uploader" />
@@ -39,5 +56,5 @@
 </button>
 </section>
 <div class="btn">
-    <button> Submit</button>
+    <button (click)="SubmitCourses()"> Submit</button>
 </div>

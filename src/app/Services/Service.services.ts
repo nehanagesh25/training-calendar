@@ -29,8 +29,16 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.AllCourse;
         return this.http.get(url);
     }
-
-
+//save file
+    public savefile(data){
+        let url=Appsettings.BASE_URL+Appsettings.SaveFile;
+        return this.http.post(url,data);
+    }
+    //Last Record Of Course
+    public GetCourseid(){
+        let url=Appsettings.BASE_URL+Appsettings.LastRecord
+        return this.http.get(url);
+    }
     //Course Running  Today Post Method
     public TodayCourse() {
         let url = Appsettings.BASE_URL + Appsettings.CourseByToday;
