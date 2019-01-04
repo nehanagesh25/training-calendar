@@ -18,6 +18,21 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.AdminLogin;
         return this.http.post(url, data);
     }
+    //Register for an Event
+    public Register(data){
+        let url=Appsettings.BASE_URL+Appsettings.Register;
+        return this.http.post(url,data);
+    }
+    //Unregister for an event
+    public UnRegister(Data){
+        let url=Appsettings.BASE_URL+Appsettings.UnRegister;
+        return this.http.post(url,Data);
+    }
+    //check for Enrolled for the course or not 
+    public check(data){
+        let url=Appsettings.BASE_URL+Appsettings.check;
+        return this.http.post(url,data);
+    }
     //Course
     //AddCourse Post Method
     public AddCourse(data) {

@@ -6,6 +6,9 @@ export class Appsettings{
     //Login API 
     public static UserLogin = 'user/UserLogin';
     public static AdminLogin='user/AdminLogin';
+    public static Register='user/Register';
+    public static UnRegister='user/UnRegister';
+    public static check='user/check';
     //Course API
     public static AddCourse='Course/AddCourse';
     public static AllCourse='Course/AllCourse';

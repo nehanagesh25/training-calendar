@@ -4,6 +4,7 @@ import { SocialUser } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
 import { Router} from '@angular/router';
 import{ServicesService}from '../Services/Service.services'
+import { store } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import{ServicesService}from '../Services/Service.services'
 export class LoginComponent implements OnInit {  
   User_Name:String = '';
   Password: String = "";
-   
+   public store;
     user= new SocialUser();  
     constructor(private authService: AuthService,private router:Router,private service:ServicesService) { }  
     ngOnInit() {
@@ -32,13 +33,16 @@ export class LoginComponent implements OnInit {
       
       this.authService.authState.subscribe((user) => {
         console.log(user);
+        this.store=user;
         const data1={"User_Name":user.email};
+        sessionStorage.setItem("User",user.email);
         localStorage.setItem('isLogin','true');
         this.service.UserLogin(data1).subscribe((response:any)=>{
           console.log(response);
           if(response === 'Success'){
            
             localStorage.setItem('isLogin','true');
+            
             this.router.navigate(['dashboard']);    
               }    
               else{

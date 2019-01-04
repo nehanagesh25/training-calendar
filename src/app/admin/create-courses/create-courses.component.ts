@@ -53,7 +53,7 @@ public courseid;
     this.serv.AddCourse(data).subscribe((res)=>{
      
       console.log(res);
-      this.courseid=this.getcourse();
+     this.courseid=this.getcourse();
     })
   }
   filterForeCasts(value){
@@ -63,9 +63,10 @@ public courseid;
   getcourse(){
      this.serv.GetCourseid().subscribe((res)=>{
       this.courseid=+res;
-
        var data={"Trainer_ID":this.id,"Course_ID":this.courseid,"FromDate":this.FromDate,"ToDate":this.ToDate,"Venue":this.Venue,"Last_date_to_enroll":this.LastDate,"Max_enroll":this.MaxEnroll,"Min_enroll":this.MiniumEnroll,"Status": 1 }
      this.serv.CreateEnrollmaster(data).subscribe((Response)=>{
+       console.log("resposce second");
+       console.log(Response);
        if(Response){
          this.CourseName=null;
          this.Discreption=null;

@@ -4,7 +4,7 @@
     <input type="text" class="form-control" id="usr" [(ngModel)]="CourseName">
    
   </div>
-  <div class="form-group">
+  <div class="form-group-right">
     <label for="pwd">Discreption</label>
     <input type="text" class="form-control" id="pwd" [(ngModel)]="Discreption">
   </div>
@@ -12,7 +12,7 @@
     <label for="pwd">Dureation</label>
     <input type="number" class="form-control" id="pwd"  [(ngModel)]="Dureation">
   </div>
-  <div class="form-group">
+  <div class="form-group-right">
     <label for="pwd">FromDate</label>
     <input type="date" class="form-control" id="pwd"  [(ngModel)]="FromDate">
     {{FromDate}}
@@ -21,7 +21,7 @@
     <label for="pwd">ToDate</label>
     <input type="date" class="form-control" id="pwd"  [(ngModel)]="ToDate">
   </div>
-  <div class="form-group">
+  <div class="form-group-right">
     <label for="pwd">MaxEnroll</label>
     <input type="number" class="form-control" id="pwd"  [(ngModel)]="MaxEnroll">
   </div>
@@ -29,15 +29,15 @@
     <label for="pwd">Minium Enroll</label>
     <input type="number" class="form-control" id="pwd"  [(ngModel)]="MiniumEnroll">
   </div>
-  <div class="form-group">
+  <div class="form-group-right">
     <label for="pwd">LastDate To Enroll</label>
     <input type="date" class="form-control" id="pwd"  [(ngModel)]="LastDate">
   </div>
   <div class="form-group">
     <label for="pwd">Venue</label>
-    <input type="number" class="form-control" id="pwd"  [(ngModel)]="Venue">
+    <input type="text" class="form-control" id="pwd"  [(ngModel)]="Venue">
   </div>
-  <div class="form-group">
+  <div class="form-group-right">
   <label for="pwd">Trainer</label>
   <select (change)="filterForeCasts($event.target.value)">
     <option [value]="Trainer.Trainer_ID" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>

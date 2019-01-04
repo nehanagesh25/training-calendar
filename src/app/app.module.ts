@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'; 
 import { HttpModule } from '@angular/http';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppRoutingModule } from './Router/Router';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -42,6 +43,7 @@ export function provideConfig() {
   imports: [
     BrowserModule,
     SocialLoginModule,
+    AngularFontAwesomeModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpModule,

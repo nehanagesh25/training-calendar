@@ -5,6 +5,8 @@ import {CalendarEvent,CalendarEventAction,CalendarEventTimesChangedEvent,Calenda
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { AuthService, GoogleLoginProvider } from 'angularx-social-login';
 import { Router} from '@angular/router';
+import{ServicesService}from '../Services/Service.services'
+import { ClickDirective } from 'angular-calendar/modules/common/click.directive';
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -28,11 +30,11 @@ const colors: any = {
 export class DashboardComponent implements OnInit {
   @ViewChild('modalContent')
   modalContent: TemplateRef<any>;
-
+  public user;
   view: CalendarView = CalendarView.Month;
 
   CalendarView = CalendarView;
-
+  public flag=0;
   viewDate: Date = new Date();
 
   modalData: {
@@ -42,17 +44,21 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit() {
+    this.user=sessionStorage.getItem("User")
+    console.log(this.user);
   }
   actions: CalendarEventAction[] = [
     {
       label: '<i class="fa fa-fw fa-pencil"></i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
+      
         this.handleEvent('Edited', event);
       }
     },
     {
       label: '<i class="fa fa-fw fa-times"></i>',
       onClick: ({ event }: { event: CalendarEvent }): void => {
+     
         this.events = this.events.filter(iEvent => iEvent !== event);
         this.handleEvent('Deleted', event);
       }
@@ -72,7 +78,8 @@ export class DashboardComponent implements OnInit {
         beforeStart: true,
         afterEnd: true
       },
-      draggable: true
+      draggable: true,
+      
     },
     {
       start: startOfDay(new Date()),
@@ -102,9 +109,9 @@ export class DashboardComponent implements OnInit {
   ];
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal,private authService: AuthService,private router:Router) {}
+  constructor(private serv:ServicesService ,private modal: NgbModal,private authService: AuthService,private router:Router) {}
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {   
     if (isSameMonth(date, this.viewDate)) {
       this.viewDate = date;
       if (
@@ -115,8 +122,9 @@ export class DashboardComponent implements OnInit {
       } else {
         this.activeDayIsOpen = true;
       }
-    }
-  }eventTimesChanged({
+    }  
+}
+  eventTimesChanged({
     event,
     newStart,
     newEnd
@@ -124,11 +132,19 @@ export class DashboardComponent implements OnInit {
     event.start = newStart;
     event.end = newEnd;
     this.handleEvent('Dropped or resized', event);
+ 
     this.refresh.next();
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
+    this.user=sessionStorage.getItem("User")
+    var data={"User_Name":this.user,"Course_Name":"Python"};
+    console.log(this.user);
+    this.serv.check(data).subscribe((Response)=>{
+      console.log(Response);
+      if(Response == "Success"){
+    this.flag=1;}});
     this.modal.open(this.modalContent, { size: 'lg' });
   }
   addEvent(): void {
@@ -154,12 +170,36 @@ export class DashboardComponent implements OnInit {
     localStorage.removeItem("isLogin");
     
     this.router.navigate(['login']);
+    sessionStorage.removeItem("User");
     window.localStorage.clear();
     window.sessionStorage.clear();
    
     
   }
-  close(){
-    
+  Register(){
+   
+    var data={"User_Name":this.user,"Course_Name":"Python"}
+    this.serv.Register(data).subscribe((Response)=>{
+      if(Response){
+      this.flag=1;
+      alert("Registration Success")
+    }
+      else{
+        alert("Registration Failed");
+      }
+    })
   }
-}
+  UnRegister(){
+    var data={"User_Name":this.user,"Course_Name":"Python","Reason_For_Unreg":"Avilabel"};
+    debugger
+    this.serv.UnRegister(data).subscribe((Response)=>{
+      if(Response){
+      this.flag=0;
+      alert("DeRegistration success")
+    }
+      else{
+        alert("DeRegistration Failed");
+      }
+    })
+  }
+  }
