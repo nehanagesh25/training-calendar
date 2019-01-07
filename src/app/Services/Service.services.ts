@@ -33,6 +33,11 @@ export class ServicesService {
         let url=Appsettings.BASE_URL+Appsettings.check;
         return this.http.post(url,data);
     }
+    //Enrolled For Current Evets
+    public GetEnrolledEmployees(data){
+        let url=Appsettings.BASE_URL+Appsettings.EnrolledEmployees;
+        return this.http.post(url,data);
+    }
     //Course
     //AddCourse Post Method
     public AddCourse(data) {

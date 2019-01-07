@@ -1,22 +1,22 @@
-.form-group-right{
-    
-}
-.form-control{
-    size: 30in;
-    width: 20%;
-}
-.wrap-create-course{
+.form-group {
     display: flex;
     flex-direction: column;
-    padding: 2.6rem;
 }
+
+.wrap-create-course {
+    padding: 2rem;
+    display: grid;
+}
+
+
+input {
+    width: 40%;
+}
+
 select{
     width: 20%;     
 }
-.form-group {
-display: grid;
-grid-auto-rows: 20px;
-}
+
 .btn-success.disabled, .btn-success:disabled{
     width: 100px;
 }

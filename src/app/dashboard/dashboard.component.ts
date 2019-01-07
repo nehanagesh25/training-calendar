@@ -5,8 +5,7 @@ import {CalendarEvent,CalendarEventAction,CalendarEventTimesChangedEvent,Calenda
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { AuthService, GoogleLoginProvider } from 'angularx-social-login';
 import { Router} from '@angular/router';
-import{ServicesService}from '../Services/Service.services'
-import { ClickDirective } from 'angular-calendar/modules/common/click.directive';
+import{ServicesService}from '../Services/Service.services';
 const colors: any = {
   red: {
     primary: '#ad2121',

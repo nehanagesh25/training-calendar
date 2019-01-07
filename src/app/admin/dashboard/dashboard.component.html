@@ -63,14 +63,15 @@
                                     <p class="card-category"></p>
                                 </div>
                                 <div class="card-body ">
-                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth" *ngIf='Todaydata != null'>
+                                    <div id="chartPreferences" class="ct-chart ct-perfect-fourth" *ngIf="(Todaydata  | json) != '{}'">
                                       <div *ngFor='let course of Todaydata'> 
                                        Courese Name :-{{course.Course_Name}}<br>
                                        Description  :-{{course.Description}}<br>
-                                       Duration     :-{{course.Duration}}<br>
+                                       Duration     :-{{course.Duration}} Days<br><br>
+                                      
                                       </div> 
                                     </div>
-                                    <div *ngIf='Todaydata ==null'>
+                                    <div *ngIf="(Todaydata  | json) != '{}'">
                                         No Events Today
                                     </div>
                                 </div>
@@ -83,7 +84,15 @@
                                     <p class="card-category"></p>
                                 </div>
                                 <div class="card-body ">
-                                    <div id="chartHours" class="ct-chart"></div>
+                                        <div id="chartPreferences" class="ct-chart ct-perfect-fourth"  *ngIf='show != null' >
+                                            
+                                                <div *ngFor='let course of show' > 
+                                               {{course.User_Name}}<br>
+                                                </div> 
+                                              </div>
+                                              <div *ngIf='show ==null'>
+                                                 No Employees Registered
+                                              </div>
                                 </div>
                                
                             </div>

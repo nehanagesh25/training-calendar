@@ -9,6 +9,7 @@ export class Appsettings{
     public static Register='user/Register';
     public static UnRegister='user/UnRegister';
     public static check='user/check';
+    public static EnrolledEmployees='user/EnrolledEmployees'
     //Course API
     public static AddCourse='Course/AddCourse';
     public static AllCourse='Course/AllCourse';

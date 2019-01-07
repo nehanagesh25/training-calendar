@@ -11,6 +11,7 @@ export class AdminDashboardComponent implements OnInit {
 public falg=0;
   constructor(private router:Router,private service:ServicesService) { }
  public Todaydata:any ;
+ public show:any;
   ngOnInit() {
     if(this.falg){
       this.falg=0;
@@ -18,6 +19,13 @@ public falg=0;
     this.service.TodayCourse().subscribe((Response)=>{
       this.Todaydata=Response;
       console.log(Response);
+      for (let movement of this.Todaydata) {
+       var Data={"Course_ID":movement.Course_ID};
+        this.service.GetEnrolledEmployees(Data).subscribe((res)=>{
+          console.log(res);
+          this.show=res;
+        });
+      }
     });
   }
   CreateEvents(){
@@ -33,3 +41,4 @@ public falg=0;
   }
 
 }
+
