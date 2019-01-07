@@ -4,14 +4,18 @@ import { LoginComponent } from '../login/login.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import {AdminDashboardComponent}from '../admin/dashboard/dashboard.component';
 import{CreateCoursesComponent}from '../admin/create-courses/create-courses.component';
-import { AuthGaurd}from '../Services/Auth.guard'
+import { AuthGaurd}from '../Services/Auth.guard';
+import{AdminComponent}from '../admin/admin.component';
+import{DisplayComponent} from '../admin/displayCourseDetails/display.component'
 export const routes: Routes = [
   {path : '', component:LoginComponent},
   {path: 'login', component:LoginComponent},
   {path: 'dashboard', component:DashboardComponent,canActivate:[AuthGaurd]},
-  {path:'AdminDashboard',component:AdminDashboardComponent,
+  {path:'AdminDashboard',component:AdminComponent,
   children : [
-        { path:'AddCourse', component :CreateCoursesComponent}
+        {path:'view',component:AdminDashboardComponent},
+        { path:'AddCourse', component :CreateCoursesComponent},
+        {path:'DisplayCourse',component:DisplayComponent}
          ]},
   // {path:'**', component:LoginComponent}
 ];

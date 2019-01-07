@@ -38,18 +38,15 @@
       <input type="text" class="form-control" id="pwd" [(ngModel)]="Venue">
     </div>
     <div class="form-group">
-      <label for="pwd">Trainer</label>
+      <label for="pwd">Trainer</label><br>
       <select (change)="filterForeCasts($event.target.value)">
         <option [value]="Trainer.Trainer_ID" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
-
       </select>
-      {{value}}
-
-    </div>
+     </div>
     <label for="pwd">Upload Discreption</label>
     <input type="file" class="btn" name="photo" ng2FileSelect [uploader]="uploader" />
 
-    <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+    <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
       Upload File
     </button>
   </section>
@@ -67,7 +64,7 @@
   Update Course
   <section class="wrap-create-course">
     <div class="form-group">
-      <label for="pwd">Course</label>
+      <label for="pwd">Course</label><br>
       <select (change)="filterForeCasts1($event.target.value)">
         <option [value]="Course.Course_ID" *ngFor="let Course of Course">{{Course.Course_Name}}</option>
       </select>
@@ -111,7 +108,7 @@
       <input type="text" class="form-control" id="pwd" [(ngModel)]="Venue">
     </div>
     <div class="form-group">
-      <label for="pwd">Trainer</label>
+      <label for="pwd">Trainer</label><br>
       <select (change)="filterForeCasts($event.target.value)">
         <option [value]="Trainer.Trainer_ID" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
 

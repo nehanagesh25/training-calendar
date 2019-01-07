@@ -7,8 +7,8 @@ import "rxjs/add/operator/map";
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class AdminDashboardComponent implements OnInit {
-public falg=0;
+export class AdminDashboardComponent  {
+  public falg=0;
   constructor(private router:Router,private service:ServicesService) { }
  public Todaydata:any ;
  public show:any;
@@ -28,17 +28,6 @@ public falg=0;
       }
     });
   }
-  CreateEvents(){
-    console.log("Click")
-    this.router.navigate(['AdminDashboard/AddCourse']);
-    this.falg=1;
-
-    
-  }
-  Dash(){
-    this.falg=0;
-    this.router.navigate(['AdminDashboard']);
-  }
-
+  
 }
 

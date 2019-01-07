@@ -36,7 +36,9 @@ export class CreateCoursesComponent implements OnInit {
     this.uploader.onAfterAddingFile = (File) => { File.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       this.path = item.file.name;
+      debugger
       console.log('ImageUpload:uploaded:', item, status, response);
+      alert("Upload Completed");
 
     }
     this.serv.GetAllTrainers().subscribe((Response) => {
@@ -54,7 +56,7 @@ export class CreateCoursesComponent implements OnInit {
     this.router.navigate(['AdminDashboard'])
   }
   SubmitCourses() {
-
+debugger
     var data = { 'Course_Name': this.CourseName, 'Trainer_ID': this.id, 'Description': this.Discreption, 'Duration': this.Dureation, 'Attachment': this.path }
     console.log(data);
     this.serv.AddCourse(data).subscribe((res) => {
@@ -75,6 +77,7 @@ export class CreateCoursesComponent implements OnInit {
             this.ToDate = null;
             this.FromDate = null;
             this.Venue = null;
+            this.router.navigate(['AdminDashboard/DisplayCourse']);
           }
           else {
             alert("Error");
@@ -82,6 +85,7 @@ export class CreateCoursesComponent implements OnInit {
         })
       })
     })
+    
   }
   filterForeCasts(value) {
     this.id = value;
@@ -110,7 +114,7 @@ export class CreateCoursesComponent implements OnInit {
         })
       }
     })
-
+    this.router.navigate(['AdminDashboard/DisplayCourse']);
   }
   filterForeCasts1(value) {
     this.courseid = value;

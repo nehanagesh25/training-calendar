@@ -20,6 +20,7 @@ import { AdminComponent } from './admin/admin.component';
 import { CreateCoursesComponent } from './admin/create-courses/create-courses.component';
 import{AuthGaurd}from '../app/Services/Auth.guard'
 import { FileSelectDirective } from 'ng2-file-upload';
+import { DisplayComponent } from './admin/displayCourseDetails/display.component';
 
 let config = new AuthServiceConfig([
   {
@@ -38,7 +39,8 @@ export function provideConfig() {
     LoginComponent,
     AdminComponent,
     CreateCoursesComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    DisplayComponent
   ],
   imports: [
     BrowserModule,
