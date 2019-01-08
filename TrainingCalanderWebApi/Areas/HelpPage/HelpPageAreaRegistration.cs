@@ -1,7 +1,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace TrainingCalanderWebApi.Areas.HelpPage
+namespace TrainingCalendarWebApi.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration
     {

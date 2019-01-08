@@ -1,4 +1,4 @@
-namespace TrainingCalanderWebApi.Areas.HelpPage.ModelDescriptions
+namespace TrainingCalendarWebApi.Areas.HelpPage.ModelDescriptions
 {
     public class CollectionModelDescription : ModelDescription
     {

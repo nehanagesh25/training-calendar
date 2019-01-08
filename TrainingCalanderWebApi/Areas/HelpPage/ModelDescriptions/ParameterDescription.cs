@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace TrainingCalanderWebApi.Areas.HelpPage.ModelDescriptions
+namespace TrainingCalendarWebApi.Areas.HelpPage.ModelDescriptions
 {
     public class ParameterDescription
     {

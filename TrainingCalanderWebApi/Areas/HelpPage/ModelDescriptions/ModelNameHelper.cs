@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace TrainingCalanderWebApi.Areas.HelpPage.ModelDescriptions
+namespace TrainingCalendarWebApi.Areas.HelpPage.ModelDescriptions
 {
     internal static class ModelNameHelper
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace TrainingCalanderWebApi
+namespace TrainingCalendarWebApi
 {
     public static class WebApiConfig
     {
@@ -13,7 +13,7 @@ namespace TrainingCalanderWebApi
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-
+            config.EnableCors();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",

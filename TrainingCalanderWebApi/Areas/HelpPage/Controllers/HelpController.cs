@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using TrainingCalanderWebApi.Areas.HelpPage.ModelDescriptions;
-using TrainingCalanderWebApi.Areas.HelpPage.Models;
+using TrainingCalendarWebApi.Areas.HelpPage.ModelDescriptions;
+using TrainingCalendarWebApi.Areas.HelpPage.Models;
 
-namespace TrainingCalanderWebApi.Areas.HelpPage.Controllers
+namespace TrainingCalendarWebApi.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

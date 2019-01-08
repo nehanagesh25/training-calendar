@@ -1,6 +1,6 @@
 using System;
 
-namespace TrainingCalanderWebApi.Areas.HelpPage.ModelDescriptions
+namespace TrainingCalendarWebApi.Areas.HelpPage.ModelDescriptions
 {
     /// <summary>
     /// Describes a type model.
