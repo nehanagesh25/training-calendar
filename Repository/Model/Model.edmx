@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Training_CalendarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CourseDetails">
+          <Key>
+            <PropertyRef Name="Course_ID" />
+          </Key>
+          <Property Name="Course_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Trainer_ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Course_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="Created_On" Type="datetime" Nullable="false" />
+          <Property Name="Updated_On" Type="datetime" />
+          <Property Name="Created_By" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Updated_By" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Attachment" Type="varbinary(max)" />
+          <Property Name="File_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="File_Extension" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Enrollmaster">
+          <Key>
+            <PropertyRef Name="Enrollmaster_ID" />
+          </Key>
+          <Property Name="Enrollmaster_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Trainer_ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Course_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FromDate" Type="datetime" Nullable="false" />
+          <Property Name="ToDate" Type="datetime" Nullable="false" />
+          <Property Name="Venue" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Last_date_to_enroll" Type="datetime" Nullable="false" />
+          <Property Name="Max_enroll" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Min_enroll" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Created_On" Type="datetime" Nullable="false" />
+          <Property Name="Updated_On" Type="datetime" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Enrollment">
+          <Key>
+            <PropertyRef Name="Enrollment_ID" />
+          </Key>
+          <Property Name="Enrollment_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="EnrollMaster_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="User_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Reg_On" Type="datetime" Nullable="false" />
+          <Property Name="Unreg_On" Type="datetime" />
+          <Property Name="Reason_For_Unreg" Type="nvarchar" MaxLength="300" />
+          <Property Name="Created_On" Type="datetime" />
+          <Property Name="Updated_On" Type="datetime" />
+        </EntityType>
+        <EntityType Name="TrainerDetails">
+          <Key>
+            <PropertyRef Name="Trainer_ID" />
+          </Key>
+          <Property Name="Trainer_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Course_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="User_ID" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Trainer_Type" Type="bit" Nullable="false" />
+          <Property Name="Trainer_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Created_By" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Created_On" Type="datetime" Nullable="false" />
+          <Property Name="Updated_On" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Name" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nchar" MaxLength="20" />
+          <Property Name="Last_Login" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Created_On" Type="datetime" />
+        </EntityType>
+        <Association Name="fk_UserLogin">
+          <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="1" />
+          <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLogin">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Training_CalendarModelStoreContainer">
+          <EntitySet Name="CourseDetails" EntityType="Self.CourseDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enrollmaster" EntityType="Self.Enrollmaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enrollment" EntityType="Self.Enrollment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrainerDetails" EntityType="Self.TrainerDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLogin" EntityType="Self.UserLogin" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_UserLogin" Association="Self.fk_UserLogin">
+            <End Role="UserLogin" EntitySet="UserLogin" />
+            <End Role="Enrollment" EntitySet="Enrollment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Training_CalendarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CourseDetail">
+          <Key>
+            <PropertyRef Name="Course_ID" />
+          </Key>
+          <Property Name="Course_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Trainer_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Course_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Duration" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Updated_On" Type="DateTime" Precision="3" />
+          <Property Name="Created_By" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Updated_By" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Attachment" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="File_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="File_Extension" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Enrollmaster">
+          <Key>
+            <PropertyRef Name="Enrollmaster_ID" />
+          </Key>
+          <Property Name="Enrollmaster_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Trainer_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Course_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Venue" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Last_date_to_enroll" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Max_enroll" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Min_enroll" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Updated_On" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Enrollment">
+          <Key>
+            <PropertyRef Name="Enrollment_ID" />
+          </Key>
+          <Property Name="Enrollment_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="EnrollMaster_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="User_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Reg_On" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Unreg_On" Type="DateTime" Precision="3" />
+          <Property Name="Reason_For_Unreg" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Created_On" Type="DateTime" Precision="3" />
+          <Property Name="Updated_On" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UserLogin" Relationship="Self.fk_UserLogin" FromRole="Enrollment" ToRole="UserLogin" />
+        </EntityType>
+        <EntityType Name="TrainerDetail">
+          <Key>
+            <PropertyRef Name="Trainer_ID" />
+          </Key>
+          <Property Name="Trainer_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Course_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="User_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Trainer_Type" Type="Boolean" Nullable="false" />
+          <Property Name="Trainer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Updated_On" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Last_Login" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="Created_On" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Enrollments" Relationship="Self.fk_UserLogin" FromRole="UserLogin" ToRole="Enrollment" />
+        </EntityType>
+        <Association Name="fk_UserLogin">
+          <End Role="UserLogin" Type="Self.UserLogin" Multiplicity="1" />
+          <End Role="Enrollment" Type="Self.Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLogin">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Enrollment">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Training_CalendarEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CourseDetails" EntityType="Self.CourseDetail" />
+          <EntitySet Name="Enrollmasters" EntityType="Self.Enrollmaster" />
+          <EntitySet Name="Enrollments" EntityType="Self.Enrollment" />
+          <EntitySet Name="TrainerDetails" EntityType="Self.TrainerDetail" />
+          <EntitySet Name="UserLogins" EntityType="Self.UserLogin" />
+          <AssociationSet Name="fk_UserLogin" Association="Self.fk_UserLogin">
+            <End Role="UserLogin" EntitySet="UserLogins" />
+            <End Role="Enrollment" EntitySet="Enrollments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Training_CalendarModelStoreContainer" CdmEntityContainer="Training_CalendarEntities">
+          <EntitySetMapping Name="CourseDetails">
+            <EntityTypeMapping TypeName="Training_CalendarModel.CourseDetail">
+              <MappingFragment StoreEntitySet="CourseDetails">
+                <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+                <ScalarProperty Name="Trainer_ID" ColumnName="Trainer_ID" />
+                <ScalarProperty Name="Course_Name" ColumnName="Course_Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+                <ScalarProperty Name="Updated_On" ColumnName="Updated_On" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+                <ScalarProperty Name="File_Name" ColumnName="File_Name" />
+                <ScalarProperty Name="File_Extension" ColumnName="File_Extension" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enrollmasters">
+            <EntityTypeMapping TypeName="Training_CalendarModel.Enrollmaster">
+              <MappingFragment StoreEntitySet="Enrollmaster">
+                <ScalarProperty Name="Enrollmaster_ID" ColumnName="Enrollmaster_ID" />
+                <ScalarProperty Name="Trainer_ID" ColumnName="Trainer_ID" />
+                <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+                <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+                <ScalarProperty Name="ToDate" ColumnName="ToDate" />
+                <ScalarProperty Name="Venue" ColumnName="Venue" />
+                <ScalarProperty Name="Last_date_to_enroll" ColumnName="Last_date_to_enroll" />
+                <ScalarProperty Name="Max_enroll" ColumnName="Max_enroll" />
+                <ScalarProperty Name="Min_enroll" ColumnName="Min_enroll" />
+                <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+                <ScalarProperty Name="Updated_On" ColumnName="Updated_On" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enrollments">
+            <EntityTypeMapping TypeName="Training_CalendarModel.Enrollment">
+              <MappingFragment StoreEntitySet="Enrollment">
+                <ScalarProperty Name="Enrollment_ID" ColumnName="Enrollment_ID" />
+                <ScalarProperty Name="EnrollMaster_ID" ColumnName="EnrollMaster_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Reg_On" ColumnName="Reg_On" />
+                <ScalarProperty Name="Unreg_On" ColumnName="Unreg_On" />
+                <ScalarProperty Name="Reason_For_Unreg" ColumnName="Reason_For_Unreg" />
+                <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+                <ScalarProperty Name="Updated_On" ColumnName="Updated_On" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainerDetails">
+            <EntityTypeMapping TypeName="Training_CalendarModel.TrainerDetail">
+              <MappingFragment StoreEntitySet="TrainerDetails">
+                <ScalarProperty Name="Trainer_ID" ColumnName="Trainer_ID" />
+                <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Trainer_Type" ColumnName="Trainer_Type" />
+                <ScalarProperty Name="Trainer_Name" ColumnName="Trainer_Name" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+                <ScalarProperty Name="Updated_On" ColumnName="Updated_On" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLogins">
+            <EntityTypeMapping TypeName="Training_CalendarModel.UserLogin">
+              <MappingFragment StoreEntitySet="UserLogin">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Last_Login" ColumnName="Last_Login" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

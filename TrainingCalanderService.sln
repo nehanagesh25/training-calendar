@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCalanderService", "TrainingCalanderService\TrainingCalanderService.csproj", "{89E4FE30-CE45-4244-AC14-260F294C3EB7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCalendarService", "TrainingCalanderService\TrainingCalendarService.csproj", "{89E4FE30-CE45-4244-AC14-260F294C3EB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCalendarModel", "TraingCalanderModel\TrainingCalendarModel.csproj", "{78D5914C-DCE9-4C9C-8FBD-6623678A2D1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCalendarRepository", "Repository\TrainingCalendarRepository.csproj", "{ACA11A96-13BE-48A4-957A-6BC5123CD807}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{89E4FE30-CE45-4244-AC14-260F294C3EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89E4FE30-CE45-4244-AC14-260F294C3EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89E4FE30-CE45-4244-AC14-260F294C3EB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78D5914C-DCE9-4C9C-8FBD-6623678A2D1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78D5914C-DCE9-4C9C-8FBD-6623678A2D1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78D5914C-DCE9-4C9C-8FBD-6623678A2D1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78D5914C-DCE9-4C9C-8FBD-6623678A2D1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACA11A96-13BE-48A4-957A-6BC5123CD807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA11A96-13BE-48A4-957A-6BC5123CD807}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA11A96-13BE-48A4-957A-6BC5123CD807}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA11A96-13BE-48A4-957A-6BC5123CD807}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
