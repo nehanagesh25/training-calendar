@@ -106,16 +106,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\UnityConfig.cs" />
-    <Compile Include="Model\adminLogin.cs" />
+    <Compile Include="Model\Login.cs" />
     <Compile Include="Model\CalendarDisplay.cs" />
     <Compile Include="Model\CouresDetails.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\Enrollmaster.cs" />
     <Compile Include="Model\Enrolment.cs" />
     <Compile Include="Model\TrainerDetails.cs" />
-    <Compile Include="Model\User.cs" />
-    <Compile Include="Model\UserId.cs" />
-    <Compile Include="Model\UserLogin.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
