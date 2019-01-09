@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace TrainingCalanderWebApi
+namespace TrainingCalendarWebApi
 {
     public class BundleConfig
     {

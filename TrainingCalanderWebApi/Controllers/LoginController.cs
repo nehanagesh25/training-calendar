@@ -3,8 +3,10 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Configuration;
 using TrainingCalendarWebAPI.Common;
-using TrainingCalanderWebApi.Models;
 using System.Web.Http.Cors;
+using Newtonsoft.Json;
+using TrainingCalendarWebApi.Models;
+using TrainingCalanderModel.Model;
 
 namespace BroadbandWebApi.Controllers
 {
@@ -74,6 +76,112 @@ namespace BroadbandWebApi.Controllers
                 throw ex;
             }
         }
+        [HttpPost]
+        [Route("Register")]
+        [EnableCors(origins: "*", headers: "*", methods: "POST")]
+        public IHttpActionResult Register(Register user)
+        {
+            ServiceManager Serv = new ServiceManager();
+            try
+            {
+                string ServResponse = null;
+                //HttpResponseMessage Serve = Serv.postRequest("user/AdminLogin", user);
+                ServResponse = Convert.ToString(Serv.postRequest("Employee/Enroll", user));
+                if (ServResponse !=null)
+                {
+                    return Ok(string.Format("Success"));
+                }
+                else
+                {
+                    return Ok(new HttpError(string.Format("Admin Not found")));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpPost]
+        [Route("UnRegister")]
+        [EnableCors(origins: "*", headers: "*", methods: "POST")]
+        public IHttpActionResult UnRegister(Register user)
+        {
+            ServiceManager Serv = new ServiceManager();
+            try
+            {
+                string ServResponse = null;
+                //HttpResponseMessage Serve = Serv.postRequest("Employee/AdminLogin", user);
+                ServResponse = Convert.ToString(Serv.postRequest("Employee/UnEnroll", user));
+                if (ServResponse!=null )
+                {
+                    return Ok(string.Format("Success"));
+                }
+                else
+                {
+                    return Ok(new HttpError(string.Format("Admin Not found")));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpPost]
+        [Route("check")]
+        [EnableCors(origins: "*", headers: "*", methods: "POST")]
+        public IHttpActionResult Check(Register user)
+        {
+            ServiceManager Serv = new ServiceManager();
+            try
+            {
+                string ServResponse = null;
+                HttpResponseMessage Serve = Serv.postRequest("Employee/check", user);
+                ServResponse = Convert.ToString(Serv.postRequest("Employee/check", user));
+                if (Serve.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var res = JsonConvert.DeserializeObject(ServResponse);
+                    return Ok(res); 
+                }
+                else
+                {
+                    return Ok(new HttpError(string.Format("Admin Not found")));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        [HttpPost]
+        [Route("EnrolledEmployees")]
+        [EnableCors(origins: "*", headers: "*", methods: "POST")]
+        public IHttpActionResult Enrolled_Employees(Course courseId)
+        {
+            ServiceManager Serv = new ServiceManager();
+            try
+            {
+                string ServResponse = null;
+                //HttpResponseMessage Serve = Serv.postRequest("Employee/check", user.Course_ID);
+                ServResponse = Convert.ToString(Serv.post_Request("Employee/RegisterEmloyees", courseId));
+                if (ServResponse!=null)
+                {
+                    var res = JsonConvert.DeserializeObject(ServResponse);
+                    return Ok(res);
+                }
+                else
+                {
+                    return Ok(new HttpError(string.Format("Admin Not found")));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public class Course
+        {
+            public int Course_ID;
+        }
     }
 }

@@ -1,4 +1,4 @@
-namespace TrainingCalanderWebApi.Areas.HelpPage
+namespace TrainingCalendarWebApi.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

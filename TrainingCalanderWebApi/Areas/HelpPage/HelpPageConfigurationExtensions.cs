@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using TrainingCalanderWebApi.Areas.HelpPage.ModelDescriptions;
-using TrainingCalanderWebApi.Areas.HelpPage.Models;
+using TrainingCalendarWebApi.Areas.HelpPage.ModelDescriptions;
+using TrainingCalendarWebApi.Areas.HelpPage.Models;
 
-namespace TrainingCalanderWebApi.Areas.HelpPage
+namespace TrainingCalendarWebApi.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

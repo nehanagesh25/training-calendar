@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using TrainingCalanderModel.Model;
 using TrainingCalendarWebAPI.Common;
 using TrainingCalendarWebAPI.Models;
@@ -30,6 +31,7 @@ namespace TrainingCalendarWebAPI.Controllers
 
         [HttpPost]
         [Route("CreateTrainers")]
+        [EnableCors(origins: "*", headers: "*", methods: "POST")]
         public IHttpActionResult CreateTrainer(TrainerDetails trainerDetails)
         {
             ServiceManager sm = new ServiceManager();
@@ -55,6 +57,7 @@ namespace TrainingCalendarWebAPI.Controllers
         }
         [HttpPost]
         [Route("UpdateTrainers")]
+        [EnableCors(origins: "*", headers: "*", methods: "POST")]
         public IHttpActionResult UpdateTrainer(TrainerDetails trainerDetails)
         {
             ServiceManager sm = new ServiceManager();
@@ -63,6 +66,7 @@ namespace TrainingCalendarWebAPI.Controllers
             try
             {
                 ServResponse = sm.post_Request("TrainerDetails/UpdateTrainerdetails", trainerDetails);
+           
                 if (ServResponse != null)
                 {
                     return Ok(ServResponse);
@@ -80,6 +84,7 @@ namespace TrainingCalendarWebAPI.Controllers
         }
         [HttpGet]
         [Route("GetAllTrainers")]
+        [EnableCors(origins: "*", headers: "*", methods: "POST")]
         public IHttpActionResult GetAllTrainers()
         {
             ServiceManager sm = new ServiceManager();
@@ -105,6 +110,7 @@ namespace TrainingCalendarWebAPI.Controllers
         }
         [HttpPost]
         [Route("RemoveTrainerdetails")]
+        [EnableCors(origins: "*", headers: "*", methods: "POST")]
         public IHttpActionResult RemoveTrainer(TrainerDetails trainerDetails)
         {
             ServiceManager sm = new ServiceManager();

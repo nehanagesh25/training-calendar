@@ -1,16 +1,15 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Net;
+using System.IO;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using TraingCalanderModel.Model;
+using TrainingCalanderModel.Model;
 using TrainingCalendarWebAPI.Common;
 
-namespace TrainingCalanderWebApi.Controllers
+namespace TrainingCalendarWebApi.Controllers
 {
     [RoutePrefix("TrainingCalendar/Course")]
     public class CourseController : ApiController
@@ -28,15 +27,34 @@ namespace TrainingCalanderWebApi.Controllers
         [HttpPost]
         [Route("AddCourse")]
          [EnableCors(origins: "*", headers: "*", methods: "POST")]
-        public IHttpActionResult Addcourse(CourseDetails user)
+        public IHttpActionResult Addcourse(CourseDetails1 user)
         {
             ServiceManager Serv = new ServiceManager();
             try
             {
+                var filepath = "";
+                CourseDetails1 helper = new CourseDetails1();
+                helper = user;
+                if (helper.Attachment != null )
+                {
+                    
+                        filepath = HttpContext.Current.Server.MapPath("~/Uploaded/") + Path.GetFileName( helper.Attachment.ToString());
+                        FileInfo ofileinfo = new FileInfo(filepath);
+                        helper.File_Name = Path.GetFileName(ofileinfo.Name);
+                        helper.Attachment =File.ReadAllBytes(filepath);
+                        helper.File_Extension = Path.GetExtension(ofileinfo.Extension);                   
+
+                }
+                else
+                {
+                    helper.File_Name = null;
+                    helper.Attachment = null;
+                    helper.File_Extension = null;
+                }
                 ServiceManager serv = new ServiceManager();
                 string ServResponse = null;
                 //HttpResponseMessage Serve = Serv.postRequest("Course/AddCourse", user);
-                ServResponse = serv.post_Request("Course/AddCourse", user);
+                ServResponse = serv.post_Request("Course/AddCourse", helper);
                 if (ServResponse != null)
                 {
                     return Ok(string.Format("Success"));
@@ -57,7 +75,7 @@ namespace TrainingCalanderWebApi.Controllers
         [HttpGet]
         [Route("AllCourse")]
         [EnableCors(origins: "*", headers: "*", methods: "POST")]
-        public IHttpActionResult GetCourses()
+        public IHttpActionResult GetAllCourses()
         {
             ServiceManager Serv = new ServiceManager();
             try
@@ -68,7 +86,8 @@ namespace TrainingCalanderWebApi.Controllers
                 ServResponse = serv.GetServer_Response("Course/AllCourses");
                 if (ServResponse != null)
                 {
-                    return Ok(ServResponse);
+                    var res = JsonConvert.DeserializeObject(ServResponse);
+                    return Ok(res);
                 }
                 else
                 {
@@ -82,10 +101,10 @@ namespace TrainingCalanderWebApi.Controllers
         }
 
         //Get Course Which Are running currently today 
-        [HttpPost]
+        [HttpGet]
         [Route("GetBydate")]
          [EnableCors(origins: "*", headers: "*", methods: "POST")]
-        public IHttpActionResult GetbyDate(CourseDetails user)
+        public IHttpActionResult GetCourseByDate(CourseDetails user)
         {
             ServiceManager Serv = new ServiceManager();
             try
@@ -93,10 +112,11 @@ namespace TrainingCalanderWebApi.Controllers
                 ServiceManager serv = new ServiceManager();
                 string ServResponse = null;
                 //HttpResponseMessage Serve = Serv.postRequest("Course/AddCourse", user);
-                ServResponse = serv.post_Request("Course/CourseByDate", user);
-                if (ServResponse != null)
+                ServResponse = serv.GetServer_Response("Course/CourseByDate");
+                var response = JsonConvert.DeserializeObject(ServResponse);
+                if (response != null)
                 {
-                    return Ok(ServResponse);
+                    return Ok(response);
                 }
                 else
                 {
@@ -163,9 +183,52 @@ namespace TrainingCalanderWebApi.Controllers
                 throw ex;
             }
         }
+      
+        [HttpPost]
+        [Route("Save")]
+        [EnableCors(origins: "*", headers: "*", methods: "POST")]
+        public string UploadFile()
+        {
+            var file = HttpContext.Current.Request.Files.Count > 0 ?
+                HttpContext.Current.Request.Files[0] : null;
+
+            if (file != null && file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(
+                    HttpContext.Current.Server.MapPath("~/Uploaded"),
+                    fileName
+                );
+
+                file.SaveAs(path);
+            }
+
+            return file != null ? "/Uploaded/" + file.FileName : null;
+
+        }
+        [HttpGet]
+        [Route("LastRecord")]
+        [EnableCors(origins: "*", headers: "*", methods: "POST")]
+        public IHttpActionResult LastRecord()
+        {
+            ServiceManager Serv = new ServiceManager();
+            //HttpResponseMessage Serve = Serv.postRequest("Course/AddCourse", user);
+           var ServResponse = Serv.GetServer_Response("Course/LastCourse");
+            var response = JsonConvert.DeserializeObject(ServResponse);
+            if (response != null)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return Ok(new HttpError(string.Format("User Not found")));
+            }
+        }
+          
+
         [HttpGet]
         [Route("GetCalendarDetails")]
-        [EnableCors(origins:"*", headers:"*",methods:"GET")]
+        [EnableCors(origins: "*", headers: "*", methods: "GET")]
         public IHttpActionResult GetCalendarDetails()
         {
             try
@@ -189,5 +252,22 @@ namespace TrainingCalanderWebApi.Controllers
             }
         }
 
+
+          
+        public class CourseDetails1
+        {
+            public decimal Course_ID { get; set; }
+            public decimal? Trainer_ID { get; set; }
+            public string Course_Name { get; set; }
+            public string Description { get; set; }
+            public string Duration { get; set; }
+            public DateTime Created_On { get; set; }
+            public DateTime? Updated_On { get; set; }
+            public decimal? Created_By { get; set; }
+            public decimal? Updated_By { get; set; }
+            public dynamic Attachment { get; set; }
+            public string File_Name { get; set; }
+            public string File_Extension { get; set; }
+        }
     }
 }

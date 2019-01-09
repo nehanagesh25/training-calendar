@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace TrainingCalanderWebApi.Models
+namespace TrainingCalendarWebApi.Models
 {
     public partial class CourseDetails
     {
