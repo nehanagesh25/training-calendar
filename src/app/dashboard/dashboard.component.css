@@ -5346,3 +5346,13 @@ h3 {
   .cal-days{
     max-block-size: 5px;
   }
+ body{
+   background-color: #FFFFFF;
+   border: red;
+ }
+
+ .modal-body{
+  background-color: rgb(255, 255, 255);
+  font-size: 15PX;
+  font-family: 'Work Sans', sans-serif;
+}

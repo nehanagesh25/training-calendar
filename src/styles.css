@@ -5,4 +5,11 @@ html { height: 100%;
 }
 .modal-open .modal{
     opacity: 1 !important;
+    width: 30%;
+    position: absolute;
+    left: 40%;
+    top:15%;
+
   }
+
+  

@@ -7,6 +7,7 @@ import { AuthService } from 'angularx-social-login';
 import { Router } from '@angular/router';
 import { ServicesService } from '../Services/Service.services';
 import { DatePipe } from '@angular/common';
+import { NgxSpinnerService} from 'ngx-spinner'
 const colors: any = {
   1: {
     primary: '#ad2121',
@@ -42,11 +43,14 @@ export class DashboardComponent implements OnInit {
     event: CalendarEvent;
   };
 
-  constructor(private modal: NgbModal, private authService: AuthService, private router: Router, public service: ServicesService, public datepipe:DatePipe) { }
+  constructor(private modal: NgbModal, private authService: AuthService, private router: Router, public service: ServicesService, public datepipe:DatePipe,private spinner : NgxSpinnerService) { }
 
   events: CalendarEvent[];
   ngOnInit() {
-    
+    this.spinner.show();
+    setTimeout(()=>{
+      this.spinner.hide();
+    },7000);
     this.service.GetCalendarDetails().subscribe((res: any) => {
       console.log('calender data===>', res)
       this.formatEventsData(res);
@@ -66,7 +70,8 @@ export class DashboardComponent implements OnInit {
       
       var from = this.datepipe.transform(item.FromDate,'MM-dd-yyyy');
       var to =this.datepipe.transform(item.ToDate,'MM-dd-yyyy');
-      console.log(to)
+      console.log("from",from);
+      console.log("to",to);
 
       item.start = new Date(from);
       item.end = new Date(to);
@@ -86,7 +91,9 @@ export class DashboardComponent implements OnInit {
       else {
         item.color = colors[item.color];
       }
-      console.log(item.CourseID);
+      if(item.color = 3){
+        alert("No seats available");
+      }
       temp.push(item);
 
 

@@ -20,7 +20,9 @@ import { CreateCoursesComponent } from './admin/create-courses/create-courses.co
 import { DashboardDetailsViewComponent } from './admin/dashboard-details-view/dashboard-details-view.component';
 import{AuthGaurd}from '../app/Services/Auth.guard';
 import { DatePipe} from '@angular/common';
+import { NgxSpinnerModule } from 'ngx-spinner'
 import { from } from 'rxjs';
+import { CourseAttendedComponent } from './dashboard/course-attended/course-attended.component';
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -38,7 +40,8 @@ export function provideConfig() {
     LoginComponent,
     AdminComponent,
     CreateCoursesComponent,
-    DashboardDetailsViewComponent
+    DashboardDetailsViewComponent,
+    CourseAttendedComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ export function provideConfig() {
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpModule,
+    NgxSpinnerModule,
     HttpClientModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
