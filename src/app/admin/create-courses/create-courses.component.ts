@@ -5,6 +5,7 @@ import { ServicesService } from '../../Services/Service.services'
 import { Appsettings } from 'src/app/App.seetings';
 import { course } from './Shared/Course';
 import { parse } from 'date-fns';
+import { DatePipe } from '@angular/common'
 const URL = Appsettings.BASE_URL + Appsettings.SaveFile;
 @Component({
   selector: 'app-create-courses',
@@ -13,14 +14,14 @@ const URL = Appsettings.BASE_URL + Appsettings.SaveFile;
 })
 export class CreateCoursesComponent implements OnInit {
 
-  constructor(private router: Router, private serv: ServicesService) { }
+  constructor(private router: Router, private serv: ServicesService,public datepipe: DatePipe) { }
   public Trainers: any;
   public Course: any;
   public CourseName: any;
   public Discreption: any;
   public Dureation: any;
-  public FromDate: any;
-  public ToDate: any;
+  public FromDate: Date;
+  public ToDate: Date;
   public MaxEnroll: any;
   public MiniumEnroll: any;
   public LastDate: any;
@@ -56,8 +57,10 @@ export class CreateCoursesComponent implements OnInit {
     this.router.navigate(['AdminDashboard'])
   }
   SubmitCourses() {
-debugger
-    var data = { 'Course_Name': this.CourseName, 'Trainer_ID': this.id, 'Description': this.Discreption, 'Duration': this.Dureation, 'Attachment': this.path }
+    var date = this.datepipe.transform(this.FromDate, 'dd-MM-yyyy');
+    console.log(date);
+   
+   var data = { 'Course_Name': this.CourseName, 'Trainer_ID': this.id, 'Description': this.Discreption, 'Duration': this.Dureation, 'Attachment': this.path }
     console.log(data);
     this.serv.AddCourse(data).subscribe((res) => {
       this.serv.GetCourseid().subscribe((res) => {
@@ -85,7 +88,7 @@ debugger
         })
       })
     })
-    
+     
   }
   filterForeCasts(value) {
     this.id = value;

@@ -69,6 +69,11 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.UpdateCourse;
         return this.http.post(url, data);
     }
+    //GetCalendarDetails Get Method
+    public GetCalendarDetails(){
+        let url = Appsettings.BASE_URL + Appsettings.GetCalendarDetails;
+        return this.http.get(url);
+    }
     //DeleteCourse Post Method
     public DeleteCourse(data) {
         let url = Appsettings.BASE_URL + Appsettings.DeleteCourse;

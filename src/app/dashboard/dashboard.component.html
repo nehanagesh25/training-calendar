@@ -63,25 +63,20 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <!-- Action:
-                  <pre>{{ modalData?.action }}</pre> -->
-
-
+                        Course Name: {{modalData?.event.Course_Name}}<br>
+                        Description: {{modalData?.event.Description}}<br>
+                        Duration: {{modalData?.event.Duration}}<br>
+                        FromDate: {{modalData?.event.FromDate }}<br>
+                        ToDate: {{modalData?.event.ToDate }}<br>
+                        Venue: {{modalData?.event.Venue}}<br>
+                        Last_date_to_enroll:{{modalData?.event.Last_date_to_enroll}}<br>
+                        Max_enroll: {{modalData?.event.Max_enroll}}<br>
+                        Min_enroll: {{modalData?.event.Min_enroll}}<br>
                     </div>
-                    <div>
-                        Event:
-                        <pre>
-                    Hiiiii
-                
-                </pre>
-
-
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     <div class="wrap-box"> 
-                        <span style="font-size: 2rem;">
+                        <span style="font-size: 2rem;" *ngIf='!res'>
                             <div *ngIf="!flag">
                                 <i class="fas fa-calendar-plus" (click)="Register()"></i>
                                 <div style="font-size:10px;color:green">Register</div>
@@ -91,6 +86,13 @@
                                 <div style="font-size:10px;color:red">UnRegister</div>
                             </div>
                         </span>
+                        <span style="font-size: 2rem;" *ngIf='res'>
+                        <div *ngIf='res'>
+                            Reson 
+                            <input type="text" [(ngModel)]="reson">
+                            <button type="button" class="btn btn-outline-secondary" (click)="UnRegister1()">Submit</button>
+                        </div>
+                        </span> 
                     </div>
                     <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
                 </div>
@@ -145,34 +147,5 @@
 
         </div>
 
-        <footer class="footer">
-            <div class="container">
-                <nav>
-                    <ul class="footer-menu">
-                        <li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Company
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Blog
-                            </a>
-                        </li>
-                    </ul>
-
-                </nav>
             </div>
-        </footer>
-    </div>
 </div>

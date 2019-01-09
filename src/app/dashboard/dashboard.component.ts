@@ -1,11 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy,ViewChild, TemplateRef } from '@angular/core';
-import {startOfDay,endOfDay,subDays,addDays,endOfMonth,isSameDay,isSameMonth, addHours} from 'date-fns';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChild, TemplateRef } from '@angular/core';
+import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMonth, addHours } from 'date-fns';
 import { Subject, from } from 'rxjs';
-import {CalendarEvent,CalendarEventAction,CalendarEventTimesChangedEvent,CalendarView} from 'angular-calendar';
+import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { AuthService, GoogleLoginProvider } from 'angularx-social-login';
-import { Router} from '@angular/router';
-import{ServicesService}from '../Services/Service.services';
+import { Router } from '@angular/router';
+import { ServicesService } from '../Services/Service.services';
+import { DatePipe } from '@angular/common';
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -31,86 +32,79 @@ export class DashboardComponent implements OnInit {
   modalContent: TemplateRef<any>;
   public user;
   view: CalendarView = CalendarView.Month;
-
+  public res=0;
   CalendarView = CalendarView;
-  public flag=0;
+  public flag = 0;
   viewDate: Date = new Date();
-
+  public reson;
   modalData: {
     action: string;
     event: CalendarEvent;
   };
 
-
+  events: CalendarEvent[];
   ngOnInit() {
-    this.user=sessionStorage.getItem("User")
+    this.user = sessionStorage.getItem("User")
     console.log(this.user);
-  }
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fa fa-fw fa-pencil"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-      
-        this.handleEvent('Edited', event);
-      }
-    },
-    {
-      label: '<i class="fa fa-fw fa-times"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-     
-        this.events = this.events.filter(iEvent => iEvent !== event);
-        this.handleEvent('Deleted', event);
-      }
-    }
-  ];
-  refresh: Subject<any> = new Subject();
+    this.serv.GetCalendarDetails().subscribe((res: any) => {
+      console.log('calender data===>', res)
+      this.formatEventsData(res);
+    }, (err) => {
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true,
-      
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
-      },
-      draggable: true
-    }
-  ];
+    })
+  }
+  formatEventsData = (data: any[]) => {
+    let temp = [];
+    data.forEach((item) => {
+      // var fromdate =  new Date(item.FromDate.slice(0, item.FromDate.lastIndexOf(" ")));
+      // var todate = new Date(item.ToDate.slice(0, item.ToDate.lastIndexOf(" ")));
+
+
+
+      var from = this.datepipe.transform(item.FromDate, 'MM-dd-yyyy');
+      var to = this.datepipe.transform(item.ToDate, 'MM-dd-yyyy');
+      console.log(to)
+
+      item.start = new Date(from);
+      item.end = new Date(to);
+
+      // item.start = new Date(item.FromDate);
+      // item.end = new Date(item.ToDate);
+
+      item.title = item.Course_Name;
+      item.color = item.ColorType;
+
+      if (item.color == 1) {
+        item.color = colors[item.color];
+      }
+      else if (item.color == 2) {
+        item.color = colors[item.color];
+      }
+      else {
+        item.color = colors[item.color];
+      }
+      console.log(item.CourseID);
+      temp.push(item);
+
+
+    })
+
+
+
+
+    this.events = temp;
+    console.log('formatted data-->', temp)
+    console.log(this.events);
+  }
+  refresh: Subject<any> = new Subject();
+  getEventsInPeriod
+
   activeDayIsOpen: boolean = true;
 
-  constructor(private serv:ServicesService ,private modal: NgbModal,private authService: AuthService,private router:Router) {}
+  constructor(private serv: ServicesService, public datepipe:DatePipe, private modal: NgbModal, private authService: AuthService, private router: Router) { }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {   
+  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+
     if (isSameMonth(date, this.viewDate)) {
       this.viewDate = date;
       if (
@@ -121,8 +115,8 @@ export class DashboardComponent implements OnInit {
       } else {
         this.activeDayIsOpen = true;
       }
-    }  
-}
+    }
+  }
   eventTimesChanged({
     event,
     newStart,
@@ -131,74 +125,75 @@ export class DashboardComponent implements OnInit {
     event.start = newStart;
     event.end = newEnd;
     this.handleEvent('Dropped or resized', event);
- 
     this.refresh.next();
   }
-
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
-    this.user=sessionStorage.getItem("User")
-    var data={"User_Name":this.user,"Course_Name":"Python"};
-    console.log(this.user);
-    this.serv.check(data).subscribe((Response)=>{
-      console.log(Response);
-      if(Response == "Success"){
-    this.flag=1;}});
+    debugger
     this.modal.open(this.modalContent, { size: 'lg' });
-  }
-  addEvent(): void {
-    this.events.push({
-      title: 'New event',
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      color: colors.red,
-      draggable: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true
+
+    this.user = sessionStorage.getItem("User")
+    var data = { "User_Name": this.user, "Course_Name": this.modalData.event.Course_Name};
+    debugger
+    console.log(this.user);
+    this.serv.check(data).subscribe((Response) => {
+      console.log(Response);
+      if (Response == "Success") {
+        this.flag = 1;
       }
     });
-    this.refresh.next();
+    this.modal.open(this.modalContent, { size: 'lg' });
   }
 
   signOut(): void {
-    
-   
+
+
     this.authService.signOut();
     debugger
     localStorage.removeItem("isLogin");
-    
+
     this.router.navigate(['login']);
     sessionStorage.removeItem("User");
     window.localStorage.clear();
     window.sessionStorage.clear();
-   
-    
+
+
   }
-  Register(){
-   
-    var data={"User_Name":this.user,"Course_Name":"Python"}
-    this.serv.Register(data).subscribe((Response)=>{
-      if(Response){
-      this.flag=1;
-      alert("Registration Success")
-    }
-      else{
+  Register() {
+
+    var data = { "User_Name": this.user, "Course_Name":this.modalData.event.Course_Name }
+    this.serv.Register(data).subscribe((Response) => {
+      if (Response) {
+        this.flag = 1;
+        alert("Registration Success")
+      }
+      else {
         alert("Registration Failed");
       }
     })
   }
-  UnRegister(){
-    var data={"User_Name":this.user,"Course_Name":"Python","Reason_For_Unreg":"Avilabel"};
+  UnRegister() {
+    this.res=1;
+  }
+  UnRegister1(){
+    var data = { "User_Name": this.user, "Course_Name": this.modalData.event.Course_Name, "Reason_For_Unreg": this.reson };
     debugger
-    this.serv.UnRegister(data).subscribe((Response)=>{
-      if(Response){
-      this.flag=0;
-      alert("DeRegistration success")
-    }
-      else{
+    this.serv.UnRegister(data).subscribe((Response) => {
+      if (Response) {
+        this.flag = 0;
+        this.reson=null;
+        this.res=0;
+        alert("DeRegistration success")
+      }
+      else {
         alert("DeRegistration Failed");
       }
     })
   }
+  covertJsontoArray(valuedata) {
+    console.log(valuedata);
+
+    debugger;
+    return JSON.parse(valuedata);
   }
+}

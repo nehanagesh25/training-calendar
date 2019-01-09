@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
         if(response === 'Success'){
          
           localStorage.setItem('AdminLogin','true');
-          this.router.navigate(['AdminDashboard']);    
+          this.router.navigate(['AdminDashboard/view']);    
             }    
             else{
               

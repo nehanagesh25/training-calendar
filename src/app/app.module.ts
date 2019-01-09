@@ -21,7 +21,7 @@ import { CreateCoursesComponent } from './admin/create-courses/create-courses.co
 import{AuthGaurd}from '../app/Services/Auth.guard'
 import { FileSelectDirective } from 'ng2-file-upload';
 import { DisplayComponent } from './admin/displayCourseDetails/display.component';
-
+import { DatePipe } from '@angular/common';
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -61,7 +61,7 @@ export function provideConfig() {
   providers: [AuthService,{
     provide: AuthServiceConfig,
     useFactory: provideConfig
-  },AuthGaurd],
+  },AuthGaurd,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

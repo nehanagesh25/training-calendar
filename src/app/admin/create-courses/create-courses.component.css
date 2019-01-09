@@ -24,7 +24,7 @@ button {
     padding: 12px 25px;
     margin-left: 30px;
     background-color: #ddd;
-    border: none;
+    border: coral;
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.3rem;
 }
