@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TraingCalanderModel.Model
+namespace TrainingCalanderModel.Model
 {
     public class CalendarDisplay
     {

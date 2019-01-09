@@ -35,14 +35,14 @@ namespace TrainingCalendarRepository.Repository
                                                  where train.Trainer_ID == enroll.Trainer_ID
                                                  select train.Trainer_ID).FirstOrDefault());
 
-                int cousreID = Convert.ToInt32((from course in _db.TrainerDetails
-                                                where course.Course_ID == enroll.Course_ID
-                                                select course.Course_ID).FirstOrDefault());
+                //int cousreID = Convert.ToInt32((from course in _db.TrainerDetails
+                //                                where course.Course_ID == enroll.Course_ID
+                //                                select course.Course_ID).FirstOrDefault());
 
                 var createEnrollmaster = new Enrollmaster
                 {
                     Trainer_ID = trainerID,
-                    Course_ID = cousreID,
+                    Course_ID = enroll.Course_ID,
                     FromDate = fromdate,
                     ToDate = todate,
                     Venue = enroll.Venue,

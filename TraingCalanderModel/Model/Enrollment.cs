@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TrainingCalanderModel.Model
+namespace TraingCalanderModel.Model
 {
     public partial class Enrollment
     {

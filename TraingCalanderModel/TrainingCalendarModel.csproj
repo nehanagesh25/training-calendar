@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{78D5914C-DCE9-4C9C-8FBD-6623678A2D1B}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>TraingCalanderModel</RootNamespace>
-    <AssemblyName>TraingCalanderModel</AssemblyName>
+    <RootNamespace>TrainingCalendarModel</RootNamespace>
+    <AssemblyName>TrainingCalendarModel</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

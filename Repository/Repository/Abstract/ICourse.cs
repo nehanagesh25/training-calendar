@@ -17,10 +17,7 @@ namespace TrainingCalendarRepository.Repository.Abstract
         IEnumerable<CourseDetail> GetBydate(DateTime dt);
        IEnumerable<CalendarDisplay> GetCalendarDetails();
         decimal GetColorType(decimal courseID);
-
-
-
-
+        IEnumerable LastRecord();
 
     }
 }

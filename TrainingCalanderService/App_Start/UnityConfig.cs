@@ -42,6 +42,7 @@ namespace API.App_Start
             container.RegisterType<ICourse, CourseRepository>();
             container.RegisterType<ITrainerdetails, TrainerdetailsRepository>();
             container.RegisterType<IEnroll, EnrollmasterRepository>();
+            container.RegisterType<IEmployee, EmployeeRepository>();
 
         }
     }

@@ -2,11 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.UI.WebControls;
 using TraingCalanderModel.Model;
 using TrainingCalendarRepository.Model;
 using TrainingCalendarRepository.Repository.Abstract;
@@ -27,20 +25,8 @@ namespace TrainingCalendarRepository.Repository
         {
             try
             {
-
-                var filepath = "";
-                CourseDetails helper = new CourseDetails();
-                if(course.Attachment != null && course.Attachment != "")
-                {                 
-                    
-                    filepath = HttpContext.Current.Server.MapPath("~/App_Data/") + System.IO.Path.GetFileName(course.Attachment);
-                    FileInfo ofileinfo = new FileInfo(filepath);
-                    helper.File_Name = Path.GetFileName(ofileinfo.Name);
-                    helper.Attachment = System.IO.File.ReadAllBytes(filepath);
-                    helper.File_Extension= Path.GetExtension(ofileinfo.Extension);  
-                            
-                  
-                }
+                var varia = Convert.ToString(course.Attachment);
+                
                 var newCourse = new CourseDetail
                 {
                     Course_Name = course.Course_Name,
@@ -50,11 +36,10 @@ namespace TrainingCalendarRepository.Repository
                     Trainer_ID = course.Trainer_ID,
                     Created_By = 1,
                     Updated_By = course.Updated_By,
-                    Attachment = helper.Attachment,
-                    File_Extension=helper.File_Extension,
-                    File_Name=helper.File_Name             
-
-
+                    Attachment =byte.Parse(varia),
+                    File_Extension = course.File_Extension,
+                    File_Name = course.File_Name
+                       
                 };               
                 _db.CourseDetails.Add(newCourse);
                 _db.SaveChanges();
@@ -66,9 +51,31 @@ namespace TrainingCalendarRepository.Repository
                 throw ex;
             }
         }
-       
-          
-            public IEnumerable  GetCourse(CourseDetails course)
+       public bool savefile()
+        {
+            var file = HttpContext.Current.Request.Files.Count > 0 ?
+                HttpContext.Current.Request.Files[0] : null;
+
+            if (file != null && file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+
+                var path = Path.Combine(
+                    HttpContext.Current.Server.MapPath("~App_Data"),
+                    fileName
+                );
+
+                file.SaveAs(path);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public IEnumerable  GetCourse(CourseDetails course)
         {
             try
             {
@@ -108,6 +115,7 @@ namespace TrainingCalendarRepository.Repository
                 var result = from u in _db.CourseDetails                             
                              select new CourseDetails
                              {
+                                 Course_ID=u.Course_ID,
                                  Course_Name = u.Course_Name,
                                  Description = u.Description,
                                  Created_On = u.Created_On,
@@ -321,5 +329,13 @@ namespace TrainingCalendarRepository.Repository
         //}
 
       
+
+        public IEnumerable LastRecord()
+        {
+            return (_db.CourseDetails
+                            .OrderByDescending(p => p.Course_ID)
+                            .Select(r => r.Course_ID)
+                            .First().ToString());
+        }
     }
 }

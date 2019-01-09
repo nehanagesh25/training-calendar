@@ -24,8 +24,9 @@ namespace TrainingCalanderService.Controllers
             try
             {
                  return Ok(_cr.AddCourse(course));
+                
             }
-            catch(Exception )
+            catch(Exception e)
             {
                 return Content(HttpStatusCode.BadRequest, "Any object");
             }
@@ -41,7 +42,6 @@ namespace TrainingCalanderService.Controllers
             catch(Exception e)
             {
                 return Content(HttpStatusCode.BadRequest, "Any object");
-                throw e;
             }
         }
         [Route("AllCourses")]
@@ -78,7 +78,7 @@ namespace TrainingCalanderService.Controllers
             {
                 return Ok(_cr.UpdateCourse(course));
             }
-            catch 
+            catch (Exception e)
             {
                 return Content(HttpStatusCode.BadRequest, "Any object");
             }
@@ -104,5 +104,11 @@ namespace TrainingCalanderService.Controllers
             }
         }
 
+        [Route("LastCourse")]
+        [HttpGet]
+        public IHttpActionResult LastRecord()
+        {
+            return Ok(_cr.LastRecord());
+        }
     }
 }
