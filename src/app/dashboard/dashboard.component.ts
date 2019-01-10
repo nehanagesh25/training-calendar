@@ -133,7 +133,7 @@ export class DashboardComponent implements OnInit {
     this.modal.open(this.modalContent, { size: 'lg' });
 
     this.user = sessionStorage.getItem("User")
-    var data = { "User_Name": this.user, "Course_Name": this.modalData.event.Course_Name};
+    var data = { "User_Name": this.user};
     debugger
     console.log(this.user);
     this.serv.check(data).subscribe((Response) => {
@@ -161,7 +161,7 @@ export class DashboardComponent implements OnInit {
   }
   Register() {
 
-    var data = { "User_Name": this.user, "Course_Name":this.modalData.event.Course_Name }
+    var data = { "User_Name": this.user }
     this.serv.Register(data).subscribe((Response) => {
       if (Response) {
         this.flag = 1;
@@ -176,7 +176,7 @@ export class DashboardComponent implements OnInit {
     this.res=1;
   }
   UnRegister1(){
-    var data = { "User_Name": this.user, "Course_Name": this.modalData.event.Course_Name, "Reason_For_Unreg": this.reson };
+    var data = { "User_Name": this.user,  "Reason_For_Unreg": this.reson };
     debugger
     this.serv.UnRegister(data).subscribe((Response) => {
       if (Response) {

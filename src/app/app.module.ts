@@ -22,6 +22,38 @@ import{AuthGaurd}from '../app/Services/Auth.guard'
 import { FileSelectDirective } from 'ng2-file-upload';
 import { DisplayComponent } from './admin/displayCourseDetails/display.component';
 import { DatePipe } from '@angular/common';
+import {Component, Injectable} from '@angular/core';
+import {NgbTimeStruct, NgbTimeAdapter} from '@ng-bootstrap/ng-bootstrap';
+
+/**
+ * Example of a String Time adapter
+ */
+@Injectable()
+export class NgbTimeStringAdapter extends NgbTimeAdapter<string> {
+
+  fromModel(value: string): NgbTimeStruct {
+    if (!value) {
+      return null;
+    }
+    const split = value.split(':');
+    return {
+      hour: parseInt(split[0], 10),
+      minute: parseInt(split[1], 10),
+      second: parseInt(split[2], 10)
+    };
+  }
+
+  toModel(time: NgbTimeStruct): string {
+    if (!time) {
+      return null;
+    }
+    return `${this.pad(time.hour)}:${this.pad(time.minute)}:${this.pad(time.second)}`;
+  }
+
+  private pad(i: number): string {
+    return i < 10 ? `0${i}` : `${i}`;
+  }
+}
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
@@ -61,7 +93,7 @@ export function provideConfig() {
   providers: [AuthService,{
     provide: AuthServiceConfig,
     useFactory: provideConfig
-  },AuthGaurd,DatePipe],
+  },AuthGaurd,DatePipe,{provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

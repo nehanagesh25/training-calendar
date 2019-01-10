@@ -7,10 +7,14 @@ import {ServicesService} from '../../Services/Service.services';
   styleUrls: ['./display.component.css']
 })
 export class DisplayComponent implements OnInit {
-
+public data;
   constructor(private router:Router,private service:ServicesService) { }
 
   ngOnInit() {
+    this.service.AllCourse().subscribe((Response)=>{
+this.data=Response;
+console.log(Response);
+    })
   }
   CreateCourses(){
     this.router.navigate(['AdminDashboard/AddCourse']);

@@ -5,7 +5,8 @@ import { ServicesService } from '../../Services/Service.services'
 import { Appsettings } from 'src/app/App.seetings';
 import { course } from './Shared/Course';
 import { parse } from 'date-fns';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
+import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
 const URL = Appsettings.BASE_URL + Appsettings.SaveFile;
 @Component({
   selector: 'app-create-courses',
@@ -14,7 +15,7 @@ const URL = Appsettings.BASE_URL + Appsettings.SaveFile;
 })
 export class CreateCoursesComponent implements OnInit {
 
-  constructor(private router: Router, private serv: ServicesService,public datepipe: DatePipe) { }
+  constructor(private router: Router, private serv: ServicesService, public datepipe: DatePipe) { }
   public Trainers: any;
   public Course: any;
   public CourseName: any;
@@ -30,6 +31,8 @@ export class CreateCoursesComponent implements OnInit {
   public courseid;
   public path;
   public flag = 0;
+  public FromTime;
+  public ToTime;
 
   public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
   ngOnInit() {
@@ -59,13 +62,12 @@ export class CreateCoursesComponent implements OnInit {
   SubmitCourses() {
     var date = this.datepipe.transform(this.FromDate, 'dd-MM-yyyy');
     console.log(date);
-   
-   var data = { 'Course_Name': this.CourseName, 'Trainer_ID': this.id, 'Description': this.Discreption, 'Duration': this.Dureation, 'Attachment': this.path }
+    var data = { 'Course_Name': this.CourseName, 'Trainer_ID': this.id, 'Description': this.Discreption, 'Duration': this.Dureation, 'Attachment': this.path }
     console.log(data);
     this.serv.AddCourse(data).subscribe((res) => {
       this.serv.GetCourseid().subscribe((res) => {
         this.courseid = +res;
-        var data1 = { "Trainer_ID": this.id, "Course_ID": this.courseid, "FromDate": this.FromDate, "ToDate": this.ToDate, "Venue": this.Venue, "Last_date_to_enroll": this.LastDate, "Max_enroll": this.MaxEnroll, "Min_enroll": this.MiniumEnroll, "Status": 1 }
+        var data1 = { "Trainer_ID": this.id, "Course_ID": this.courseid, "FromDate": this.FromDate +' '+ this.FromTime, "ToDate": this.ToDate +' '+ this.ToTime, "Venue": this.Venue, "Last_date_to_enroll": this.LastDate, "Max_enroll": this.MaxEnroll, "Min_enroll": this.MiniumEnroll, "Status": 1 }
         this.serv.CreateEnrollmaster(data1).subscribe((Response) => {
           console.log("resposce second");
           console.log(Response);
@@ -80,6 +82,8 @@ export class CreateCoursesComponent implements OnInit {
             this.ToDate = null;
             this.FromDate = null;
             this.Venue = null;
+            this.FromTime = null;
+            this.ToTime = null;
             this.router.navigate(['AdminDashboard/DisplayCourse']);
           }
           else {
@@ -88,7 +92,7 @@ export class CreateCoursesComponent implements OnInit {
         })
       })
     })
-     
+
   }
   filterForeCasts(value) {
     this.id = value;
@@ -98,7 +102,7 @@ export class CreateCoursesComponent implements OnInit {
     var data = { 'Course_ID': this.courseid, 'Course_Name': this.CourseName, 'Trainer_ID': this.id, 'Description': this.Discreption, 'Duration': this.Dureation }
     this.serv.UpdateCourse(data).subscribe((Response) => {
       if (Response) {
-        var data1 = { "Trainer_ID": this.id, "Course_ID": this.courseid, "FromDate": this.FromDate, "ToDate": this.ToDate, "Venue": this.Venue, "Last_date_to_enroll": this.LastDate, "Max_enroll": this.MaxEnroll, "Min_enroll": this.MiniumEnroll, "Status": 1 }
+        var data1 = { "Trainer_ID": this.id, "Course_ID": this.courseid, "FromDate": this.FromDate + this.FromTime, "ToDate": this.ToDate + this.ToTime, "Venue": this.Venue, "Last_date_to_enroll": this.LastDate, "Max_enroll": this.MaxEnroll, "Min_enroll": this.MiniumEnroll, "Status": 1 }
         this.serv.Updatemaster(data1).subscribe((Response) => {
           if (Response) {
             this.CourseName = null;
@@ -111,6 +115,8 @@ export class CreateCoursesComponent implements OnInit {
             this.ToDate = null;
             this.FromDate = null;
             this.Venue = null;
+            this.FromTime = null;
+            this.ToTime = null;
             alert("Course Updated SuccessFully")
             this.flag = 0;
           }

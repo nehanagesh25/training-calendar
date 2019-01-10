@@ -19,11 +19,15 @@ select{
     padding: .4rem;     
 }
 
-
+.btn1{
+    float:middle;
+    margin-left: 250px;
+}
 button {
     padding: 12px 25px;
     margin-left: 30px;
-    background-color: #ddd;
+    color: black;
+    background-color: rgba(94, 60, 60, 0.281);
     border: coral;
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.3rem;

@@ -15,12 +15,20 @@
     <div class="form-group">
       <label for="pwd">FromDate</label>
       <input type="date" class="form-control" id="pwd" [(ngModel)]="FromDate">
-      {{FromDate}}
     </div>
+    <div class="form-group">
+        <label for="pwd">FromTime</label>
+        <ngb-timepicker [(ngModel)]="FromTime"></ngb-timepicker>  
+      </div>
+      <div class="form-group">
+          <label for="pwd">ToTime</label>
+          <ngb-timepicker [(ngModel)]="ToTime"></ngb-timepicker>      
+        </div>
     <div class="form-group">
       <label for="pwd">ToDate</label>
       <input type="date" class="form-control" id="pwd" [(ngModel)]="ToDate">
     </div>
+  
     <div class="form-group">
       <label for="pwd">MaxEnroll</label>
       <input type="number" class="form-control" id="pwd" [(ngModel)]="MaxEnroll">
@@ -43,18 +51,19 @@
         <option [value]="Trainer.Trainer_ID" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
       </select>
     </div>
+   
     <div class="form-group">
       <label for="pwd">Upload Discription</label>
-      <input type="file" class="btn" name="photo" ng2FileSelect [uploader]="uploader" />
-
-      <button type="button" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+      <input type="file"  name="photo" ng2FileSelect [uploader]="uploader" /><br>
+      <button type="button"  (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
         Upload File
       </button>
     </div>
   </section>
-  <div class="btn">
-    <button (click)="SubmitCourses()"> Submit</button>
-     <button (click)="flag=1">UpdateCourses</button>
+  <div class="btn1">
+    <button class="btn btn-sm btn-primary btn-create" (click)="SubmitCourses()"> Submit</button>
+     <button class="btn btn-sm btn-primary btn-create" (click)="flag=1">UpdateCourses</button>
+     
   </div>
 </div>
 
@@ -85,12 +94,19 @@
     <div class="form-group">
       <label for="pwd">FromDate</label>
       <input type="date" class="form-control" id="pwd" [(ngModel)]="FromDate">
-      {{FromDate}}
-    </div>
+    </div>   
     <div class="form-group">
       <label for="pwd">ToDate</label>
       <input type="date" class="form-control" id="pwd" [(ngModel)]="ToDate">
     </div>
+    <div class="form-group">
+        <label for="pwd">FromTime</label>
+        <ngb-timepicker [(ngModel)]="FromTime"></ngb-timepicker>  
+      </div>
+      <div class="form-group">
+          <label for="pwd">ToTime</label>
+          <ngb-timepicker [(ngModel)]="ToTime"></ngb-timepicker>      
+        </div>
     <div class="form-group">
       <label for="pwd">MaxEnroll</label>
       <input type="number" class="form-control" id="pwd" [(ngModel)]="MaxEnroll">
@@ -118,9 +134,9 @@
     </div>
   </section>
   <div class="btn">
-    <button (click)="UpdateCourses()"> Submit</button>
-  </div>
+      <button type="button" class="btn btn-sm btn-primary btn-create"(click)="UpdateCourses()">Submit</button>
+     </div>
   <div class="btn">
-    <button (click)="flag=0"> BACK</button>
+     <button type="button" class="btn btn-sm btn-primary btn-create"(click)="flag=0">BACK</button>
   </div>
 </div>
