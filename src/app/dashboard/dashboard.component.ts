@@ -91,9 +91,7 @@ export class DashboardComponent implements OnInit {
       else {
         item.color = colors[item.color];
       }
-      if(item.color = 3){
-        alert("No seats available");
-      }
+      
       temp.push(item);
 
 
