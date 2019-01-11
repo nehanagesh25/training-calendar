@@ -62,6 +62,7 @@ export class CreateCoursesComponent implements OnInit {
   SubmitCourses() {
     var date = this.datepipe.transform(this.FromDate, 'dd-MM-yyyy');
     console.log(date);
+    debugger
     var data = { 'Course_Name': this.CourseName, 'Trainer_ID': this.id, 'Description': this.Discreption, 'Duration': this.Dureation, 'Attachment': this.path }
     console.log(data);
     this.serv.AddCourse(data).subscribe((res) => {
