@@ -59,6 +59,8 @@ export class LoginComponent implements OnInit {
       this.store=userData;
       const data1={"User_Name":userData.email};
       sessionStorage.setItem("User",userData.email);
+      sessionStorage.setItem("Userurl",userData.image);
+      sessionStorage.setItem("Username",userData.name);
       localStorage.setItem('isLogin','true');
       this.service.UserLogin(data1).subscribe((response:any)=>{
         console.log(response);

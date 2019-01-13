@@ -16,12 +16,11 @@
 
 /*      light colors         */
 .nav-item{
-  color: coral;
+  color:brown;
   
 }
-.nav-item:hover{
-  color:darkgreen;
-  
+.no-icon:hover{
+  cursor: -webkit-grab; cursor: grab;
 }
 @keyframes spin {
   from {
@@ -2057,7 +2056,7 @@ fieldset[disabled] .form-control {
 }
 
 .navbar .navbar-nav .nav-item .nav-link.btn-round {
-  margin: 16px 3px;
+  
 }
 
 .navbar .navbar-nav .nav-item .nav-link [class^="fa"] {
@@ -2088,7 +2087,7 @@ fieldset[disabled] .form-control {
 
 .navbar .navbar-nav .nav-item .dropdown-menu .divider {
   height: 1px;
-  margin: 5px 0;
+  
   overflow: hidden;
   background-color: #e5e5e5;
 }
@@ -2290,7 +2289,7 @@ fieldset[disabled] .form-control {
 .navbar-icons .navbar-nav .nav-item .nav-link {
   text-align: center;
   padding: 6px 15px;
-  margin: 6px 3px;
+ 
 }
 
 .navbar-icons .navbar-nav [class^="pe"] {
@@ -5354,6 +5353,10 @@ h3 {
     max-block-size: 5px;
   }
 
-  .wrap-box {
-
+  .avatar {
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 0%;
   }

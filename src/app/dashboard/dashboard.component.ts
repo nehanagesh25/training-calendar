@@ -39,6 +39,8 @@ export class DashboardComponent implements OnInit {
 
   viewDate: Date = new Date();
   public user;
+  public userurl;
+  public username;
   public res=0;
   public flag = 0;
   public reson;
@@ -51,7 +53,9 @@ export class DashboardComponent implements OnInit {
 
   events: CalendarEvent[];
   ngOnInit() {
-    this.user = sessionStorage.getItem("User")
+    this.user = sessionStorage.getItem("User");
+    this.userurl=sessionStorage.getItem("Userurl");
+    this.username=sessionStorage.getItem("Username");
     console.log(this.user);
     this.service.GetCalendarDetails().subscribe((res: any) => {
       console.log('calender data===>', res)
