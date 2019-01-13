@@ -7,7 +7,9 @@ import { course } from './Shared/Course';
 import { parse } from 'date-fns';
 import { DatePipe } from '@angular/common';
 import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
+import { default as swal } from 'sweetalert2';
 const URL = Appsettings.BASE_URL + Appsettings.SaveFile;
+
 @Component({
   selector: 'app-create-courses',
   templateUrl: './create-courses.component.html',
@@ -42,7 +44,7 @@ export class CreateCoursesComponent implements OnInit {
       this.path = item.file.name;
       debugger
       console.log('ImageUpload:uploaded:', item, status, response);
-      alert("Upload Completed");
+      swal("Upload!", "Completed", "success");
 
     }
     this.serv.GetAllTrainers().subscribe((Response) => {
@@ -73,6 +75,7 @@ export class CreateCoursesComponent implements OnInit {
           console.log("resposce second");
           console.log(Response);
           if (Response) {
+            swal("Course Created !", "Successfuly", "success");
             this.CourseName = null;
             this.Discreption = null;
             this.Dureation = null;
@@ -118,7 +121,7 @@ export class CreateCoursesComponent implements OnInit {
             this.Venue = null;
             this.FromTime = null;
             this.ToTime = null;
-            alert("Course Updated SuccessFully")
+            swal("Course Updated ", "SuccessFully!", "success");
             this.flag = 0;
           }
         })

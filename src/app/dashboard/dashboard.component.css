@@ -15,7 +15,14 @@
  */
 
 /*      light colors         */
-
+.nav-item{
+  color: coral;
+  
+}
+.nav-item:hover{
+  color:darkgreen;
+  
+}
 @keyframes spin {
   from {
       transform: rotate(0deg);

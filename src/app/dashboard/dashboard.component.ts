@@ -3,10 +3,11 @@ import { startOfDay, endOfDay, subDays, addDays, endOfMonth, isSameDay, isSameMo
 import { Subject, from } from 'rxjs';
 import { CalendarEvent, CalendarEventAction, CalendarEventTimesChangedEvent, CalendarView } from 'angular-calendar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
-import { AuthService } from 'angularx-social-login';
+import { AuthService } from 'angular-6-social-login';
 import { Router } from '@angular/router';
 import { ServicesService } from '../Services/Service.services';
 import { DatePipe } from '@angular/common';
+import Swal from 'sweetalert2';
 
 const colors: any = {
   1: {
@@ -147,15 +148,16 @@ export class DashboardComponent implements OnInit {
     return JSON.parse(valuedata);
   }
   Register() {
+    
 
     var data = { "User_Name": this.user,"Course_Name":this.modalData.event.title }
     this.service.Register(data).subscribe((Response) => {
       if (Response) {
         this.flag = 1;
-        alert("Registration Success")
+        Swal("Registration!","Done!","success");
       }
       else {
-        alert("Registration Failed");
+        Swal("Registration Failed","warning");
       }
     })
   }
@@ -170,10 +172,10 @@ export class DashboardComponent implements OnInit {
         this.flag = 0;
         this.reson=null;
         this.res=0;
-        alert("DeRegistration success")
+        Swal("DeRegistration!","Done!","success"); 
       }
       else {
-        alert("DeRegistration Failed");
+        Swal("DeRegistration!","warning");
       }
     })
   }

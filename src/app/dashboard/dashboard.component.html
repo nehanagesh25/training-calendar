@@ -35,11 +35,8 @@
 
                 <div class="collapse navbar-collapse justify-content-end" id="navigation">
                     <ul class="nav navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="dropdown">
-                                <i class="nc-icon nc-palette"></i>
-                                <span class="d-lg-none">Welcome</span>
-                            </a>
+                        <li class="nav-item">                           
+                              WelCome &nbsp;-&nbsp;&nbsp; {{this.user}}                                                      
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
@@ -89,12 +86,12 @@
                         <span style="font-size: 2rem;" *ngIf='res'>
                         <div *ngIf='res'>
                             Reson 
-                            <input type="text" [(ngModel)]="reson">
+                            <input type="text" [(ngModel)]="reson">&nbsp;
                             <button type="button" class="btn btn-outline-secondary" (click)="UnRegister1()">Submit</button>
                         </div>
                         </span> 
                     </div>
-                    <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
+                   &nbsp; <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
                 </div>
             </ng-template>
 

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'angularx-social-login';
-import { SocialUser } from 'angularx-social-login';
-import { GoogleLoginProvider } from 'angularx-social-login';
+import { AuthService, SocialLoginModule } from 'angular-6-social-login';
+import { SocialUser } from 'angular-6-social-login';
+import { GoogleLoginProvider } from 'angular-6-social-login';
 import { Router} from '@angular/router';
 import{ServicesService}from '../Services/Service.services'
 import { store } from '@angular/core/src/render3';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   Password: String = "";
    public store;
     user= new SocialUser();  
-    constructor(private authService: AuthService,private router:Router,private service:ServicesService) { }  
+    constructor(private socialAuthService: AuthService ,private router:Router,private service:ServicesService) { }  
     ngOnInit() {
       let token=localStorage.getItem('isLogin');
       if(token){
@@ -26,32 +27,7 @@ export class LoginComponent implements OnInit {
       if(token1){
         this.router.navigate(['Admindashboard']);
       }
-    }  
-    signInWithGoogle(): void {
-      console.log("clicked");
-      this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-      
-      this.authService.authState.subscribe((user) => {
-        console.log(user);
-        this.store=user;
-        const data1={"User_Name":user.email};
-        sessionStorage.setItem("User",user.email);
-        localStorage.setItem('isLogin','true');
-        this.service.UserLogin(data1).subscribe((response:any)=>{
-          console.log(response);
-          if(response === 'Success'){
-           
-            localStorage.setItem('isLogin','true');
-            
-            this.router.navigate(['dashboard']);    
-              }    
-              else{
-                
-              }
-          
-        })       
-      });
-    }   
+    }        
   
   AdminLogin(){
 
@@ -71,4 +47,30 @@ export class LoginComponent implements OnInit {
       });  
   
   }
+  public socialSignIn(socialPlatform : string) {
+    let socialPlatformProvider;      
+    if(socialPlatform == "google"){
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;       
+    }
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+      console.log(userData);
+      this.router.navigate(['dashboard']);  
+      this.store=userData;
+      const data1={"User_Name":userData.email};
+      sessionStorage.setItem("User",userData.email);
+      localStorage.setItem('isLogin','true');
+      this.service.UserLogin(data1).subscribe((response:any)=>{
+        console.log(response);
+        if(response === 'Success'){         
+          localStorage.setItem('isLogin','true');          
+          this.router.navigate(['dashboard']);    
+            }    
+            else{
+              swal("Not Aplicaable");
+            }
+        
+      })       
+    });
+    }
 }
