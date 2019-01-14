@@ -23,6 +23,9 @@ export class AdminComponent  {
     this.router.navigate(['AdminDashboard/view']);
 
   }
-
+logout(){
+  localStorage.removeItem('AdminLogin')
+  this.router.navigate(['login']);
+}
 
 }

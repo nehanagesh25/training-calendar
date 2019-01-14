@@ -11,7 +11,7 @@ export const routes: Routes = [
   {path : '', component:LoginComponent},
   {path: 'login', component:LoginComponent},
   {path: 'dashboard', component:DashboardComponent,canActivate:[AuthGaurd]},
-  {path:'AdminDashboard',component:AdminComponent,
+  {path:'AdminDashboard',component:AdminComponent,canActivate:[AuthGaurd],
   children : [
         {path:'view',component:AdminDashboardComponent},
         { path:'AddCourse', component :CreateCoursesComponent},
