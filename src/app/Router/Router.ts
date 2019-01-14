@@ -9,6 +9,7 @@ import { AuthGaurd } from '../Services/Auth.guard';
 import { AdminComponent } from '../admin/admin.component';
 import { DisplayComponent } from '../admin/displayCourseDetails/display.component';
 import { TrainerDetailsComponent } from '../admin/trainer-details/trainer-details.component';
+import { CreateTrainersComponent } from '../admin/create-trainers/create-trainers.component';
 
 
 
@@ -22,7 +23,8 @@ export const routes: Routes = [
       { path: 'view', component: AdminDashboardComponent },
       { path: 'AddCourse', component: CreateCoursesComponent },
       { path: 'DisplayCourse', component: DisplayComponent },
-      { path: 'TrainerDetails', component: TrainerDetailsComponent }
+      { path: 'TrainerDetails', component: TrainerDetailsComponent },
+      { path: 'CreateTrainers', component: CreateTrainersComponent }
     ]
   },
   // {path:'**', component:LoginComponent}

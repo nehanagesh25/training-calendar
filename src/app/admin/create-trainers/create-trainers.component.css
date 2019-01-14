@@ -1,0 +1,37 @@
+.form-group {
+    display: inline-block;
+    width: 100%;
+}
+
+.wrap-create-course {
+    padding: 2rem;
+}
+
+label{
+    font-size: 12px;
+}
+
+input {
+    width: 50%;
+}
+
+select{
+    width: 50%;
+    display: inline-block;
+    padding: .4rem;     
+}
+
+.btn1{
+    float:middle;
+    margin-left: 40px;
+}
+
+button {
+    padding: 12px 25px;
+    margin-left: 30px;
+    color: black;
+    background-color: rgba(94, 60, 60, 0.281);
+    border: coral;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.3rem;
+}

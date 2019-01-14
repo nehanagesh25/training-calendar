@@ -7,17 +7,24 @@ button {
     font-size: 1.3rem;
 }
 .col-md-offset-1 {
-margin: 0px;;
+margin: 0px;
+/* text-align:center; */
 }
-
+.panel-title{
+  font-size: 20px;
+  block-size: 3%;
+  
+}
 
 .panel-table .panel-body{
     padding:0;
+    /* text-align:center; */
   }
   
   .panel-table .panel-body .table-bordered{
     border-style: none;
     margin:0;
+    /* text-align:center; */
   }
   
   .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type {
@@ -28,6 +35,7 @@ margin: 0px;;
   .panel-table .panel-body .table-bordered > thead > tr > th:last-of-type,
   .panel-table .panel-body .table-bordered > tbody > tr > td:last-of-type {
     border-right: 0px;
+    /* text-align:center; */
   }
   
   .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type,
@@ -37,10 +45,12 @@ margin: 0px;;
   
   .panel-table .panel-body .table-bordered > tbody > tr:first-of-type > td{
     border-bottom: 0px;
+    /* text-align:center; */
   }
   
   .panel-table .panel-body .table-bordered > thead > tr:first-of-type > th{
     border-top: 0px;
+    text-align:center;
   }
   
   .panel-table .panel-footer .pagination{

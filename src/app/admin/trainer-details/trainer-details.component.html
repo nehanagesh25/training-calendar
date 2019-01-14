@@ -21,7 +21,8 @@
               <h3 class="panel-title" style="color:rgba(80, 90, 150, 0.918)">Trainer Details</h3>
             </div>
             <div class="col col-xs-6 text-right">
-              <button type="button" class="btn btn-sm btn-primary btn-create" (click)="CreateTrainers()">Create Trainers</button>
+              <button type="button" class="btn btn-sm btn-primary btn-create" (click)="CreateTrainers()">Create
+                Trainers</button>
             </div>
           </div>
         </div>
@@ -32,13 +33,15 @@
                 <th align="center">Trainer Type</th>
                 <th align="center">Trainer Name</th>
                 <th align="center">Description</th>
+                <th align="center">Created On</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let d of data">
-                <td align="center">{{ d.Trainer_Type }}</td>
+                <td align="center">{{ d.Trainer_Type ? 'Accionite' : 'Guest' }}</td>
                 <td align="center">{{ d.Trainer_Name }}</td>
                 <td align="center">{{ d.Description }}</td>
+                <td align="center">{{ d.Created_On | date : "dd.MM.y" }}</td>
               </tr>
             </tbody>
           </table>

@@ -35,6 +35,7 @@ export class CreateCoursesComponent implements OnInit {
   public flag = 0;
   public FromTime;
   public ToTime;
+  public flag1 = 0;
 
   public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
   ngOnInit() {
@@ -70,7 +71,7 @@ export class CreateCoursesComponent implements OnInit {
     this.serv.AddCourse(data).subscribe((res) => {
       this.serv.GetCourseid().subscribe((res) => {
         this.courseid = +res;
-        var data1 = { "Trainer_ID": this.id, "Course_ID": this.courseid, "FromDate": this.FromDate +' '+ this.FromTime, "ToDate": this.ToDate +' '+ this.ToTime, "Venue": this.Venue, "Last_date_to_enroll": this.LastDate, "Max_enroll": this.MaxEnroll, "Min_enroll": this.MiniumEnroll, "Status": 1 }
+        var data1 = { "Trainer_ID": this.id, "Course_ID": this.courseid, "FromDate": this.FromDate + ' ' + this.FromTime, "ToDate": this.ToDate + ' ' + this.ToTime, "Venue": this.Venue, "Last_date_to_enroll": this.LastDate, "Max_enroll": this.MaxEnroll, "Min_enroll": this.MiniumEnroll, "Status": 1 }
         this.serv.CreateEnrollmaster(data1).subscribe((Response) => {
           console.log("resposce second");
           console.log(Response);
@@ -132,5 +133,17 @@ export class CreateCoursesComponent implements OnInit {
   filterForeCasts1(value) {
     this.courseid = value;
     console.log(this.id);
+  }
+  DeleteCourses() {
+    var data = { 'Course_ID': this.courseid }
+    this.serv.DeleteCourse(data).subscribe((Res) => {
+      if (Res != null) {
+        swal("Course deleted ", "SuccessFully!", "success");
+      }
+      else {
+        swal("Update Error", 'warning')
+      }
+
+    })
   }
 }

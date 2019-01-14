@@ -11,16 +11,21 @@ import { ServicesService } from '../../Services/Service.services';
 export class TrainerDetailsComponent implements OnInit {
 
   public data;
+  public TrainerName : any;
+  public TrainerType : any;
+  public description : any;
+
   constructor(private router: Router, private service: ServicesService) { }
 
   ngOnInit() {
+    //var data = {Trainer_Name:this.TrainerName, Trainer_Type:this.TrainerType, Description:this.description }
     this.service.GetAllTrainers().subscribe((Response) => {
       this.data = Response;
       console.log(Response);
     })
   }
-  CreateCourses() {
-    this.router.navigate(['AdminDashboard/AddTrainer']);
+  CreateTrainers() {
+    this.router.navigate(['AdminDashboard/CreateTrainers']);
   }
 
 }
