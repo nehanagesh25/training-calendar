@@ -18,7 +18,8 @@ import { AuthService,AuthServiceConfig,SocialLoginModule } from 'angular-6-socia
 import { GoogleLoginProvider} from "angular-6-social-login";
 import { AdminComponent } from './admin/admin.component';
 import { CreateCoursesComponent } from './admin/create-courses/create-courses.component';
-import{AuthGaurd}from '../app/Services/Auth.guard'
+import{AuthGaurd}from '../app/Services/Auth.guard';
+import{AuthGaurd1}from '../app/Services/Auth1'
 import { FileSelectDirective } from 'ng2-file-upload';
 import { DisplayComponent } from './admin/displayCourseDetails/display.component';
 import { DatePipe } from '@angular/common';
@@ -94,7 +95,7 @@ return config;
   providers: [AuthService,{
     provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs
-  },AuthGaurd,DatePipe,{provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter}],
+  },AuthGaurd,AuthGaurd1,DatePipe,{provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
