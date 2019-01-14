@@ -25,6 +25,7 @@ import { DatePipe } from '@angular/common';
 import {Component, Injectable} from '@angular/core';
 import {NgbTimeStruct, NgbTimeAdapter} from '@ng-bootstrap/ng-bootstrap';
 import { default as swal } from 'sweetalert2';
+import { TrainerDetailsComponent } from './admin/trainer-details/trainer-details.component';
 /**
  * Example of a String Time adapter
  */
@@ -73,7 +74,8 @@ return config;
     AdminComponent,
     CreateCoursesComponent,
     FileSelectDirective,
-    DisplayComponent
+    DisplayComponent,
+    TrainerDetailsComponent
   ],
   imports: [
     BrowserModule,
