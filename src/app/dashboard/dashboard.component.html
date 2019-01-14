@@ -74,13 +74,16 @@
                 <div class="modal-footer">
                     <div class="wrap-box"> 
                         <span style="font-size: 2rem;" *ngIf='!res'>
-                            <div *ngIf="!flag">
+                            <div *ngIf="!flag && !flag1">
                                 <i class="fas fa-calendar-plus" (click)="Register()"></i>
                                 <div style="font-size:10px;color:green">Register</div>
                             </div>
-                            <div *ngIf="flag" (click)="flag=0">
+                            <div *ngIf="flag && !flag1" (click)="flag=0">
                                 <i class="far fa-calendar-minus" (click)="UnRegister()"></i>
                                 <div style="font-size:10px;color:red">UnRegister</div>
+                            </div>
+                            <div *ngIf='flag1'>
+                                Registration closed
                             </div>
                         </span>
                         <span style="font-size: 2rem;" *ngIf='res'>

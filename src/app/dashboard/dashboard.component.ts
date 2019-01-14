@@ -43,6 +43,7 @@ export class DashboardComponent implements OnInit {
   public username;
   public res=0;
   public flag = 0;
+  public flag1=0;
   public reson;
   modalData: {
     action: string;
@@ -127,8 +128,18 @@ export class DashboardComponent implements OnInit {
     this.modal.open(this.modalContent, { size: 'lg' });
     this.user = sessionStorage.getItem("User")
     var data = { "User_Name": this.user,"Course_Name":this.modalData.event.title};
+    var data1={"Course_Name":this.modalData.event.title};
     debugger
     console.log(this.user);
+    this.service.checkforregister(data1).subscribe((Response)=>
+    {
+      if(Response === "Success"){
+        this.flag1=1;
+      }
+      else{
+        this.flag1=0;
+      }
+    })
     this.service.check(data).subscribe((Response) => {
       console.log(Response);
       if (Response == "Success") {
