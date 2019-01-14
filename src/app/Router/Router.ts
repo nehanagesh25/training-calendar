@@ -10,7 +10,7 @@ import { CourseAttendedComponent } from '../dashboard/course-attended/course-att
 export const routes: Routes = [
   {path : '', component:LoginComponent},
   {path: 'login', component:LoginComponent},
-  //{path:'courseAttended', component:CourseAttendedComponent},
+  {path:'courseAttended', component:CourseAttendedComponent},
   {
     path: 'dashboard', component:DashboardComponent,
     children : [

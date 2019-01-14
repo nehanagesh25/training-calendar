@@ -10,3 +10,8 @@ export class CourseDetails{
     Max_enroll: number;
     Min_enroll:number;
 }
+export class CoursesAttended{
+    CourseName:string;
+    FromDate:Date;
+    ToDate:Date;
+}

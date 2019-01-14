@@ -100,6 +100,11 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.GetCalendarDetails;
         return this.http.get(url);
     }
-
+    
+    //GetCoursesAttended Post method
+    public GetCoursesAttended(name){
+        let url = Appsettings.BASE_URL+Appsettings.CoursesAttended;
+        return this.http.post(url,name);
+    }
 
 }
