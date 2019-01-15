@@ -1,4 +1,4 @@
-var webApiUrl="http://localhost:60027/TrainingCalendar/"
+declare var webApiUrl;
 
 
 export class Appsettings{
@@ -10,6 +10,7 @@ export class Appsettings{
     public static UnRegister='user/UnRegister';
     public static check='user/check';
     public static EnrolledEmployees='user/EnrolledEmployees';
+    public static checkforregister='user/checkforregister';
     public static GetCalendarDetails='Course/GetCalendarDetails';
     //Course API
     public static AddCourse='Course/AddCourse';

@@ -1,0 +1,1 @@
+var webApiUrl="http://localhost:60027/TrainingCalendar/";
