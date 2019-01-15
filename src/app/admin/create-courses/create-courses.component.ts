@@ -138,7 +138,11 @@ export class CreateCoursesComponent implements OnInit {
     var data = { 'Course_ID': this.courseid}
     this.serv.DeleteCourse(data).subscribe((Res)=>{
       if(Res!=null){
-        swal("Course deleted ", "SuccessFully!", "success");
+        this.serv.Removemaster(data).subscribe((res)=>{
+          if(res!=null){
+            swal("Course deleted ", "SuccessFully!", "success");
+            this.router.navigate(['AdminDashboard/DisplayCourse'])
+          }})      
       }
       else{
         swal("Update Error",'warning')

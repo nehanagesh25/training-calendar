@@ -8,7 +8,7 @@ import { AuthGaurd}from '../Services/Auth.guard';
 import{AuthGaurd1}from '../Services/Auth1'
 import{AdminComponent}from '../admin/admin.component';
 import{DisplayComponent} from '../admin/displayCourseDetails/display.component'
-import { from } from 'rxjs';
+
 export const routes: Routes = [
   {path : '', component:LoginComponent},
   {path: 'login', component:LoginComponent},
