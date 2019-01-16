@@ -2,15 +2,18 @@
   <section class="wrap-create-course">
     <div class="form-group">
       <label for="usr">CourseName:</label>
-      <input type="text" class="form-control" id="usr" [(ngModel)]="CourseName">
+      <input type="text" class="form-control" placeholder="Enter Course Name" aria-label="Input group example" aria-describedby="btnGroupAddon" [(ngModel)]="CourseName">
+      <!-- <input type="text" class="form-control" id="usr" [(ngModel)]="CourseName"> -->
     </div>
     <div class="form-group">
       <label for="pwd">Discription</label>
-      <input type="text area" class="form-control" id="pwd" [(ngModel)]="Discreption">
+      <input type="text" class="form-control" placeholder="Enter Discreption" aria-label="Input group example" aria-describedby="btnGroupAddon" [(ngModel)]="Discreption">
+      <!-- <input type="text area" class="form-control" id="pwd" [(ngModel)]="Discreption"> -->
     </div>
     <div class="form-group">
       <label for="pwd">Duration</label>
-      <input type="number" class="form-control" id="pwd" [(ngModel)]="Dureation">
+      <!-- <input type="number" class="form-control" id="pwd" [(ngModel)]="Dureation"> -->
+      <input type="text" class="form-control" placeholder="Enter Dureation" aria-label="Input group example" aria-describedby="btnGroupAddon" [(ngModel)]="Dureation">
     </div>
     <div class="form-group">
       <label for="pwd">FromDate</label>
@@ -26,24 +29,25 @@
         </div>
     <div class="form-group">
       <label for="pwd">ToDate</label>
-      <input type="date" class="form-control" id="pwd" [(ngModel)]="ToDate">
+      <input type="date" class="form-control" id="pwd"  [(ngModel)]="ToDate">
     </div>
   
     <div class="form-group">
       <label for="pwd">MaxEnroll</label>
-      <input type="number" class="form-control" id="pwd" [(ngModel)]="MaxEnroll">
+      <!-- <input type="number" class="form-control" id="pwd" [(ngModel)]="MaxEnroll"> -->
+      <input type="number" class="form-control" placeholder="Enter MaxEnroll" [(ngModel)]="MaxEnroll"aria-label="Input group example" aria-describedby="btnGroupAddon">
     </div>
     <div class="form-group">
       <label for="pwd">Minimum Enroll</label>
-      <input type="number" class="form-control" id="pwd" [(ngModel)]="MiniumEnroll">
+       <input type="number" class="form-control" placeholder="Enter MiniumEnroll" [(ngModel)]="MiniumEnroll"aria-label="Input group example" aria-describedby="btnGroupAddon">
     </div>
     <div class="form-group">
       <label for="pwd">LastDate To Enroll</label>
-      <input type="date" class="form-control" id="pwd" [(ngModel)]="LastDate">
+      <input type="date" class="form-control" id="pwd" placeholder="select LastDate To Enroll" aria-label="Input group example" aria-describedby="btnGroupAddon" [(ngModel)]="LastDate">
     </div>
     <div class="form-group">
       <label for="pwd">Venue</label>
-      <input type="text" class="form-control" id="pwd" [(ngModel)]="Venue">
+      <input type="text" class="form-control" id="pwd" placeholder="Enter Venue" aria-label="Input group example" aria-describedby="btnGroupAddon"[(ngModel)]="Venue">
     </div>
     <div class="form-group">
       <label for="pwd">Trainer</label><br>
@@ -81,15 +85,15 @@
     </div>
     <div class="form-group">
       <label for="pwd">CourseName</label>
-      <input type="text" class="form-control" id="pwd" [(ngModel)]="CourseName">
+      <input type="text" class="form-control" id="pwd" placeholder="Enter Course Name" aria-label="Input group example" aria-describedby="btnGroupAddon"[(ngModel)]="CourseName">
     </div>
     <div class="form-group">
       <label for="pwd">Discription</label>
-      <input type="text" class="form-control" id="pwd" [(ngModel)]="Discreption">
+      <input type="text" class="form-control" id="pwd" placeholder="Enter Discreption" aria-label="Input group example" aria-describedby="btnGroupAddon"[(ngModel)]="Discreption">
     </div>
     <div class="form-group">
       <label for="pwd">Duration</label>
-      <input type="number" class="form-control" id="pwd" [(ngModel)]="Dureation">
+      <input type="number" class="form-control" id="pwd"placeholder="Enter Duration" aria-label="Input group example" aria-describedby="btnGroupAddon"[(ngModel)]="Dureation">
     </div>
     <div class="form-group">
       <label for="pwd">FromDate</label>
@@ -109,11 +113,11 @@
         </div>
     <div class="form-group">
       <label for="pwd">MaxEnroll</label>
-      <input type="number" class="form-control" id="pwd" [(ngModel)]="MaxEnroll">
+      <input type="number" class="form-control" id="pwd" placeholder="Enter MaxEnroll" aria-label="Input group example" aria-describedby="btnGroupAddon" [(ngModel)]="MaxEnroll">
     </div>
     <div class="form-group">
       <label for="pwd">Minimum Enroll</label>
-      <input type="number" class="form-control" id="pwd" [(ngModel)]="MiniumEnroll">
+      <input type="number" class="form-control" placeholder="Enter Minimum Enroll"id="pwd"aria-label="Input group example" aria-describedby="btnGroupAddon" [(ngModel)]="MiniumEnroll">
     </div>
     <div class="form-group">
       <label for="pwd">LastDate To Enroll</label>
@@ -121,7 +125,7 @@
     </div>
     <div class="form-group">
       <label for="pwd">Venue</label>
-      <input type="text" class="form-control" id="pwd" [(ngModel)]="Venue">
+      <input type="text" class="form-control" id="pwd" placeholder="Enter Venue"aria-label="Input group example" aria-describedby="btnGroupAddon" [(ngModel)]="Venue">
     </div>
     <div class="form-group">
       <label for="pwd">Trainer</label><br>
@@ -134,7 +138,7 @@
     </div>
   </section>
   <div class="btn">
-      <button type="button" class="btn btn-sm btn-primary btn-create"(click)="UpdateCourses()">Submit</button>
+      <button type="button" class="btn btn-sm btn-primary btn-create"(click)="UpdateCourses()">Save</button>
      </div>
   <div class="btn">
      <button type="button" class="btn btn-sm btn-primary btn-create"(click)="flag=0">BACK</button>
@@ -149,6 +153,6 @@
         </select>
         {{value}}
       </div>
-      <button type="button" class="btn btn-sm btn-primary btn-create"(click)="DeleteCourses()">Submit</button>
+      <button type="button" class="btn btn-sm btn-primary btn-create"(click)="DeleteCourses()">Delete</button>
       <button type="button" class="btn btn-sm btn-primary btn-create"(click)="flag1=0">BACK</button>
 </div>
