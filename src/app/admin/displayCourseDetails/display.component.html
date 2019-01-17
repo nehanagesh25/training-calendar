@@ -30,15 +30,19 @@
             <thead>
               <tr align="center">
                 <th align="center">CourseName</th>
-                <th align="center">Course Description</th>
                 <th align="center"> Duration</th>
+                <th align="center">From Date</th>
+                <th align="center">To Date</th>
+                <th align="center">Venue</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let d of data">
+              <tr *ngFor="let d of data"  (click)="events(d.Course_ID)">
                 <td align="center">{{ d.Course_Name }}</td>
-                <td align="center">{{d.Description}}</td>
                 <td align="center">{{d.Duration}}</td>
+                <td align="center">{{d.FromDate}}</td>
+                <td align="center">{{d.ToDate}}</td>
+                <td align="center">{{d.Venue}}</td>
               </tr>
             </tbody>
           </table>

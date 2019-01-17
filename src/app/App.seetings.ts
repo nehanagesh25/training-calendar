@@ -12,17 +12,19 @@ export class Appsettings{
     public static GetCalendarDetails='Course/GetCalendarDetails';
     //Course API
     public static AddCourse='Course/AddCourse';
-    public static AllCourse='Course/AllCourse';
+    public static AllCourse='Course/GetAllCourseWithEnrollMaster';
     public static CourseByToday='Course/GetBydate';
     public static UpdateCourse='Course/UpdateCourse';
     public static DeleteCourse='Course/DeleteCourse';
     public static SaveFile='Course/Save';
     public static LastRecord='Course/LastRecord';
+    public static Coursebyid='Course/GetByID'
     //Enroll Master API
     public static CreateEnrollmaster='Enrollmasters/CreateEnrollmaster';
     public static Updatemaster='Enrollmasters/Updatemaster';
     public static GetAllMasters='Enrollmasters/GetAllMasters';
     public static Removemaster='Enrollmasters/Removemaster';
+    public static GetEnrollMasterById='Enrollmasters/GetEnrollMasterById'
     //Trainers API
     public static CreateTrainers='Trainers/CreateTrainers';
     public static UpdateTrainers='Trainers/UpdateTrainers';

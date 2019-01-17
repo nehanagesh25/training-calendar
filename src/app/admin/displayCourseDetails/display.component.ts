@@ -21,4 +21,7 @@ export class DisplayComponent implements OnInit {
   CreateCourses() {
     this.router.navigate(['AdminDashboard/AddCourse']);
   }
+  events(value){
+    console.log(value);
+  }
 }

@@ -12,7 +12,7 @@
                         <p class="card-category"></p>
                     </div>
                     <div class="card-body ">
-                        <div id="chartPreferences" class="ct-chart ct-perfect-fourth" *ngIf="Todaydata.length>0">
+                        <div id="chartPreferences" class="ct-chart ct-perfect-fourth" *ngIf="Todaydata!=null">
                           <div *ngFor='let course of Todaydata'> 
                            Courese Name :-{{course.Course_Name}}<br>
                            Description  :-{{course.Description}}<br>

@@ -18,6 +18,12 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.AdminLogin;
         return this.http.post(url, data);
     }
+    //course by is
+    public CourseByID(data){
+        debugger
+        let url=Appsettings.BASE_URL+Appsettings.Coursebyid;
+        return this.http.post(url,data);
+    }
     //Register for an Event
     public Register(data){
         let url=Appsettings.BASE_URL+Appsettings.Register;
@@ -96,7 +102,11 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.Updatemaster;
         return this.http.post(url, data);
     }
-
+    //Enrollmaster By id
+    public GetEnrollMasterById(Data){
+        let url = Appsettings.BASE_URL + Appsettings.GetEnrollMasterById;
+        return this.http.post(url, Data);
+    }
     //GetAllMasters Get Method
     public GetAllMasters() {
         let url = Appsettings.BASE_URL + Appsettings.GetAllMasters;
