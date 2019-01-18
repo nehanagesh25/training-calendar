@@ -17,6 +17,7 @@ export class CreateTrainersComponent implements OnInit {
   public TrainerID: number;
   public TrainerName: any;
   public TrainerType: any;
+  public TrainerData:any;
   public Description: any;
   public Trainer_Type: any = [{ name: 'Accionite', value: 1 }, { name: 'Guest', value: 0 }];
 
@@ -30,18 +31,26 @@ export class CreateTrainersComponent implements OnInit {
   }
 
   AddTrainers() {
-    var data = { Trainer_Name: this.TrainerName, Trainer_Type: this.Trainer_Type, Description: this.Description }
+    var data = { 'Trainer_Name': this.TrainerName, 'Trainer_Type': this.TrainerData, 'Description': this.Description }
     this.serv.CreateTrainers(data).subscribe((res: any) => {
       console.log(res);
+      if (res != null) {
+        swal("Trainer added ", "SuccessFully!", "success");
+      }
+      else {
+        swal("Error in Adding", 'warning')
+      }
+      this.flag = 0;
     });
   }
   filterForeCasts(value) {
     this.TrainerID = value;
-    console.log(this.TrainerName);
+    console.log(this.TrainerID);
   }
 
   UpdateTrainers() {
-    var data = { Trainer_ID: this.TrainerID, Trainer_Name: this.TrainerName, Trainer_Type: this.Trainer_Type, Description: this.Description }
+    var data = { 'Trainer_ID': this.TrainerID,'Trainer_Name':this.TrainerName, 'Trainer_Type': this.TrainerData, 'Description': this.Description }
+    debugger
     this.serv.UpdateTrainers(data).subscribe((res: any) => {
       console.log(res);
       if (res != null) {
@@ -69,6 +78,7 @@ export class CreateTrainersComponent implements OnInit {
       }
 
     })
-    this.router.navigate(['AdminDashboard/TrainerDetails'])
+    
+   // this.router.navigate(['AdminDashboard/TrainerDetails'])
   }
 }

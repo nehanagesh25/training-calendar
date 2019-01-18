@@ -125,6 +125,10 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.GetAllTrainers;
         return this.http.get(url);
     }
-
+    //GetTrainerById Get Method
+    public GetTrainerByID(){
+        let url = Appsettings.BASE_URL + Appsettings.GetAllTrainers;
+        return this.http.get(url);
+    }
 
 }

@@ -2,11 +2,11 @@
   <section class="wrap-create-course">
     <div class="form-group">
       <label for="usr">Trainer Name</label>
-      <input type="text" class="form-control" id="usr" [(ngModel)]="TrainerName">
+      <input type="text" class="form-control" id="usr" [(ngModel)]="TrainerName" placeholder="Please enter the Name">
     </div>
     <div class="form-group">
       <label for="pwd">Description</label>
-      <input type="text area" class="form-control" id="pwd" [(ngModel)]="Description">
+      <input type="text area" class="form-control" id="pwd" [(ngModel)]="Description" placeholder="Please enter the description">
     </div>
     <div class="form-group">
       <label for="pwd">Trainer Type</label><br>
@@ -17,7 +17,7 @@
   </section>
 
   <div class="btn1">
-    <button class="btn btn-sm btn-primary btn-create" (click)="AddTrainers()"> Save</button>
+    <button class="btn btn-sm btn-primary btn-create" (click)="AddTrainers()">Submit</button>
     <button class="btn btn-sm btn-primary btn-create" (click)="flag=1">Update Trainer</button>
     <button class="btn btn-sm btn-primary btn-create" (click)="flag1=1">Delete Trainer</button>
   </div>
@@ -26,28 +26,28 @@
 
 
 <div class="wrap-Update-course" *ngIf="flag">
-  Update Course
+<div> <h3> Update Course</h3></div>
   <section class="wrap-create-course">
       <div class="form-group">
       <label for="pwd">Trainer Name</label><br>
-      <select (change)="filterForeCasts1($event.target.value)">
+      <select (change)="filterForeCasts1($event.target.value)"  [(ngModel)]="TrainerName" placeholder="Please enter the Name">
         <option [value]="Trainer.Trainer_ID" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
       </select>
       {{value}}
       </div>
       <div class="form-group">
         <label for="pwd">Description</label>
-        <input type="text area" class="form-control" id="pwd" [(ngModel)]="Description">
+        <input type="text area" class="form-control" id="pwd" [(ngModel)]="Description" placeholder="Please enter the description">
       </div>
       <div class="form-group">
         <label for="pwd">Trainer Type</label><br>
-        <select>
+        <select [(ngModel)]="TrainerData">
           <option *ngFor="let TrainerDetails of Trainer_Type" [ngValue]="TrainerDetails.value">{{TrainerDetails.name}}</option>
         </select>
       </div>
     </section>
   <div class="btn">
-    <button type="button" class="btn btn-sm btn-primary btn-create" (click)="UpdateTrainers()">Save</button>
+    <button type="button" class="btn btn-sm btn-primary btn-create" (click)="UpdateTrainers()">Submit</button>
   </div>
   <div class="btn">
     <button type="button" class="btn btn-sm btn-primary btn-create" (click)="flag=0">Back</button>
