@@ -96,7 +96,11 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.CreateEnrollmaster;
         return this.http.post(url, data);
     }
-
+    // GetRegisterEmployees
+    public GetRegisterEmployees(data){
+        let url = Appsettings.BASE_URL + Appsettings.GetRegisterEmployees;
+        return this.http.post(url, data);
+    }
     //Updatemaster
     public Updatemaster(data) {
         let url = Appsettings.BASE_URL + Appsettings.Updatemaster;

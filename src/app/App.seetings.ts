@@ -19,6 +19,7 @@ export class Appsettings{
     public static SaveFile='Course/Save';
     public static LastRecord='Course/LastRecord';
     public static Coursebyid='Course/GetByID'
+    public static GetRegisterEmployees='Course/GetRegisterEmployees';
     //Enroll Master API
     public static CreateEnrollmaster='Enrollmasters/CreateEnrollmaster';
     public static Updatemaster='Enrollmasters/Updatemaster';

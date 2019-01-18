@@ -3,7 +3,21 @@
 html { height: 100%;
     /* overflow:hidden; */
 }
-
+.modal-open {
+    position: initial !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+   }
+   modal-backdrop {
+    position: initial;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+   }
 .modal-open .modal{
     opacity: 1 !important;
   }
@@ -29,4 +43,7 @@ h1 {
 }
 div {
     background-image: linear-gradient(top, red, orange, yellow, green, blue, indigo, violet);
+  }
+  .modal-backdrop{
+    z-index: -1 !important;
   }

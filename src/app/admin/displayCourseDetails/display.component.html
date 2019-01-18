@@ -37,20 +37,51 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let d of data"  (click)="events(d.Course_ID)">
+              <tr *ngFor="let d of data" (click)="events(d.Course_ID)" data-toggle="modal" data-target="#myModal">
                 <td align="center">{{ d.Course_Name }}</td>
                 <td align="center">{{d.Duration}}</td>
-                <td align="center">{{d.FromDate}}</td>
-                <td align="center">{{d.ToDate}}</td>
+                <td align="center">{{d.FromDate | date : "dd.MM.y"}}</td>
+                <td align="center">{{d.ToDate | date : "dd.MM.y"}}</td>
                 <td align="center">{{d.Venue}}</td>
               </tr>
             </tbody>
           </table>
 
         </div>
+        
 
       </div>
 
     </div>
   </div>
 </div>
+<div (click)="CloseDilog()">
+    <!-- Registered Employees
+    <div *ngFor="let d of RegisteredEmployees">
+      {{d.User_Name}}
+    </div> -->
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Registered Employees</h4>
+          </div>
+          <div class="modal-body" *ngIf="RegisteredEmployees.length>0">
+            <div *ngFor="let d of RegisteredEmployees">
+              {{d.User_Name}}
+            </div>
+            <div class="modal-body" *ngIf="RegisteredEmployees.length==0">
+                Non of the Employees Registered yet
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
