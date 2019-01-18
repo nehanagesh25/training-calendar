@@ -20,6 +20,26 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.AdminLogin;
         return this.http.post(url, data);
     }
+    //Register for an Event
+    public Register(data){
+        let url=Appsettings.BASE_URL+Appsettings.Register;
+        return this.http.post(url,data);
+    }
+    //Unregister for an event
+    public UnRegister(Data){
+        let url=Appsettings.BASE_URL+Appsettings.UnRegister;
+        return this.http.post(url,Data);
+    }
+    //check for Enrolled for the course or not 
+    public check(data){
+        let url=Appsettings.BASE_URL+Appsettings.check;
+        return this.http.post(url,data);
+    }
+    //Enrolled For Current Evets
+    public GetEnrolledEmployees(data){
+        let url=Appsettings.BASE_URL+Appsettings.EnrolledEmployees;
+        return this.http.post(url,data);
+    }
     //Course
     //AddCourse Post Method
     public AddCourse(data) {
@@ -31,12 +51,20 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.AllCourse;
         return this.http.get(url);
     }
-
-
+    //save file
+    public savefile(data){
+        let url=Appsettings.BASE_URL+Appsettings.SaveFile;
+        return this.http.post(url,data);
+    }
+    //Last Record Of Course
+    public GetCourseid(){
+        let url=Appsettings.BASE_URL+Appsettings.LastRecord
+        return this.http.get(url);
+    }
     //Course Running  Today Post Method
-    public TodayCourse(data) {
+    public TodayCourse() {
         let url = Appsettings.BASE_URL + Appsettings.CourseByToday;
-        return this.http.post(url, data);
+        return this.http.get(url);
     }
     // UpdateCourse Post Method
     public UpdateCourse(data) {
@@ -96,14 +124,19 @@ export class ServicesService {
     }
 
     //GetCalendarDetails Get Method
-    public GetCalendarDetails(){
-        let url = Appsettings.BASE_URL + Appsettings.GetCalendarDetails;
+    public GetTableDetails(){
+        let url = Appsettings.BASE_URL + Appsettings.GetTableDetails;
         return this.http.get(url);
     }
     
     //GetCoursesAttended Post method
     public GetCoursesAttended(name){
         let url = Appsettings.BASE_URL+Appsettings.CoursesAttended;
+        return this.http.post(url,name);
+    }
+
+    public GetCalendarDetails(name){
+        let url = Appsettings.BASE_URL + Appsettings.GetCalendarDetails;
         return this.http.post(url,name);
     }
 

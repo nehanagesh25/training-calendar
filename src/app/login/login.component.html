@@ -12,7 +12,7 @@
 
           <div class="col-md-5">
             <h5>Employee Must Login Through Google</h5>
-            <button class="loginBtn loginBtn--google" (click)="signInWithGoogle()">
+            <button class="loginBtn loginBtn--google" (click)="socialSignIn('google')">
               Login with Google
             </button>
 
@@ -24,10 +24,9 @@
               <fieldset>
 
                 <input id="textinput" name="textinput" type="text" placeholder="Enter User Name" class="form-control input-md" [(ngModel)]="User_Name">
-                <div class="spacing"><input type="checkbox" name="checkboxes" id="checkboxes-0" value="1"><small>
-                    Remember me</small></div>
-                <input id="textinput" name="textinput" type="text" placeholder="Enter Password" class="form-control input-md" [(ngModel)]="Password">
-                <div class="spacing"><a href="#"><small> Forgot Password?</small></a><br /></div>
+                <br>
+                <input id="textinput" name="textinput" type="password" placeholder="Enter Password" class="form-control input-md" [(ngModel)]="Password">
+              <br>
                 <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right" (click)="AdminLogin()"> Sign In</button>
 
 

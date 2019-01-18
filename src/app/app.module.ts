@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http'; 
 import { HttpModule } from '@angular/http';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppRoutingModule } from './Router/Router';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -13,25 +14,97 @@ import { adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { FlatpickrModule } from 'angularx-flatpickr';
-import { AuthService,AuthServiceConfig,SocialLoginModule } from 'angularx-social-login';
-import { GoogleLoginProvider} from "angularx-social-login";
+import { AuthService,AuthServiceConfig,SocialLoginModule } from 'angular-6-social-login';
+import { GoogleLoginProvider} from "angular-6-social-login";
 import { AdminComponent } from './admin/admin.component';
 import { CreateCoursesComponent } from './admin/create-courses/create-courses.component';
-import { DashboardDetailsViewComponent } from './admin/dashboard-details-view/dashboard-details-view.component';
 import{AuthGaurd}from '../app/Services/Auth.guard';
-import { DatePipe} from '@angular/common';
-import { NgxSpinnerModule } from 'ngx-spinner'
-import { from } from 'rxjs';
+import{AuthGaurd1}from '../app/Services/Auth1'
+import { FileSelectDirective } from 'ng2-file-upload';
+import { DisplayComponent } from './admin/displayCourseDetails/display.component';
+import { DatePipe } from '@angular/common';
+import {Component, Injectable} from '@angular/core';
+import {NgbTimeStruct, NgbTimeAdapter} from '@ng-bootstrap/ng-bootstrap';
+import {
+  MatAutocompleteModule,
+  MatBadgeModule,
+  MatBottomSheetModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatTreeModule,
+} from '@angular/material';
+import { default as swal } from 'sweetalert2';
+import { CalendarComponent } from './dashboard/calendar/calendar.component';
+import { TableDisplayComponent } from './dashboard/table-display/table-display.component';
+import { CoursesAttended } from './model/model';
 import { CourseAttendedComponent } from './dashboard/course-attended/course-attended.component';
+/**
+ * Example of a String Time adapter
+ */
+@Injectable()
+export class NgbTimeStringAdapter extends NgbTimeAdapter<string> {
+
+  fromModel(value: string): NgbTimeStruct {
+    if (!value) {
+      return null;
+    }
+    const split = value.split(':');
+    return {
+      hour: parseInt(split[0], 10),
+      minute: parseInt(split[1], 10),
+      second: parseInt(split[2], 10)
+    };
+  }
+
+  toModel(time: NgbTimeStruct): string {
+    if (!time) {
+      return null;
+    }
+    return `${this.pad(time.hour)}:${this.pad(time.minute)}:${this.pad(time.second)}`;
+  }
+
+  private pad(i: number): string {
+    return i < 10 ? `0${i}` : `${i}`;
+  }
+}
+export function getAuthServiceConfigs() {
 let config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('624796833023-clhjgupm0pu6vgga7k5i5bsfp6qp6egh.apps.googleusercontent.com')
+    provider: new GoogleLoginProvider('128162980094-r503vo2ho5r4oct4j8rquln7su9hmcm5.apps.googleusercontent.com')
   }
 ]);
-export function provideConfig() {
-  return config;
+return config;
 }
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,16 +113,19 @@ export function provideConfig() {
     LoginComponent,
     AdminComponent,
     CreateCoursesComponent,
-    DashboardDetailsViewComponent,
+    FileSelectDirective,
+    DisplayComponent,
+    CalendarComponent,
+    TableDisplayComponent,
     CourseAttendedComponent
   ],
   imports: [
     BrowserModule,
     SocialLoginModule,
+    AngularFontAwesomeModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpModule,
-    NgxSpinnerModule,
     HttpClientModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
@@ -57,12 +133,46 @@ export function provideConfig() {
     }),
     NgbModule.forRoot(),
     FormsModule,
-    FlatpickrModule.forRoot()
+    FlatpickrModule.forRoot(),
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule,
   ],
   providers: [AuthService,{
     provide: AuthServiceConfig,
-    useFactory: provideConfig
-  },AuthGaurd,DatePipe],
+    useFactory: getAuthServiceConfigs
+  },AuthGaurd,AuthGaurd1,DatePipe,{provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
