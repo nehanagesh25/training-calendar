@@ -16,10 +16,13 @@ export class Appsettings{
     public static CourseByToday='Course/GetBydate';
     public static UpdateCourse='Course/UpdateCourse';
     public static DeleteCourse='Course/DeleteCourse';
+    public static GetTableDetails='Course/GetTableDetails'
     public static SaveFile='Course/Save';
     public static LastRecord='Course/LastRecord';
+    public static GetCalendarDetails='Course/GetCalendarDetails'
     public static Coursebyid='Course/GetByID'
     public static GetRegisterEmployees='Course/GetRegisterEmployees';
+
     //Enroll Master API
     public static CreateEnrollmaster='Enrollmasters/CreateEnrollmaster';
     public static Updatemaster='Enrollmasters/Updatemaster';
@@ -31,4 +34,6 @@ export class Appsettings{
     public static UpdateTrainers='Trainers/UpdateTrainers';
     public static GetAllTrainers='Trainers/GetAllTrainers';
     public static RemoveTrainerdetails='Trainers/RemoveTrainerdetails';    
+    //courses attended
+    public static CoursesAttended='user/CoursesAttended';
 }

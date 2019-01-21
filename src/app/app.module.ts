@@ -19,6 +19,47 @@ import { AuthService, AuthServiceConfig, SocialLoginModule } from 'angular-6-soc
 import { GoogleLoginProvider } from "angular-6-social-login";
 import { AdminComponent } from './admin/admin.component';
 import { CreateCoursesComponent } from './admin/create-courses/create-courses.component';
+import {
+  MatAutocompleteModule,
+  MatBadgeModule,
+  MatBottomSheetModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatTreeModule,
+} from '@angular/material';
+import { default as swal } from 'sweetalert2';
+import { CalendarComponent } from './dashboard/calendar/calendar.component';
+import { TableDisplayComponent } from './dashboard/table-display/table-display.component';
+import { CoursesAttended } from './model/model';
+import { CourseAttendedComponent } from './dashboard/course-attended/course-attended.component';
 import { AuthGaurd } from '../app/Services/Auth.guard'
 import { AuthGaurd1 } from '../app/Services/Auth1.guard'
 import { FileSelectDirective } from 'ng2-file-upload';
@@ -29,7 +70,6 @@ import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { default as swal } from 'sweetalert2';
 import { TrainerDetailsComponent } from './admin/trainer-details/trainer-details.component';
 import { CreateTrainersComponent } from './admin/create-trainers/create-trainers.component';
-
 /**
  * Example of a String Time adapter
  */
@@ -79,6 +119,9 @@ export function getAuthServiceConfigs() {
     CreateCoursesComponent,
     FileSelectDirective,
     DisplayComponent,
+    CalendarComponent,
+    TableDisplayComponent,
+    CourseAttendedComponent,
     TrainerDetailsComponent,
     CreateTrainersComponent
   ],
@@ -96,7 +139,41 @@ export function getAuthServiceConfigs() {
     }),
     NgbModule.forRoot(),
     FormsModule,
-    FlatpickrModule.forRoot()
+    FlatpickrModule.forRoot(),
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule,
   ],
   providers: [AuthService, {
     provide: AuthServiceConfig,

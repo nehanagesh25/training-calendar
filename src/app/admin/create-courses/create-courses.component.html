@@ -1,3 +1,4 @@
+
 <div *ngIf="!flag && !flag1">
   <section class="wrap-create-course">
     <div class="form-group">
@@ -147,12 +148,16 @@
 
 <div *ngIf='flag1'>
     <div class="form-group">
-        <label for="pwd">Select Course</label><br>
+
+        <label for="pwd">Course</label><br>
+
         <select (change)="filterForeCasts1($event.target.value)">
           <option [value]="Course.Course_ID" *ngFor="let Course of Course">{{Course.Course_Name}}</option>
         </select>
         {{value}}
       </div>
+
       <button type="button" class="btn btn-sm btn-primary btn-create"(click)="DeleteCourses()">Delete</button>
       <button type="button" class="btn btn-sm btn-primary btn-create"(click)="flag1=0">BACK</button>
 </div>
+

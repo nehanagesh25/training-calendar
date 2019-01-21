@@ -35,8 +35,10 @@ export class CreateCoursesComponent implements OnInit {
   public flag = 0;
   public FromTime;
   public ToTime;
+
   public flag1 = 0;
 public cur;
+
   public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'photo' });
   ngOnInit() {
     this.cur=new Date;
@@ -164,6 +166,18 @@ public cur;
       }
       else {
         swal("Update Error", 'warning')
+      }
+
+    })
+  }
+  DeleteCourses(){
+    var data = { 'Course_ID': this.courseid}
+    this.serv.DeleteCourse(data).subscribe((Res)=>{
+      if(Res!=null){
+        swal("Course deleted ", "SuccessFully!", "success");
+      }
+      else{
+        swal("Update Error",'warning')
       }
 
     })
