@@ -1,5 +1,5 @@
 <div class="wrapper">
-        
+
         <div class="sidebar"  data-color="red">
                 <div class="sidebar-wrapper">
                         
@@ -30,7 +30,23 @@
                    
                 </ul>
             </div>
+            <ul class="nav">
+                <li class="nav-item active">
+                    <a class="nav-link" type="button" (click)="Dash()">
+                        <i class="nc-icon nc-chart-pie-35"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" type="button" (click)="CreateEvents()">
+                        <i class="nc-icon nc-circle-09"> </i>
+                        <p>Create Events </p>
+                    </a>
+                </li>
+
+            </ul>
         </div>
+
        
         <div class="main-panel">
             <!-- Navbar -->
@@ -47,8 +63,8 @@
                             </ul>
                         <ul class="navbar-nav ml-auto">
                                 <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon" (click)='logout()' >Log out</span>
+                                <a class="nav-link">
+                                    <span class="no-icon" (click)='logout()' >LogOut</span>
                                   
                                 </a>
                             </li>
@@ -59,11 +75,14 @@
             <div *ngIf="!flag">
                    
             </div>
-            <router-outlet></router-outlet>
-            
-        
-        
+        </nav>
+        <div *ngIf="!flag">
+
         </div>
-       
+        <router-outlet></router-outlet>
+
+
+
     </div>
-   
+
+</div>

@@ -1,51 +1,59 @@
+<div class="wrapper">
+    <div class="sidebar" data-image="../assets/img/sidebar-5.jpg" data-color="red">
+        <!--
+    Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
 
 <div *ngIf="!flag">
-        <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card ">
+    <div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card ">
+                    
+                    <div class="card-header ">
+                        <h4 class="card-title">Todays Events</h4>
                         
-                        <div class="card-header ">
-                            <h4 class="card-title">Todays Events</h4>
-                            <p class="card-category"></p>
-                        </div>
-                        <div class="card-body ">
-                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth" *ngIf="(Todaydata  | json) != '{}'">
-                              <div *ngFor='let course of Todaydata'> 
-                               Courese Name :-{{course.Course_Name}}<br>
-                               Description  :-{{course.Description}}<br>
-                               Duration     :-{{course.Duration}} Days<br><br>
-                              
-                              </div> 
-                            </div>
-                            <div *ngIf="(Todaydata  | json) != '{}'">
-                                No Events Today
-                            </div>
-                        </div>
-                                                </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card ">
-                        <div class="card-header ">
-                            <h4 class="card-title">Registered Employees</h4>
-                            <p class="card-category"></p>
-                        </div>
-                        <div class="card-body ">
-                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"  *ngIf='show != null' >
-                                    
-                                        <div *ngFor='let course of show' > 
-                                       {{course.User_Name}}<br>
-                                        </div> 
-                                      </div>
-                                      <div *ngIf='show ==null'>
-                                         No Employees Registered
-                                      </div>
-                        </div>
-                       
+                        <p class="card-category"></p>
                     </div>
+                    <div class="card-body ">
+                        <div id="chartPreferences" class="ct-chart ct-perfect-fourth" *ngIf="Todaydata!=null">
+                          <div *ngFor='let course of Todaydata'> 
+                           Courese Name :-{{course.Course_Name}}<br>
+                           Description  :-{{course.Description}}<br>
+                           Duration     :-{{course.Duration}} Days<br><br>
+                          
+                          </div> 
+                        </div>
+                        <div *ngIf="Todaydata.length==0">
+                            No Events Today
+
+                        </div>
+                    </div>
+                                            </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card ">
+                    <div class="card-header ">
+                        <h4 class="card-title">Registered Employees</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body ">
+                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth"  *ngIf='show != null' >
+                                
+                                    <div *ngFor='let course of show' > 
+                                   {{course.User_Name}}<br>
+                                    </div> 
+                                  </div>
+                                  <div *ngIf='show ==null'>
+                                     No Employees Registered
+                                  </div>
+                    </div>
+                   
                 </div>
             </div>
-           
+
         </div>
+       
     </div>
+</div>

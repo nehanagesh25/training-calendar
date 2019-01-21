@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Appsettings } from '../App.seetings';
 import { Observable } from 'rxjs';
+import { httpFactory } from '@angular/http/src/http_module';
+import { Http } from '@angular/http';
 @Injectable({
     providedIn: 'root'
 })
@@ -18,6 +20,12 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.AdminLogin;
         return this.http.post(url, data);
     }
+    //course by is
+    public CourseByID(data){
+        debugger
+        let url=Appsettings.BASE_URL+Appsettings.Coursebyid;
+        return this.http.post(url,data);
+    }
     //Register for an Event
     public Register(data) {
         let url = Appsettings.BASE_URL + Appsettings.Register;
@@ -32,6 +40,11 @@ export class ServicesService {
     public check(data) {
         let url = Appsettings.BASE_URL + Appsettings.check;
         return this.http.post(url, data);
+    }
+    //check for register
+     public checkforregister(data){
+        let url=Appsettings.BASE_URL+Appsettings.checkforregister;
+        return this.http.post(url,data);
     }
     //Enrolled For Current Evets
     public GetEnrolledEmployees(data) {
@@ -50,9 +63,9 @@ export class ServicesService {
         return this.http.get(url);
     }
     //save file
-    public savefile(data) {
-        let url = Appsettings.BASE_URL + Appsettings.SaveFile;
-        return this.http.post(url, data);
+    public savefile(data){
+        let url=Appsettings.BASE_URL+Appsettings.SaveFile;
+        return this.http.post(url,data);
     }
     //Last Record Of Course
     public GetCourseid() {
@@ -69,11 +82,6 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.UpdateCourse;
         return this.http.post(url, data);
     }
-    //GetCalendarDetails Get Method
-    public GetCalendarDetails() {
-        let url = Appsettings.BASE_URL + Appsettings.GetCalendarDetails;
-        return this.http.get(url);
-    }
     //DeleteCourse Post Method
     public DeleteCourse(data) {
         let url = Appsettings.BASE_URL + Appsettings.DeleteCourse;
@@ -85,13 +93,21 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.CreateEnrollmaster;
         return this.http.post(url, data);
     }
-
+    // GetRegisterEmployees
+    public GetRegisterEmployees(data){
+        let url = Appsettings.BASE_URL + Appsettings.GetRegisterEmployees;
+        return this.http.post(url, data);
+    }
     //Updatemaster
     public Updatemaster(data) {
         let url = Appsettings.BASE_URL + Appsettings.Updatemaster;
         return this.http.post(url, data);
     }
-
+    //Enrollmaster By id
+    public GetEnrollMasterById(Data){
+        let url = Appsettings.BASE_URL + Appsettings.GetEnrollMasterById;
+        return this.http.post(url, Data);
+    }
     //GetAllMasters Get Method
     public GetAllMasters() {
         let url = Appsettings.BASE_URL + Appsettings.GetAllMasters;
@@ -125,10 +141,22 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.GetAllTrainers;
         return this.http.get(url);
     }
-    //GetTrainerById Get Method
-    public GetTrainerByID(data) {
-        let url = Appsettings.BASE_URL + Appsettings.GetTraierByID;
-        return this.http.post(url, data);
+
+    //GetCalendarDetails Get Method
+    public GetTableDetails(){
+        let url = Appsettings.BASE_URL + Appsettings.GetTableDetails;
+        return this.http.get(url);
+    }
+    
+    //GetCoursesAttended Post method
+    public GetCoursesAttended(name){
+        let url = Appsettings.BASE_URL+Appsettings.CoursesAttended;
+        return this.http.post(url,name);
+    }
+
+    public GetCalendarDetails(name){
+        let url = Appsettings.BASE_URL + Appsettings.GetCalendarDetails;
+        return this.http.post(url,name);
     }
 
 }

@@ -14,10 +14,11 @@ export class CreateTrainersComponent implements OnInit {
   public flag = 0;
   public Trainers: any;
   public id: any;
+  public Trainer_Name: any
   public TrainerID: number;
   public TrainerName: any;
   public TrainerType: any;
-  public TrainerData: any;
+  public TrainerData:any;
   public Description: any;
   public Trainer_Type: any = [{ name: 'Accionite', value: 1 }, { name: 'Guest', value: 0 }];
 
@@ -38,7 +39,7 @@ export class CreateTrainersComponent implements OnInit {
         swal("Trainer added ", "SuccessFully!", "success");
       }
       else {
-        swal("Error in Adding", 'warning')
+        swal("Error in adding", 'warning')
       }
       this.flag = 0;
     });
@@ -47,7 +48,7 @@ export class CreateTrainersComponent implements OnInit {
     this.TrainerID = value;
     console.log(this.id);
     var data = { "Trainer_ID": this.TrainerID }
-    this.serv.GetTrainerByID(data).subscribe((res) => {
+    this.serv.GetAllTrainers().subscribe((res) => {
       console.log(res);
       this.Description = Response[0].Description;
     });
