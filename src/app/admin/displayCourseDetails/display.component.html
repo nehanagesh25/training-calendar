@@ -102,9 +102,9 @@
 
         <!-- Modal content-->
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="modal-header">            
             <h4 class="modal-title" style="align-items:center">Update Course</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
           <div class="wrap-Update-course">
             <!-- Update Course -->
@@ -134,12 +134,12 @@
               <div class="form-group">
                 <label for="pwd">FromDate</label>
                 <input type="date" class="form-control" id="pwd" min="{{cur | date:'yyyy-MM-dd'}}" [(ngModel)]="FromDate"
-                  [value]="FromDate | date:'MM-dd-yyyy'">
-                {{FromDate| date:'yyyy-MM-dd'}}
+                  [value]="FromDate | date:'yyyy-MM-dd'">
+                {{FromDate}}
               </div>
               <div class="form-group">
                 <label for="pwd">ToDate</label>
-                <input type="date" class="form-control" id="pwd" min="{{cur | date:'yyyy-MM-dd'}}" [(ngModel)]="ToDate">
+                <input type="date" class="form-control" id="pwd" min="{{FromDate | date:'yyyy-MM-dd'}}"[value]="ToDate | date:'yyyy-MM-dd'"[(ngModel)]="ToDate">
                 {{ToDate | date:'yyyy-MM-dd'}}
               </div>
               <div class="form-group">
@@ -154,7 +154,7 @@
               </div>
               <div class="form-group">
                 <label for="pwd">LastDate To Enroll</label>
-                <input type="date" class="form-control" id="pwd" min="{{cur | date:'yyyy-MM-dd'}}" max="{{FromDate | date:'yyyy-MM-dd'}}"
+                <input type="date" class="form-control" id="pwd"[value]="LastDate | date:'yyyy-MM-dd'" min="{{cur | date:'yyyy-MM-dd'}}" max="{{FromDate | date:'yyyy-MM-dd'}}"
                   [(ngModel)]="LastDate">
                 {{LastDate | date:'yyyy-MM-dd'}}
               </div>

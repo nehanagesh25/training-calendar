@@ -98,13 +98,15 @@ margin: 0px;;
  }
 
  .wrap-create-course {
-  padding: 5px;
+  padding: 5px 20px;
   
 }
-
+.modal-header{
+  text-align: center;
+}
 
 input {
-  width: 40%;
+  width: 66%;
 }
 
 select{
@@ -116,6 +118,10 @@ select{
 .btn1{
   float:middle;
   margin-left: 250px;
+}
+.modal-header{
+  width: 100%;
+  text-align: -webkit-center;
 }
 /* button {
   padding: 12px 25px;

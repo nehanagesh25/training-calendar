@@ -21,7 +21,7 @@ export class AdminDashboardComponent  {
       console.log(Response);
       for (let movement of this.Todaydata) {
        var Data={"Course_ID":movement.Course_ID};
-        this.service.GetEnrolledEmployees(Data).subscribe((res)=>{
+        this.service.GetRegisterEmployees(Data).subscribe((res)=>{
           console.log(res);
           this.show=res;
         });

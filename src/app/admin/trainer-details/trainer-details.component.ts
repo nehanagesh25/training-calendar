@@ -15,8 +15,11 @@ export class TrainerDetailsComponent implements OnInit {
   public TrainerName : any;
   public TrainerType : any;
   public description : any;
+  public id: number;
   public display;
   public trainerid: any;
+  public TrainerData:any;
+  public Trainer_Type: any = [{ name: 'Accionite', value: 1 }, { name: 'Guest', value: 0 }];
 
   constructor(private router: Router, private service: ServicesService) { }
 
@@ -55,7 +58,7 @@ export class TrainerDetailsComponent implements OnInit {
         Swal.fire(
           this.service.RemoveTrainerdetails(data).subscribe((Res) => {
             if (Res != null) {
-              Swal("Course deleted ", "SuccessFully!", "success");
+              Swal("Trainer deleted ", "SuccessFully!", "success");
             }
             else {
               Swal("Update Error", 'warning')
@@ -80,15 +83,24 @@ export class TrainerDetailsComponent implements OnInit {
           console.log(Response);
           this.TrainerName = Response[0].Trainer_Name;
           this.description = Response[0].Description;
-          this.TrainerType = Response[0].Trainer_Type;     
+          // if(Response[0].Trainer_Type)
+          // {
+          //   this.TrainerType="Accionite"
+          // }
+          // else{
+          //   this.TrainerType="Guest"
+          // }
+          this.Trainer_Type=Response[0].Trainer_Type;
     })
+    
     this.display = 'block';
+     
   }
 
   //update trainers
 
-  UpdateCourses() {
-    var data = { 'Trainer_ID': this.trainerid, 'Description': this.description, 'Trainer_Type':this.TrainerType }
+  UpdateTrainers() {
+    var data = { 'Trainer_ID':this.trainerid,'Trainer_Name': this.TrainerName, 'Description': this.description, 'Trainer_Type':this.TrainerType }
     this.service.UpdateTrainers(data).subscribe((Response) => {
       if (Response) {
        
@@ -96,7 +108,6 @@ export class TrainerDetailsComponent implements OnInit {
             this.display = 'none';
           }
         })
-      
   
     this.router.navigate(['AdminDashboard/TrainerDetails']);
   }

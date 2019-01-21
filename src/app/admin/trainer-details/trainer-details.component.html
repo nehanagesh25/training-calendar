@@ -34,6 +34,7 @@
                 <th align="center">Trainer Name</th>
                 <th align="center">Description</th>
                 <th align="center">Created On</th>
+                <th align='center'>Remove/Edit</th>
               </tr>
             </thead>
             <tbody>
@@ -85,10 +86,15 @@
             </div>
               <div class="form-group">
                 <label for="pwd">Trainer Type</label><br>
-                <select [(ngModel)]="TrainerData">
-                  <option *ngFor="let TrainerDetails of Trainer_Type" [ngValue]="TrainerDetails.value">{{TrainerDetails.name}}</option>
+                <select [(ngModel)]="TrainerData" aria-describedby="btnGroupAddon">
+                  <option *ngFor="let TrainerDetails of Trainer_Type" [ngValue]="Trainer_Type.value">{{TrainerDetails.name}}</option>
                 </select>
               </div>
+              <!-- <div class="form-group">
+                  <label for="pwd">Trainer Type</label>
+                  <input type="text" class="form-control" id="pwd" placeholder="Enter The Description" aria-label="Input group example"
+                    aria-describedby="btnGroupAddon" [(ngModel)]="TrainerType">
+                </div> -->
             </section>
           <div class="btn">
             <button type="button" class="btn btn-sm btn-primary btn-create" (click)="UpdateTrainers()">Submit</button>

@@ -44,49 +44,5 @@ export class CreateTrainersComponent implements OnInit {
       this.flag = 0;
     });
   }
-  filterForeCasts(value) {
-    this.TrainerID = value;
-    console.log(this.id);
-    var data = { "Trainer_ID": this.TrainerID }
-    this.serv.GetAllTrainers().subscribe((res) => {
-      console.log(res);
-      this.Description = Response[0].Description;
-    });
-
-  }
-
-  UpdateTrainers() {
-    var data = { 'Trainer_ID': this.TrainerID, 'Trainer_Name': this.TrainerName, 'Trainer_Type': this.TrainerData, 'Description': this.Description }
-    this.serv.UpdateTrainers(data).subscribe((res: any) => {
-      console.log(res);
-      if (res) {
-        this.TrainerName = null;
-        this.Description = null;
-        this.TrainerData = null;
-        swal("Trainer Updated ", "SuccessFully!", "success");
-        this.flag = 0;
-      }
-      else {
-        swal("Update Error", 'warning')
-      }
-      this.flag = 0;
-    });
-  }
-
-  filterForeCasts1(value) {
-    this.TrainerID = value;
-    console.log(this.TrainerID);
-  }
-  DeleteTrainer() {
-    var data = { Trainer_ID: this.TrainerID }
-    this.serv.RemoveTrainerdetails(data).subscribe((Res) => {
-      if (Res != null) {
-        swal("Trainer deleted ", "SuccessFully!", "success");
-      }
-      else {
-        swal("Update Error", 'warning')
-      }
-    })
-    // this.router.navigate(['AdminDashboard/TrainerDetails'])
-  }
+  
 }
