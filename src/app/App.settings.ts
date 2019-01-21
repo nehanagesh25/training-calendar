@@ -37,7 +37,7 @@ export class Appsettings{
     public static UpdateTrainers='Trainers/UpdateTrainers';
     public static GetAllTrainers='Trainers/GetAllTrainers';
     public static RemoveTrainerdetails='Trainers/RemoveTrainerdetails';  
-    public static GetTrainerById='Trainers/GetTrainersByID';  
+    public static GetTrainerById='Trainers/GetTrainerByID';  
     //courses attended
     public static CoursesAttended='user/CoursesAttended';
 }

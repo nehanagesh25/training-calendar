@@ -17,6 +17,8 @@ export class TrainerDetailsComponent implements OnInit {
   public description : any;
   public display;
   public trainerid: any;
+  public TrainerData:any;
+  public Trainer_Type: any = [{ name: 'Accionite', value: 1 }, { name: 'Guest', value: 0 }];
 
   constructor(private router: Router, private service: ServicesService) { }
 
@@ -55,7 +57,7 @@ export class TrainerDetailsComponent implements OnInit {
         Swal.fire(
           this.service.RemoveTrainerdetails(data).subscribe((Res) => {
             if (Res != null) {
-              Swal("Course deleted ", "SuccessFully!", "success");
+              Swal("Trainer deleted ", "SuccessFully!", "success");
             }
             else {
               Swal("Update Error", 'warning')
@@ -87,8 +89,8 @@ export class TrainerDetailsComponent implements OnInit {
 
   //update trainers
 
-  UpdateCourses() {
-    var data = { 'Trainer_ID': this.trainerid, 'Description': this.description, 'Trainer_Type':this.TrainerType }
+  UpdateTrainers() {
+    var data = { 'Trainer_Name': this.TrainerName, 'Description': this.description, 'Trainer_Type':this.TrainerType }
     this.service.UpdateTrainers(data).subscribe((Response) => {
       if (Response) {
        

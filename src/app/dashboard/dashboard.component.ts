@@ -51,8 +51,11 @@ export class DashboardComponent implements OnInit {
 
 
   constructor(private modal: NgbModal, private authService: AuthService, private router: Router, public service: ServicesService) { } 
-
+public userurl;
+public username;
   ngOnInit() {
+    this.userurl=sessionStorage.getItem('Userurl');
+    this.username=sessionStorage.getItem('Username')
     this.router.navigate(['dashboard/table']);
 
   }
