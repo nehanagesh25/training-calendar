@@ -17,7 +17,7 @@
                     <div class="wrap-box">
                         <span style="font-size: 2rem;" *ngIf='!res'>
                             <div *ngIf="!flag">
-                                <i class="fas fa-calendar-plus" (click)="Register()"></i>
+                                <i class="fas fa-calendar-plus" (click)="Register(element)"></i>
                                 <div style="font-size:10px;color:green">Register</div>
                             </div>
                             <div *ngIf="flag" (click)="flag=0">
@@ -27,7 +27,7 @@
                         </span>
                         <span style="font-size: 2rem;" *ngIf='res'>
                             <div *ngIf='res'>
-                                Reson
+                                Reason
                                 <input type="text" [(ngModel)]="reson">&nbsp;
                                 <button type="button" class="btn btn-outline-secondary" (click)="UnRegister1()">Submit</button>
                             </div>

@@ -123,7 +123,7 @@ export class ServicesService {
         return this.http.get(url);
     }
 
-    //GetCalendarDetails Get Method
+    //table details Get Method
     public GetTableDetails(){
         let url = Appsettings.BASE_URL + Appsettings.GetTableDetails;
         return this.http.get(url);

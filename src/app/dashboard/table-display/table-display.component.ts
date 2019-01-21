@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import { ServicesService } from 'src/app/Services/Service.services';
 
 export interface CourseDetails {
+  CourseID: number;
   CourseName: string;
   TrainerName: string;
   Duration: string;
@@ -34,7 +35,6 @@ export interface CourseDetails {
 })
 export class TableDisplayComponent implements OnInit {
 
-
   view: CalendarView = CalendarView.Month;
   viewDate: Date = new Date();
   public user;
@@ -48,7 +48,7 @@ export class TableDisplayComponent implements OnInit {
   events: CalendarEvent[];
   constructor(private modal: NgbModal, private authService: AuthService, private router: Router, public service: ServicesService, public datepipe: DatePipe) { } 
   ngOnInit() {
-    var data = localStorage.getItem('isLogged')
+    var data = localStorage.getItem('isLoggedIn')
     this.service.GetTableDetails().subscribe((res: any) => {
       console.log(res);
       this.getData(res);
@@ -61,6 +61,8 @@ export class TableDisplayComponent implements OnInit {
     let temp = [];
     data.forEach((result) => {
       console.log("result=", result);
+      
+      console.log("ci==",result.Course_ID);
       result.CourseName = result.Course_Name;
       result.TrainerName = result.Trainer_Name;
       result.Duration = result.Duration;
@@ -73,22 +75,25 @@ export class TableDisplayComponent implements OnInit {
       temp.push(result);
     })
     this.dataSource = temp;
+    console.log("cid",)
     this.expandedElement = temp;
   }
   dataSource: any[];
   expandedElement: any[];
   columnsToDisplay = ['CourseName', 'TrainerName', 'Duration', 'FromDate', 'ToDate', 'LastDateToEnroll', 'Venue'];
  
-  Register() {
-    var data = { "User_Name": this.user }
+  Register(res) {
+    console.log(res);
+    this.user= localStorage.getItem('isLoggedIn') 
+    var data = { "User_Name": this.user,"Course_Name":res.CourseName}
     console.log("user==",data);
     this.service.Register(data).subscribe((Response) => {
       if (Response) {
         this.flag = 1;
-        Swal("Registration!", "Done!", "success");
+        Swal("Registeration!", "Done!", "success");
       }
       else {
-        Swal("Registration Failed", "warning");
+        Swal("Registeration Failed", "warning");
       }
     })
   }
@@ -103,10 +108,10 @@ export class TableDisplayComponent implements OnInit {
         this.flag = 0;
         this.reason = null;
         this.res = 0;
-        Swal("Leave Course!", "Done!", "success");
+        Swal("Left Course!", "Done!", "success");
       }
       else {
-        Swal("Leave Course!", "warning");
+        Swal("Left Course!", "warning");
       }
     })
   }
