@@ -20,6 +20,12 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.AdminLogin;
         return this.http.post(url, data);
     }
+    //course by is
+    public CourseByID(data){
+        debugger
+        let url=Appsettings.BASE_URL+Appsettings.Coursebyid;
+        return this.http.post(url,data);
+    }
     //Register for an Event
     public Register(data){
         let url=Appsettings.BASE_URL+Appsettings.Register;
@@ -33,6 +39,11 @@ export class ServicesService {
     //check for Enrolled for the course or not 
     public check(data){
         let url=Appsettings.BASE_URL+Appsettings.check;
+        return this.http.post(url,data);
+    }
+    //check for register
+     public checkforregister(data){
+        let url=Appsettings.BASE_URL+Appsettings.checkforregister;
         return this.http.post(url,data);
     }
     //Enrolled For Current Evets
@@ -82,13 +93,21 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.CreateEnrollmaster;
         return this.http.post(url, data);
     }
-
+    // GetRegisterEmployees
+    public GetRegisterEmployees(data){
+        let url = Appsettings.BASE_URL + Appsettings.GetRegisterEmployees;
+        return this.http.post(url, data);
+    }
     //Updatemaster
     public Updatemaster(data) {
         let url = Appsettings.BASE_URL + Appsettings.Updatemaster;
         return this.http.post(url, data);
     }
-
+    //Enrollmaster By id
+    public GetEnrollMasterById(Data){
+        let url = Appsettings.BASE_URL + Appsettings.GetEnrollMasterById;
+        return this.http.post(url, Data);
+    }
     //GetAllMasters Get Method
     public GetAllMasters() {
         let url = Appsettings.BASE_URL + Appsettings.GetAllMasters;

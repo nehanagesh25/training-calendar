@@ -4,13 +4,49 @@
 html { height: 100%;
     /* overflow:hidden; */
 }
+
+.modal-open {
+    position: initial !important;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+   }
+   modal-backdrop {
+    position: initial;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+   }
 .modal-open .modal{
     opacity: 1 !important;
-    width: 30%;
-    position: absolute;
-    left: 40%;
-    top:15%;
-
   }
 
-  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Corben', Georgia, Times, serif;
+}
+html{
+    background-color: #cccccc;
+}
+p, div {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+}
+
+h1 { 
+    text-shadow: 1px 1px 1px #ccc;
+}
+.div-that-you want-to-stand-out { 
+    box-shadow: 0 0 1em 1em #ccc;
+}
+.nav-pills > .active > a, .nav-pills > .active > a:hover {
+    background-color: #FF9473;
+}
+div {
+    background-image: linear-gradient(top, red, orange, yellow, green, blue, indigo, violet);
+  }
+  .modal-backdrop{
+    z-index: -1 !important;
+  }
+

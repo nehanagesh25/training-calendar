@@ -49,7 +49,9 @@ export interface CourseDetails {
 })
 export class DashboardComponent implements OnInit {
 
+
   constructor(private modal: NgbModal, private authService: AuthService, private router: Router, public service: ServicesService) { } 
+
   ngOnInit() {
     this.router.navigate(['dashboard/table']);
 
@@ -60,8 +62,10 @@ export class DashboardComponent implements OnInit {
   toCalendar(){
     this.router.navigate(['dashboard/calendar']);
   }
+
   toCourse(){
     this.router.navigate(['dashboard/courses-attended'])
+
   }
   signOut(): void {
     this.authService.signOut();
