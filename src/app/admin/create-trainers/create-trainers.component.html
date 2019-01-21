@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
       <label for="pwd">Trainer Type</label><br>
-      <select>
+      <select [(ngModel)]="TrainerType" >
         <option *ngFor="let TrainerDetails of Trainer_Type" [ngValue]="TrainerDetails.value">{{TrainerDetails.name}}</option>
       </select>
     </div>
@@ -30,7 +30,7 @@
   <section class="wrap-create-course">
       <div class="form-group">
       <label for="pwd">Trainer Name</label><br>
-      <select (change)="filterForeCasts1($event.target.value)"  [(ngModel)]="TrainerName" placeholder="Please enter the Name">
+      <select (change)="filterForeCasts($event.target.value)" placeholder="Please enter the Name">
         <option [value]="Trainer.Trainer_ID" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
       </select>
       {{value}}
@@ -58,7 +58,7 @@
  <section class="wrap-create-course">
   <div class="form-group">
     <label for="pwd">Trainer Name</label><br>
-    <select (change)="filterForeCasts1($event.target.value)">
+    <select (change)="filterForeCasts1($event.target.value)" >
       <option [value]="Trainer.Trainer_ID" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
     </select>
     {{value}}

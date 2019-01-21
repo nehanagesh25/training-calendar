@@ -19,24 +19,24 @@ export class ServicesService {
         return this.http.post(url, data);
     }
     //Register for an Event
-    public Register(data){
-        let url=Appsettings.BASE_URL+Appsettings.Register;
-        return this.http.post(url,data);
+    public Register(data) {
+        let url = Appsettings.BASE_URL + Appsettings.Register;
+        return this.http.post(url, data);
     }
     //Unregister for an event
-    public UnRegister(Data){
-        let url=Appsettings.BASE_URL+Appsettings.UnRegister;
-        return this.http.post(url,Data);
+    public UnRegister(Data) {
+        let url = Appsettings.BASE_URL + Appsettings.UnRegister;
+        return this.http.post(url, Data);
     }
     //check for Enrolled for the course or not 
-    public check(data){
-        let url=Appsettings.BASE_URL+Appsettings.check;
-        return this.http.post(url,data);
+    public check(data) {
+        let url = Appsettings.BASE_URL + Appsettings.check;
+        return this.http.post(url, data);
     }
     //Enrolled For Current Evets
-    public GetEnrolledEmployees(data){
-        let url=Appsettings.BASE_URL+Appsettings.EnrolledEmployees;
-        return this.http.post(url,data);
+    public GetEnrolledEmployees(data) {
+        let url = Appsettings.BASE_URL + Appsettings.EnrolledEmployees;
+        return this.http.post(url, data);
     }
     //Course
     //AddCourse Post Method
@@ -49,14 +49,14 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.AllCourse;
         return this.http.get(url);
     }
-//save file
-    public savefile(data){
-        let url=Appsettings.BASE_URL+Appsettings.SaveFile;
-        return this.http.post(url,data);
+    //save file
+    public savefile(data) {
+        let url = Appsettings.BASE_URL + Appsettings.SaveFile;
+        return this.http.post(url, data);
     }
     //Last Record Of Course
-    public GetCourseid(){
-        let url=Appsettings.BASE_URL+Appsettings.LastRecord
+    public GetCourseid() {
+        let url = Appsettings.BASE_URL + Appsettings.LastRecord
         return this.http.get(url);
     }
     //Course Running  Today Post Method
@@ -70,7 +70,7 @@ export class ServicesService {
         return this.http.post(url, data);
     }
     //GetCalendarDetails Get Method
-    public GetCalendarDetails(){
+    public GetCalendarDetails() {
         let url = Appsettings.BASE_URL + Appsettings.GetCalendarDetails;
         return this.http.get(url);
     }
@@ -126,9 +126,9 @@ export class ServicesService {
         return this.http.get(url);
     }
     //GetTrainerById Get Method
-    public GetTrainerByID(){
-        let url = Appsettings.BASE_URL + Appsettings.GetAllTrainers;
-        return this.http.get(url);
+    public GetTrainerByID(data) {
+        let url = Appsettings.BASE_URL + Appsettings.GetTraierByID;
+        return this.http.post(url, data);
     }
 
 }

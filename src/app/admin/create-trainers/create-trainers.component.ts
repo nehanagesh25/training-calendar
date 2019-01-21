@@ -17,7 +17,7 @@ export class CreateTrainersComponent implements OnInit {
   public TrainerID: number;
   public TrainerName: any;
   public TrainerType: any;
-  public TrainerData:any;
+  public TrainerData: any;
   public Description: any;
   public Trainer_Type: any = [{ name: 'Accionite', value: 1 }, { name: 'Guest', value: 0 }];
 
@@ -31,7 +31,7 @@ export class CreateTrainersComponent implements OnInit {
   }
 
   AddTrainers() {
-    var data = { 'Trainer_Name': this.TrainerName, 'Trainer_Type': this.TrainerData, 'Description': this.Description }
+    var data = { 'Trainer_Name': this.TrainerName, 'Trainer_Type': this.TrainerType, 'Description': this.Description }
     this.serv.CreateTrainers(data).subscribe((res: any) => {
       console.log(res);
       if (res != null) {
@@ -45,16 +45,25 @@ export class CreateTrainersComponent implements OnInit {
   }
   filterForeCasts(value) {
     this.TrainerID = value;
-    console.log(this.TrainerID);
+    console.log(this.id);
+    var data = { "Trainer_ID": this.TrainerID }
+    this.serv.GetTrainerByID(data).subscribe((res) => {
+      console.log(res);
+      this.Description = Response[0].Description;
+    });
+
   }
 
   UpdateTrainers() {
-    var data = { 'Trainer_ID': this.TrainerID,'Trainer_Name':this.TrainerName, 'Trainer_Type': this.TrainerData, 'Description': this.Description }
-    debugger
+    var data = { 'Trainer_ID': this.TrainerID, 'Trainer_Name': this.TrainerName, 'Trainer_Type': this.TrainerData, 'Description': this.Description }
     this.serv.UpdateTrainers(data).subscribe((res: any) => {
       console.log(res);
-      if (res != null) {
+      if (res) {
+        this.TrainerName = null;
+        this.Description = null;
+        this.TrainerData = null;
         swal("Trainer Updated ", "SuccessFully!", "success");
+        this.flag = 0;
       }
       else {
         swal("Update Error", 'warning')
@@ -76,9 +85,7 @@ export class CreateTrainersComponent implements OnInit {
       else {
         swal("Update Error", 'warning')
       }
-
     })
-    
-   // this.router.navigate(['AdminDashboard/TrainerDetails'])
+    // this.router.navigate(['AdminDashboard/TrainerDetails'])
   }
 }
