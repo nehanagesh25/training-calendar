@@ -21,6 +21,16 @@
 
 
 /* Login css */
+.body {
+  background-image:linear-gradient(to left top, rgba(3, 17, 2, 0.7),rgba(7, 76, 124, 0.1)), url('https://images.pexels.com/photos/373076/pexels-photo-373076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  background-position: center;
+  height: 100vh;
+   }
+
 .panel {
   margin-top: 80px;
 }
@@ -43,13 +53,6 @@
     padding: 25px;
     margin-top: 20px;
 }
-.body {
-  background-image: url('https://images.pexels.com/photos/373076/pexels-photo-373076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-  background-color: #cccccc;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  overflow: hidden;
- }
 
 .logo {
 	color:#CCC;
@@ -99,3 +102,14 @@
   background: #E74B37;
 }
 
+.heading-primary-main{
+  display: flex;
+  padding-top: 2%;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 100;
+  letter-spacing: 9px;
+  text-transform: uppercase;
+  color: rgb(141, 27, 15);
+ 
+}
