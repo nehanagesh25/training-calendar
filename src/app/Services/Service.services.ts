@@ -142,6 +142,11 @@ export class ServicesService {
         return this.http.get(url);
     }
 
+    //GetTrainersByID Post Method
+    public GetTrainersByID(data) {
+        let url = Appsettings.BASE_URL + Appsettings.GetTrainerById;
+        return this.http.post(url,data);
+    }
     //GetCalendarDetails Get Method
     public GetTableDetails(){
         let url = Appsettings.BASE_URL + Appsettings.GetTableDetails;

@@ -42,6 +42,12 @@
                 <td align="center">{{ d.Trainer_Name }}</td>
                 <td align="center">{{ d.Description }}</td>
                 <td align="center">{{ d.Created_On | date : "dd.MM.y" }}</td>
+                <td>
+                  <span class="table-remove">
+                    <button type="button" class="btn btn-sm btn-primary btn-create" (click)="remove(d.Trainer_ID)">Remove</button>
+                  </span>&nbsp;&nbsp;&nbsp;<i class="fas fa-edit" (click)="edit(d.Trainer_ID)" data-toggle="modal"
+                    data-target="#myModal1"></i>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -53,3 +59,44 @@
     </div>
   </div>
 </div>
+<div (click)="CloseDilog1()">
+
+  <div id="myModal1" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="align-items:center">Update Trainers</h4>
+        </div>
+        <div class="wrap-Update-course">
+          <div> <h3> Update Trainers</h3></div>
+          <section class="wrap-create-course">
+            <div class="form-group">
+              <label for="pwd">Trainer Name</label>
+              <input type="text" class="form-control" id="pwd" placeholder="Enter Trainer Name" aria-label="Input group example"
+                aria-describedby="btnGroupAddon" [(ngModel)]="TrainerName">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Description</label>
+              <input type="text" class="form-control" id="pwd" placeholder="Enter The Description" aria-label="Input group example"
+                aria-describedby="btnGroupAddon" [(ngModel)]="description">
+            </div>
+              <div class="form-group">
+                <label for="pwd">Trainer Type</label><br>
+                <select [(ngModel)]="TrainerData">
+                  <option *ngFor="let TrainerDetails of Trainer_Type" [ngValue]="TrainerDetails.value">{{TrainerDetails.name}}</option>
+                </select>
+              </div>
+            </section>
+          <div class="btn">
+            <button type="button" class="btn btn-sm btn-primary btn-create" (click)="UpdateTrainers()">Submit</button>
+          </div>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
