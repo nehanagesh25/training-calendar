@@ -65,9 +65,12 @@
       </button>
     </div>
   </section>
-  <div *ngIf="!uploader.getNotUploadedItems().length">hiii</div>
-  <div class="btn1">
-    <button class="btn btn-sm btn-primary btn-create" (click)="SubmitCourses()"> Submit</button>
-     <button class="btn btn-sm btn-primary btn-create" (click)="Back()">Back</button>
-    </div>
+  <div *ngIf="!uploader.getNotUploadedItems().length" style="color:red">Please Upload Description File</div>
+
+      <div class="btn1">
+          <button class="btn btn-sm btn-primary btn-create" (click)="SubmitCourses()"> Submit</button>
+           <button class="btn btn-sm btn-primary btn-create" (click)="back()">Back</button>
+          </div>
+ 
+ 
 </div>
