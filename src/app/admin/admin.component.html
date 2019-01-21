@@ -1,88 +1,32 @@
-<div class="wrapper">
+<nav class="navbar navbar-expand-lg " color-on-scroll="500">
+    <div class=" container-fluid  ">
 
-        <div class="sidebar"  data-color="red">
-                <div class="sidebar-wrapper">
-                        
-                <div class="logo">
-                    <a  class="simple-text">
-                   Accion Calender
-                    </a>
-                </div>
-                <ul class="nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" type="button" (click)="Dash()" >
-                            <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>Home</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" type="button" (click)="CreateEvents()">
-                            <i class="nc-icon nc-circle-09"> </i>
-                            <p>Create Events </p>
-                        </a>
-                    </li>  
-                    <li class="nav-item active">
-                        <a class="nav-link" type="button" (click)="TrainerDetails()">
-                            <i class="nc-icon nc-circle-09"> </i>
-                            <p>Trainer Details </p>
-                        </a>
-                    </li>                               
-                   
-                </ul>
-            </div>
-            <ul class="nav">
-                <li class="nav-item active">
-                    <a class="nav-link" type="button" (click)="Dash()">
-                        <i class="nc-icon nc-chart-pie-35"></i>
-                        <p>Home</p>
+        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item">
+                    <img src="{{ this.userurl }}" class="avatar">&nbsp;&nbsp;Hello&nbsp;-&nbsp;{{this.username}}
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <span class="no-icon" (click)="signOut()">LogOut</span>
                     </a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" type="button" (click)="CreateEvents()">
-                        <i class="nc-icon nc-circle-09"> </i>
-                        <p>Create Events </p>
-                    </a>
-                </li>
-
             </ul>
         </div>
-
-       
-        <div class="main-panel">
-            <!-- Navbar -->
-            
-            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-                 <div class=" container-fluid  ">
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul class="nav navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="dropdown">
-                                   <span class="d-lg-none">Welcome</span>
-                                </a>
-                            </li>
-                            </ul>
-                        <ul class="navbar-nav ml-auto">
-                                <li class="nav-item">
-                                <a class="nav-link">
-                                    <span class="no-icon" (click)='logout()' >LogOut</span>
-                                  
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div> 
-            </nav>
-            <div *ngIf="!flag">
-                   
-            </div>
-        </nav>
-        <div *ngIf="!flag">
-
-        </div>
+    </div>
+</nav>
+<div class="wrapper">
+    <aside class="main_sidebar">
+        <ul>
+            <li role="button" (click)="Dash()">Home</li>
+            <li role="button" (click)="CreateEvents()">Course Details</li>
+            <li role="button" (click)=" TrainerDetails()">Trainer Details</li>
+        </ul>
+    </aside>
+    <div class="router-container">
         <router-outlet></router-outlet>
-
-
-
     </div>
 
 </div>

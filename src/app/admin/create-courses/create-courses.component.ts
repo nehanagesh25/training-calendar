@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 import { ServicesService } from '../../Services/Service.services'
-import { Appsettings } from 'src/app/App.seetings';
+import { Appsettings } from 'src/app/App.settings';
 import { course } from './Shared/Course';
 import { parse } from 'date-fns';
 import { DatePipe } from '@angular/common';

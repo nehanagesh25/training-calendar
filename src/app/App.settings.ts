@@ -1,4 +1,7 @@
- declare var baseurl:any;
+ //declare var baseurl:any;
+ var baseurl = "http://localhost:60027/TrainingCalendar/";
+
+
 export class Appsettings{
    public static BASE_URL = baseurl;
     //Login API 

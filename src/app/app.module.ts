@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppRoutingModule } from './Router/Router';
-import { Appsettings } from './App.seetings';
+import { Appsettings } from './App.settings';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminDashboardComponent } from './admin/dashboard/dashboard.component';

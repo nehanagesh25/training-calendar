@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Appsettings } from '../App.seetings';
+import { Appsettings } from '../App.settings';
 import { Observable } from 'rxjs';
 import { httpFactory } from '@angular/http/src/http_module';
 import { Http } from '@angular/http';

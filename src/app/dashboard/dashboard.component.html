@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
     <div class=" container-fluid  ">
 
@@ -21,15 +20,13 @@
 <div class="wrapper">
     <aside class="main_sidebar">
         <ul>
-            <li  role="button" (click)="toTable()">List of Courses
-            </li>
-            <li role="button"(click)="toCalendar()" >Calendar View</li>
-            <li  role="button" (click)="toCourse()">Upcoming Courses</li>
+            <li role="button" (click)="toTable()">List of Courses</li>
+            <li role="button" (click)="toCalendar()">Calendar View</li>
+            <li role="button" (click)="toCourse()">Upcoming Courses</li>
         </ul>
     </aside>
-<div class="router-container">
-    <router-outlet></router-outlet>
-</div>
-    
-</div>
+    <div class="router-container">
+        <router-outlet></router-outlet>
+    </div>
 
+</div>
