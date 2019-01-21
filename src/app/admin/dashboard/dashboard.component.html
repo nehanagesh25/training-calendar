@@ -19,7 +19,7 @@
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
-                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth" *ngIf="Todaydata!=null">
+                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth" *ngIf="Todaydata.length>0">
                                 <div *ngFor='let course of Todaydata'>
                                     Courese Name :-{{course.Course_Name}}<br>
                                     Description :-{{course.Description}}<br>
@@ -41,13 +41,13 @@
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
-                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth" *ngIf='show != null'>
+                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth" *ngIf='show.length>0'>
 
                                 <div *ngFor='let course of show'>
                                     {{course.User_Name}}<br>
                                 </div>
                             </div>
-                            <div *ngIf='show ==null'>
+                            <div *ngIf='show.length==0'>
                                 No Employees Registered
                             </div>
                         </div>
