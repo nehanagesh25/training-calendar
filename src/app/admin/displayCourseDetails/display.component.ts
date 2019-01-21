@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServicesService } from '../../Services/Service.services';
-
+import { default as Swal } from 'sweetalert2';
+import { DatePipe } from '@angular/common'
 @Component({
   selector: 'app-display',
   templateUrl: './display.component.html',
@@ -10,34 +11,147 @@ import { ServicesService } from '../../Services/Service.services';
 
 export class DisplayComponent implements OnInit {
   public data;
+  public  f;
   public display;
   public RegisteredEmployees;
-  constructor(private router: Router, private service: ServicesService) { }
+  public Trainers: any;
+  public Course: any;
+  public CourseName: any;
+  public Discreption: any;
+  public Dureation: any;
+  public FromDate: Date;
+  public ToDate: Date;
+  public MaxEnroll: any;
+  public MiniumEnroll: any;
+  public LastDate: any;
+  public Venue: any;
+  public id;
+  public courseid;
+  public path;
+  public flag = 0;
+  public FromTime;
+  public ToTime;
+  public flag1 = 0;
+  public cur;
+  constructor(private router: Router, private service: ServicesService,public datepipe: DatePipe) { }
 
   ngOnInit() {
-    this.display='none'; 
+    this.display = 'none';
     this.service.AllCourse().subscribe((Response) => {
       this.data = Response;
 
       console.log(Response);
     })
+    this.cur = new Date;
+    this.service.GetAllTrainers().subscribe((Response) => {
+      console.log(Response);
+      this.Trainers = Response;
+    })
   }
-  CreateCourses() {
-    this.router.navigate(['AdminDashboard/AddCourse']);
-  }
-  events(value){
-    console.log(value);
-    var data={"Course_ID":value};
-    this.service.GetRegisterEmployees(data).subscribe((Response)=>
-    {
-      if(Response!=null){
-        console.log(Response);
-        this.RegisteredEmployees=Response;
-        this.display='block'; 
+  remove(id) {
+
+    console.log("Removable");
+    console.log(id);
+    var data = { 'Course_ID': id }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          this.service.DeleteCourse(data).subscribe((Res) => {
+            if (Res != null) {
+              Swal("Course deleted ", "SuccessFully!", "success");
+            }
+            else {
+              Swal("Update Error", 'warning')
+            }
+
+          })
+        )
       }
     })
   }
-  CloseDilog(){
-    this.display='none'; 
+
+
+  CreateCourses() {
+    this.router.navigate(['AdminDashboard/AddCourse']);
+  }
+  events(value) {
+
+    console.log(value);
+    var data = { "Course_ID": value };
+    this.service.GetRegisterEmployees(data).subscribe((Response) => {
+      if (Response != null) {
+        console.log(Response);
+        this.RegisteredEmployees = Response;
+        this.display = 'block';
+      }
+    })
+  }
+  CloseDilog() {
+    this.display = 'none';
+  }
+  edit(id) {
+    console.log("IDDDDDDDD");
+    console.log(id);
+    this.courseid = id;
+  
+    var data = { "Course_ID": this.courseid }
+    debugger
+    this.service.CourseByID(data).subscribe((Response) => {
+      if (Response != null) {
+        this.service.GetEnrollMasterById(data).subscribe((res) => {
+          console.log(res);
+          this.CourseName = Response[0].Course_Name;
+          this.Discreption = Response[0].Description;
+          this.Dureation = Response[0].Duration;
+         this.FromDate = res[0].FromDate;
+          console.log(this.f);
+          this.LastDate = res[0].Last_date_to_enroll;
+          this.MaxEnroll = res[0].Max_enroll;
+          this.MiniumEnroll = res[0].Min_enroll;
+          this.ToDate = res[0].ToDate;
+          this.FromDate = res[0].ToDate;
+          this.Venue = res[0].Venue;
+        })
+      }
+    })
+    this.display = 'block';
+  }
+  UpdateCourses() {
+    var data = { 'Course_ID': this.courseid, 'Course_Name': this.CourseName, 'Trainer_ID': this.id, 'Description': this.Discreption, 'Duration': this.Dureation }
+    this.service.UpdateCourse(data).subscribe((Response) => {
+      if (Response) {
+        var data1 = { "Trainer_ID": this.id, "Course_ID": this.courseid, "FromDate": this.FromDate + this.FromTime, "ToDate": this.ToDate + this.ToTime, "Venue": this.Venue, "Last_date_to_enroll": this.LastDate, "Max_enroll": this.MaxEnroll, "Min_enroll": this.MiniumEnroll, "Status": 1 }
+        this.service.Updatemaster(data1).subscribe((Response) => {
+          if (Response) {
+            this.CourseName = null;
+            this.Discreption = null;
+            this.Dureation = null;
+            this.FromDate = null;
+            this.LastDate = null;
+            this.MaxEnroll = null;
+            this.MiniumEnroll = null;
+            this.ToDate = null;
+            this.FromDate = null;
+            this.Venue = null;
+            this.FromTime = null;
+            this.ToTime = null;
+            Swal("Course Updated ", "SuccessFully!", "success");
+            this.display = 'none';
+          }
+        })
+      }
+    })
+    this.router.navigate(['AdminDashboard/DisplayCourse']);
+  }
+  CloseDilog1() {
+    this.display = 'none';
   }
 }

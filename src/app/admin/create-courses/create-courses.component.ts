@@ -104,68 +104,7 @@ public cur;
     this.id = value;
     console.log(this.id);
   }
-  UpdateCourses() {
-    var data = { 'Course_ID': this.courseid, 'Course_Name': this.CourseName, 'Trainer_ID': this.id, 'Description': this.Discreption, 'Duration': this.Dureation }
-    this.serv.UpdateCourse(data).subscribe((Response) => {
-      if (Response) {
-        var data1 = { "Trainer_ID": this.id, "Course_ID": this.courseid, "FromDate": this.FromDate + this.FromTime, "ToDate": this.ToDate + this.ToTime, "Venue": this.Venue, "Last_date_to_enroll": this.LastDate, "Max_enroll": this.MaxEnroll, "Min_enroll": this.MiniumEnroll, "Status": 1 }
-        this.serv.Updatemaster(data1).subscribe((Response) => {
-          if (Response) {
-            this.CourseName = null;
-            this.Discreption = null;
-            this.Dureation = null;
-            this.FromDate = null;
-            this.LastDate = null;
-            this.MaxEnroll = null;
-            this.MiniumEnroll = null;
-            this.ToDate = null;
-            this.FromDate = null;
-            this.Venue = null;
-            this.FromTime = null;
-            this.ToTime = null;
-            swal("Course Updated ", "SuccessFully!", "success");
-            this.flag = 0;
-          }
-        })
-      }
-    })
+  back(){
     this.router.navigate(['AdminDashboard/DisplayCourse']);
   }
-  filterForeCasts1(value) {
-    this.courseid = value;
-    console.log(this.id);
-    var data={"Course_ID":this.courseid}
-    debugger
-    this.serv.CourseByID(data).subscribe((Response)=>{
-      if(Response!=null){
-      this.serv.GetEnrollMasterById(data).subscribe((res)=>{
-        console.log(res);
-      this.CourseName = Response[0].Course_Name;
-            this.Discreption = Response[0].Description;
-            this.Dureation =Response[0]. Duration;
-            this.FromDate = res[0].From_Date;
-            this.LastDate = res[0].Last_Date;
-            this.MaxEnroll = null;
-            this.MiniumEnroll = null;
-            this.ToDate = null;
-            this.FromDate = null;
-            this.Venue = null;
-            this.FromTime = null;
-            this.ToTime = null;
-      })
-      }
-    })
-  }
-  DeleteCourses() {
-    var data = { 'Course_ID': this.courseid }
-    this.serv.DeleteCourse(data).subscribe((Res) => {
-      if (Res != null) {
-        swal("Course deleted ", "SuccessFully!", "success");
-      }
-      else {
-        swal("Update Error", 'warning')
-      }
-
-    })
-  }
-}
+ }
