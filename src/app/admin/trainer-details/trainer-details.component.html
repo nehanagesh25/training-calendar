@@ -84,17 +84,17 @@
               <input type="text" class="form-control" id="pwd" placeholder="Enter The Description" aria-label="Input group example"
                 aria-describedby="btnGroupAddon" [(ngModel)]="description">
             </div>
-              <!-- <div class="form-group">
+              <div class="form-group">
                 <label for="pwd">Trainer Type</label><br>
                 <select [(ngModel)]="TrainerData" aria-describedby="btnGroupAddon">
-                  <option *ngFor="let TrainerDetails of Trainer_Type" [ngValue]="TrainerDetails.value">{{TrainerDetails.name}}</option>
+                  <option *ngFor="let TrainerDetails of Trainer_Type" [ngValue]="Trainer_Type.value">{{TrainerDetails.name}}</option>
                 </select>
-              </div> -->
-              <div class="form-group">
+              </div>
+              <!-- <div class="form-group">
                   <label for="pwd">Trainer Type</label>
                   <input type="text" class="form-control" id="pwd" placeholder="Enter The Description" aria-label="Input group example"
                     aria-describedby="btnGroupAddon" [(ngModel)]="TrainerType">
-                </div>
+                </div> -->
             </section>
           <div class="btn">
             <button type="button" class="btn btn-sm btn-primary btn-create" (click)="UpdateTrainers()">Submit</button>

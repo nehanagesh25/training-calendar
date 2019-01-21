@@ -19,8 +19,8 @@ export class DisplayComponent implements OnInit {
   public CourseName: any;
   public Discreption: any;
   public Dureation: any;
-  public FromDate: Date;
-  public ToDate: Date;
+  public FromDate: any;
+  public ToDate: any;
   public MaxEnroll: any;
   public MiniumEnroll: any;
   public LastDate: any;
@@ -67,6 +67,7 @@ export class DisplayComponent implements OnInit {
           this.service.DeleteCourse(data).subscribe((Res) => {
             if (Res != null) {
               Swal("Course deleted ", "SuccessFully!", "success");
+              window.location.reload(); 
             }
             else {
               Swal("Update Error", 'warning')
@@ -76,6 +77,7 @@ export class DisplayComponent implements OnInit {
         )
       }
     })
+  
   }
 
 
@@ -84,7 +86,7 @@ export class DisplayComponent implements OnInit {
   }
   events(value) {
 
-    console.log(value);
+    
     var data = { "Course_ID": value };
     this.service.GetRegisterEmployees(data).subscribe((Response) => {
       if (Response != null) {
@@ -98,9 +100,7 @@ export class DisplayComponent implements OnInit {
     this.display = 'none';
   }
   edit(id) {
-    console.log("IDDDDDDDD");
-    console.log(id);
-    this.courseid = id;
+   this.courseid = id;
   
     var data = { "Course_ID": this.courseid }
     debugger
@@ -111,14 +111,13 @@ export class DisplayComponent implements OnInit {
           this.CourseName = Response[0].Course_Name;
           this.Discreption = Response[0].Description;
           this.Dureation = Response[0].Duration;
-         this.FromDate = res[0].FromDate;
-          console.log(this.f);
-          this.LastDate = res[0].Last_date_to_enroll;
+         this.FromDate = this.datepipe.transform(res[0].FromDate, 'yyyy-MM-dd');      
+          this.LastDate =this.datepipe.transform(res[0].Last_date_to_enroll, 'yyyy-MM-dd');
           this.MaxEnroll = res[0].Max_enroll;
           this.MiniumEnroll = res[0].Min_enroll;
-          this.ToDate = res[0].ToDate;
-          this.FromDate = res[0].ToDate;
+          this.ToDate = this.datepipe.transform(res[0].ToDate, 'yyyy-MM-dd');
           this.Venue = res[0].Venue;
+
         })
       }
     })
@@ -144,7 +143,8 @@ export class DisplayComponent implements OnInit {
             this.FromTime = null;
             this.ToTime = null;
             Swal("Course Updated ", "SuccessFully!", "success");
-            this.display = 'none';
+            this.display = 'none';   
+            window.location.reload();        
           }
         })
       }
@@ -152,6 +152,7 @@ export class DisplayComponent implements OnInit {
     this.router.navigate(['AdminDashboard/DisplayCourse']);
   }
   CloseDilog1() {
+    
     this.display = 'none';
   }
 }

@@ -15,6 +15,7 @@ export class TrainerDetailsComponent implements OnInit {
   public TrainerName : any;
   public TrainerType : any;
   public description : any;
+  public id: number;
   public display;
   public trainerid: any;
   public TrainerData:any;
@@ -82,15 +83,24 @@ export class TrainerDetailsComponent implements OnInit {
           console.log(Response);
           this.TrainerName = Response[0].Trainer_Name;
           this.description = Response[0].Description;
-          this.TrainerType = Response[0].Trainer_Type;     
+          // if(Response[0].Trainer_Type)
+          // {
+          //   this.TrainerType="Accionite"
+          // }
+          // else{
+          //   this.TrainerType="Guest"
+          // }
+          this.Trainer_Type=Response[0].Trainer_Type;
     })
+    
     this.display = 'block';
+     
   }
 
   //update trainers
 
   UpdateTrainers() {
-    var data = { 'Trainer_Name': this.TrainerName, 'Description': this.description, 'Trainer_Type':this.TrainerType }
+    var data = { 'Trainer_ID':this.trainerid,'Trainer_Name': this.TrainerName, 'Description': this.description, 'Trainer_Type':this.TrainerType }
     this.service.UpdateTrainers(data).subscribe((Response) => {
       if (Response) {
        
@@ -98,7 +108,6 @@ export class TrainerDetailsComponent implements OnInit {
             this.display = 'none';
           }
         })
-      
   
     this.router.navigate(['AdminDashboard/TrainerDetails']);
   }
