@@ -56,7 +56,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
-import { default as swal } from 'sweetalert2';
+
 import { CalendarComponent } from './dashboard/calendar/calendar.component';
 import { TableDisplayComponent } from './dashboard/table-display/table-display.component';
 import { CoursesAttended } from './model/model';

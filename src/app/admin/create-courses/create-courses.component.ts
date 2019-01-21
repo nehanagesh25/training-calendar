@@ -170,16 +170,5 @@ public cur;
 
     })
   }
-  DeleteCourses(){
-    var data = { 'Course_ID': this.courseid}
-    this.serv.DeleteCourse(data).subscribe((Res)=>{
-      if(Res!=null){
-        swal("Course deleted ", "SuccessFully!", "success");
-      }
-      else{
-        swal("Update Error",'warning')
-      }
-
-    })
-  }
+  
 }
