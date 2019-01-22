@@ -19,6 +19,7 @@ export interface CourseDetails {
   ToDate: string;
   LastDateToEnroll: string;
   Venue: string;
+  
 }
 @Component({
   selector: 'app-table-display',
@@ -43,6 +44,7 @@ export class TableDisplayComponent implements OnInit {
   public res = 0;
   public flag = 0;
   public reason;
+  public flag1=0;
   CalendarView = CalendarView;
   course: CourseDetails;
   events: CalendarEvent[];

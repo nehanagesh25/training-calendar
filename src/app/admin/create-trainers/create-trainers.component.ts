@@ -44,5 +44,7 @@ export class CreateTrainersComponent implements OnInit {
       this.flag = 0;
     });
   }
-  
+  back(){
+    this.router.navigate(['AdminDashboard/TrainerDetails']);
+  }
 }

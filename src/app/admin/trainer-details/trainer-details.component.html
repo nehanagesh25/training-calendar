@@ -18,16 +18,17 @@
         <div class="panel-heading">
           <div class="row">
             <div class="col col-xs-6">
-              <h3 class="panel-title" style="color:rgba(80, 90, 150, 0.918)">Trainer Details</h3>
+              <h3 class="panel-title" style="color:rgba(80, 90, 150, 0.918);font-weight:bold;">Trainer Details</h3>
             </div>
+            <input [(ngModel)]="searchText" placeholder="search text goes here">
             <div class="col col-xs-6 text-right">
               <button type="button" class="btn btn-sm btn-primary btn-create" (click)="CreateTrainers()">Create
                 Trainers</button>
             </div>
           </div>
         </div>
-        <div class="panel-body">
-          <table class="table table-striped table-bordered table-list">
+        <div class="panel-body" style="align-items:center">
+          <table class="table table-striped table-bordered table-list"  style="align-items:center">
             <thead>
               <tr align="center">
                 <th align="center">Trainer Type</th>
@@ -38,7 +39,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let d of data">
+              <tr *ngFor="let d of data ">
                 <td align="center">{{ d.Trainer_Type ? 'Accionite' : 'Guest' }}</td>
                 <td align="center">{{ d.Trainer_Name }}</td>
                 <td align="center">{{ d.Description }}</td>
@@ -72,7 +73,7 @@
           <h4 class="modal-title" style="align-items:center">Update Trainers</h4>
         </div>
         <div class="wrap-Update-course">
-          <div> <h3> Update Trainers</h3></div>
+          <!-- <div> <h3> Update Trainers</h3></div> -->
           <section class="wrap-create-course">
             <div class="form-group">
               <label for="pwd">Trainer Name</label>

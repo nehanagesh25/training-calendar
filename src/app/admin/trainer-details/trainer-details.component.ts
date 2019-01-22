@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServicesService } from '../../Services/Service.services';
 import { default as Swal } from 'sweetalert2';
-
+// import { FilterPipe }from '../../filter.pipe';
 
 @Component({
   selector: 'app-trainer-details',
@@ -20,7 +20,7 @@ export class TrainerDetailsComponent implements OnInit {
   public trainerid: any;
   public TrainerData:any;
   public Trainer_Type: any = [{ name: 'Accionite', value: true }, { name: 'Guest', value: false }];
-
+  public searchText;
   constructor(private router: Router, private service: ServicesService) { }
 
   ngOnInit() {
@@ -59,6 +59,7 @@ export class TrainerDetailsComponent implements OnInit {
           this.service.RemoveTrainerdetails(data).subscribe((Res) => {
             if (Res != null) {
               Swal("Trainer deleted ", "SuccessFully!", "success");
+              window.location.reload();  
             }
             else {
               Swal("Update Error", 'warning')
@@ -68,7 +69,7 @@ export class TrainerDetailsComponent implements OnInit {
         )
       }
     })
-    this.fecthTrainers();
+    
   }
 
   //edit
@@ -84,7 +85,7 @@ export class TrainerDetailsComponent implements OnInit {
           console.log(Response);
           this.TrainerName = Response[0].Trainer_Name;
           this.description = Response[0].Description;
-          this.TrainerData = Response[0].Trainer_Type;
+          this.TrainerData=Response[0].Trainer_Type;
     })
     
     this.display = 'block';
@@ -100,10 +101,12 @@ export class TrainerDetailsComponent implements OnInit {
        
             Swal("Trainers Updated ", "SuccessFully!", "success");
             this.display = 'none';
+            window.location.reload();  
           }
+          
         })
-        this.fecthTrainers();
   
     this.router.navigate(['AdminDashboard/TrainerDetails']);
+   
   }
 }

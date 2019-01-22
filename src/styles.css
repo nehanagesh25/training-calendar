@@ -50,3 +50,9 @@ div {
     z-index: -1 !important;
   }
 
+  .panel-table .panel-footer .col{
+   line-height: 34px;
+   height: 34px;
+   font-weight: bold !important;
+  }
+  
