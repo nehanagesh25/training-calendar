@@ -59,6 +59,7 @@ export class TrainerDetailsComponent implements OnInit {
           this.service.RemoveTrainerdetails(data).subscribe((Res) => {
             if (Res != null) {
               Swal("Trainer deleted ", "SuccessFully!", "success");
+              window.location.reload();  
             }
             else {
               Swal("Update Error", 'warning')
@@ -68,7 +69,7 @@ export class TrainerDetailsComponent implements OnInit {
         )
       }
     })
-    this.fecthTrainers();
+    
   }
 
   //edit
@@ -100,10 +101,12 @@ export class TrainerDetailsComponent implements OnInit {
        
             Swal("Trainers Updated ", "SuccessFully!", "success");
             this.display = 'none';
+            window.location.reload();  
           }
+          
         })
   
     this.router.navigate(['AdminDashboard/TrainerDetails']);
-    this.fecthTrainers();
+   
   }
 }
