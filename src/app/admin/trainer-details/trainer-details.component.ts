@@ -19,7 +19,7 @@ export class TrainerDetailsComponent implements OnInit {
   public display;
   public trainerid: any;
   public TrainerData:any;
-  public Trainer_Type: any = [{ name: 'Accionite', value: 1 }, { name: 'Guest', value: 0 }];
+  public Trainer_Type: any = [{ name: 'Accionite', value: true }, { name: 'Guest', value: false }];
 
   constructor(private router: Router, private service: ServicesService) { }
 
@@ -68,6 +68,7 @@ export class TrainerDetailsComponent implements OnInit {
         )
       }
     })
+    this.fecthTrainers();
   }
 
   //edit
@@ -83,14 +84,7 @@ export class TrainerDetailsComponent implements OnInit {
           console.log(Response);
           this.TrainerName = Response[0].Trainer_Name;
           this.description = Response[0].Description;
-          // if(Response[0].Trainer_Type)
-          // {
-          //   this.TrainerType="Accionite"
-          // }
-          // else{
-          //   this.TrainerType="Guest"
-          // }
-          this.Trainer_Type=Response[0].Trainer_Type;
+          this.TrainerData = Response[0].Trainer_Type;
     })
     
     this.display = 'block';
@@ -100,7 +94,7 @@ export class TrainerDetailsComponent implements OnInit {
   //update trainers
 
   UpdateTrainers() {
-    var data = { 'Trainer_ID':this.trainerid,'Trainer_Name': this.TrainerName, 'Description': this.description, 'Trainer_Type':this.TrainerType }
+    var data = { 'Trainer_ID':this.trainerid,'Trainer_Name': this.TrainerName, 'Description': this.description, 'Trainer_Type':this.TrainerData }
     this.service.UpdateTrainers(data).subscribe((Response) => {
       if (Response) {
        
@@ -108,6 +102,7 @@ export class TrainerDetailsComponent implements OnInit {
             this.display = 'none';
           }
         })
+        this.fecthTrainers();
   
     this.router.navigate(['AdminDashboard/TrainerDetails']);
   }

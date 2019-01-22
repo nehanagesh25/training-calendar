@@ -73,5 +73,10 @@ margin: 0px;
   .panel-table .panel-body .table-bordered > tbody > tr > td{
     line-height: 34px;
   }
-  
-  
+  .form-control{
+    margin-left: 10px;
+    width:50%;
+  }
+  /* .label{
+    margin-left: 10px;
+  } */
