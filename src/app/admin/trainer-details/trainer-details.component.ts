@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServicesService } from '../../Services/Service.services';
 import { default as Swal } from 'sweetalert2';
-// import { FilterPipe }from '../../filter.pipe';
+import { FilterPipe }from '../../filter.pipe';
 
 @Component({
   selector: 'app-trainer-details',

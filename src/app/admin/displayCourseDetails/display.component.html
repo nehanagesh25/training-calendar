@@ -19,6 +19,7 @@
             <div class="col col-xs-6">
               <h3 class="panel-title" style="color:rgba(80, 90, 150, 0.918);font-weight:bold;">Course Details</h3>
             </div>
+            <input [(ngModel)]="searchText" placeholder="Search Course">
             <div class="col col-xs-6 text-right">
               <button type="button" class="btn btn-sm btn-primary btn-create" (click)="CreateCourses()">CreateCourses</button>
             </div>
@@ -37,7 +38,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let d of data">
+              <tr *ngFor="let d of data | filter : 'Course_Name' : searchText;">
                 <td align="center" (click)="events(d.Course_ID)" data-toggle="modal" data-target="#myModal">{{
                   d.Course_Name }}</td>
                 <td align="center" (click)="events(d.Course_ID)" data-toggle="modal" data-target="#myModal">{{d.Duration}}</td>
