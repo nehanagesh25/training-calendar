@@ -71,6 +71,7 @@ import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { default as swal } from 'sweetalert2';
 import { TrainerDetailsComponent } from './admin/trainer-details/trainer-details.component';
 import { CreateTrainersComponent } from './admin/create-trainers/create-trainers.component';
+import { FilterPipe} from './filter.pipe';
 /**
  * Example of a String Time adapter
  */
@@ -124,7 +125,8 @@ export function getAuthServiceConfigs() {
     TableDisplayComponent,
     CourseAttendedComponent,
     TrainerDetailsComponent,
-    CreateTrainersComponent
+    CreateTrainersComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
