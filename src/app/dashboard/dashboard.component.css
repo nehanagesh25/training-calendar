@@ -150,7 +150,7 @@ body {
   
 }
 .no-icon:hover{
-  cursor: -webkit-grab; cursor: grab;
+  cursor: -webkit-grab; cursor: grab; color: red; font-size:20px;
 }
 @keyframes spin {
   from {
@@ -5489,7 +5489,10 @@ h3 {
     margin-right: 0;
     margin-left: 165px;
 }
-
+.image{
+  margin-top: 20px;
+  width: 170px;
+}
 
 
 

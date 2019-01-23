@@ -1,53 +1,82 @@
 <div class="table-container">
-    <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
-        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-            <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-            <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-        </ng-container>
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    multiTemplateDataRows
+    class="mat-elevation-z8"
+  >
+    <ng-container
+      matColumnDef="{{ column }}"
+      *ngFor="let column of columnsToDisplay"
+    >
+      <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
 
-        Expanded Content Column - The detail row is made up of this one column that spans across all
-        columns
-        <ng-container matColumnDef="expandedDetail">
-            <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-                <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+      <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+    </ng-container>
 
-                    <div class="example-element-description">
-                        <strong>Description : </strong><br>{{element.description}}
-                    </div>
-                    <div class="wrap-box">
-                            <span style="font-size: 2rem;" *ngIf='!res'>
-                                    <div *ngIf="!flag && !flag1">
-                                        <i class="fas fa-calendar-plus" (click)="Register()"></i>
-                                        <div style="font-size:10px;color:green">Register</div>
-                                    </div>
-                                    <div *ngIf="flag && !flag1" (click)="flag=0">
-                                        <i class="far fa-calendar-minus" (click)="UnRegister()"></i>
-                                        <div style="font-size:10px;color:red">UnRegister</div>
-                                    </div>
-                                    <div *ngIf='flag1'>
-                                        Registration closed
-                                    </div>
-                                </span>
-                        <span style="font-size: 2rem;" *ngIf='res'>
-                            <div *ngIf='res'>
-                                Reson
-                                <input type="text" [(ngModel)]="reson">&nbsp;
-                                <button type="button" class="btn btn-outline-secondary" (click)="UnRegister1()">Submit</button>
-                            </div>
-                            <div *ngIf='flag1'>
-                                    Registration closed
-                                </div>
-                        </span>
-                    </div>
-                </div>
-            </td>
-        </ng-container>
+    Expanded Content Column - The detail row is made up of this one column that
+    spans across all columns
+    <ng-container matColumnDef="expandedDetail">
+      <td
+        mat-cell
+        *matCellDef="let element"
+        [attr.colspan]="columnsToDisplay.length"
+      >
+        <div
+          class="example-element-detail"
+          [@detailExpand]="
+            element == expandedElement ? 'expanded' : 'collapsed'
+          "
+        >
+          <div class="example-element-description">
+            <strong>Description : </strong><br />{{ element.description }}
+          </div>
+          <div class="wrap-box">
+            <span style="font-size: 2rem;" *ngIf="!res">
+              <div *ngIf="!flag && !reg">
+                <i class="fas fa-calendar-plus" (click)="Register(element)"></i>
+                <div style="font-size:10px;color:green">Register</div>
+              </div>
+              <div *ngIf="flag && !reg" (click)="flag = 0">
+                <i
+                  class="far fa-calendar-minus"
+                  (click)="LeaveCourse(element)"
+                ></i>
+                <div style="font-size:10px;color:red">Leave Course</div>
+              </div>
+              <div style="font-size:13px;color:red" *ngIf="reg">Registration closed</div>
+            </span>
+            <span style="font-size: 2rem;" *ngIf="res">
+              <div *ngIf="res">
+                Reason <input type="text" [(ngModel)]="reason" />&nbsp;
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  (click)="UnRegister()"
+                >
+                  Submit
+                </button>
+              </div>
+            </span>
+          </div>
+        </div>
+      </td>
+    </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
-            [class.example-expanded-row]="expandedElement === element" (click)="expandedElement = expandedElement === element ? null : element">
-        </tr>
-        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-    </table>
-
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr
+      mat-row
+      (click)="registerationClosed(element)"
+      *matRowDef="let element; columns: columnsToDisplay"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element"
+    ></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: ['expandedDetail']"
+      class="example-detail-row"
+    ></tr>
+  </table>
 </div>
+

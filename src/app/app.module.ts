@@ -68,7 +68,6 @@ import { DisplayComponent } from './admin/displayCourseDetails/display.component
 import { DatePipe } from '@angular/common';
 import { Component, Injectable } from '@angular/core';
 import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
-import { default as swal } from 'sweetalert2';
 import { TrainerDetailsComponent } from './admin/trainer-details/trainer-details.component';
 import { CreateTrainersComponent } from './admin/create-trainers/create-trainers.component';
 import { FilterPipe} from './filter.pipe';

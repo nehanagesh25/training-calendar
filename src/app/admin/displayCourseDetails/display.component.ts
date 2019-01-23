@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common'
 
 export class DisplayComponent implements OnInit {
   public data;
-  public  f;
+  public f;
   public display;
   public RegisteredEmployees;
   public Trainers: any;
@@ -33,7 +33,8 @@ export class DisplayComponent implements OnInit {
   public ToTime;
   public flag1 = 0;
   public cur;
-  constructor(private router: Router, private service: ServicesService,public datepipe: DatePipe) { }
+  public trainerid;
+  constructor(private router: Router, private service: ServicesService, public datepipe: DatePipe) { }
 
   ngOnInit() {
     this.display = 'none';
@@ -65,19 +66,20 @@ export class DisplayComponent implements OnInit {
       if (result.value) {
         (Swal as any).fire(
           this.service.DeleteCourse(data).subscribe((Res) => {
-            if (Res != null) {
-              Swal("Course deleted ", "SuccessFully!", "success");
-              window.location.reload(); 
-            }
-            else {
-              Swal("Update Error", 'warning')
-            }
-
+            this.service.Removemaster(data).subscribe((res)=>{
+              if (Res != null) {
+                Swal("Course deleted ", "SuccessFully!", "success");
+                window.location.reload();
+              }
+              else {
+                Swal("Update Error", 'warning')
+              }
+            })      
           })
         )
       }
     })
-  
+
   }
 
 
@@ -86,7 +88,7 @@ export class DisplayComponent implements OnInit {
   }
   events(value) {
 
-    
+
     var data = { "Course_ID": value };
     this.service.GetRegisterEmployees(data).subscribe((Response) => {
       if (Response != null) {
@@ -100,23 +102,24 @@ export class DisplayComponent implements OnInit {
     this.display = 'none';
   }
   edit(id) {
-   this.courseid = id;
-  
+    this.courseid = id;
+
     var data = { "Course_ID": this.courseid }
     debugger
     this.service.CourseByID(data).subscribe((Response) => {
       if (Response != null) {
         this.service.GetEnrollMasterById(data).subscribe((res) => {
-          console.log(res);
+          console.log("Getting response",res);
           this.CourseName = Response[0].Course_Name;
           this.Discreption = Response[0].Description;
           this.Dureation = Response[0].Duration;
-         this.FromDate = this.datepipe.transform(res[0].FromDate, 'yyyy-MM-dd');      
-          this.LastDate =this.datepipe.transform(res[0].Last_date_to_enroll, 'yyyy-MM-dd');
+          this.FromDate = this.datepipe.transform(res[0].FromDate, 'yyyy-MM-dd');
+          this.LastDate = this.datepipe.transform(res[0].Last_date_to_enroll, 'yyyy-MM-dd');
           this.MaxEnroll = res[0].Max_enroll;
           this.MiniumEnroll = res[0].Min_enroll;
           this.ToDate = this.datepipe.transform(res[0].ToDate, 'yyyy-MM-dd');
           this.Venue = res[0].Venue;
+          this.trainerid=res[0].Trainer_ID
 
         })
       }
@@ -124,10 +127,16 @@ export class DisplayComponent implements OnInit {
     this.display = 'block';
   }
   UpdateCourses() {
-    var data = { 'Course_ID': this.courseid, 'Course_Name': this.CourseName, 'Trainer_ID': this.id, 'Description': this.Discreption, 'Duration': this.Dureation }
+    var date1 = new Date(this.FromDate);
+    var date2 = new Date(this.ToDate);
+    var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    console.log(this.id);
+    var data = { 'Course_ID': this.courseid, 'Course_Name': this.CourseName, 'Trainer_ID': this.trainerid, 'Description': this.Discreption, 'Duration': diffDays }
     this.service.UpdateCourse(data).subscribe((Response) => {
       if (Response) {
-        var data1 = { "Trainer_ID": this.id, "Course_ID": this.courseid, "FromDate": this.FromDate + this.FromTime, "ToDate": this.ToDate + this.ToTime, "Venue": this.Venue, "Last_date_to_enroll": this.LastDate, "Max_enroll": this.MaxEnroll, "Min_enroll": this.MiniumEnroll, "Status": 1 }
+        var data1 = { "Trainer_ID": this.trainerid, "Course_ID": this.courseid, "FromDate": this.FromDate, "ToDate": this.ToDate, "Venue": this.Venue, "Last_date_to_enroll": this.LastDate, "Max_enroll": this.MaxEnroll, "Min_enroll": this.MiniumEnroll, "Status": 1 }
         this.service.Updatemaster(data1).subscribe((Response) => {
           if (Response) {
             this.CourseName = null;
@@ -143,8 +152,8 @@ export class DisplayComponent implements OnInit {
             this.FromTime = null;
             this.ToTime = null;
             Swal("Course Updated ", "SuccessFully!", "success");
-            this.display = 'none';   
-            window.location.reload();        
+            this.display = 'none';
+            window.location.reload();
           }
         })
       }
@@ -152,7 +161,11 @@ export class DisplayComponent implements OnInit {
     this.router.navigate(['AdminDashboard/DisplayCourse']);
   }
   CloseDilog1() {
-    
+
     this.display = 'none';
+  }
+  filterForeCasts(value)
+  {
+    this.trainerid=value;
   }
 }
