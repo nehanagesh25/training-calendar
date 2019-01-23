@@ -1,5 +1,5 @@
 
-<div *ngIf="!flag && !flag1">
+<div>
   <section class="wrap-create-course">
     <div class="form-group">
       <label for="usr">Course Name:</label>
@@ -12,22 +12,9 @@
       <!-- <input type="text area" class="form-control" id="pwd" [(ngModel)]="Discreption"> -->
     </div>
     <div class="form-group">
-      <label for="pwd">Duration</label>
-      <!-- <input type="number" class="form-control" id="pwd" [(ngModel)]="Dureation"> -->
-      <input type="text" class="form-control" placeholder="Enter Duration" aria-label="Input group example" aria-describedby="btnGroupAddon" [(ngModel)]="Dureation">
-    </div>
-    <div class="form-group">
       <label for="pwd">From Date</label>
       <input type="date"  min="{{cur | date:'yyyy-MM-dd'}}" id='#datetimepicker11' class="form-control"[(ngModel)]="FromDate">
     </div>
-    <!-- <div class="form-group">
-        <label for="pwd">From Time</label>
-        <ngb-timepicker [(ngModel)]="FromTime" ></ngb-timepicker>  
-      </div>
-      <div class="form-group">
-          <label for="pwd">To Time</label>
-          <ngb-timepicker [(ngModel)]="ToTime"></ngb-timepicker>      
-        </div> -->
     <div class="form-group">
       <label for="pwd">To Date</label>
       <input type="date" class="form-control" id="pwd" min="{{FromDate | date:'yyyy-MM-dd'}}" [(ngModel)]="ToDate">
@@ -56,7 +43,7 @@
         <option [value]="Trainer.Trainer_ID" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
       </select>
     </div>
-
+    <br>
     <div class="form-group">
       <label for="pwd">Upload Description</label><br>
       <input type="file"  name="photo" ng2FileSelect [uploader]="uploader" /><br>
