@@ -44,8 +44,8 @@ export class TrainerDetailsComponent implements OnInit {
 
     console.log("Removable");
     console.log(id);
-    var data = { 'Trainer_ID': id }
-    Swal.fire({
+    var data = { 'Trainer_ID': id };
+    (Swal as any).fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
       type: 'warning',
@@ -55,7 +55,7 @@ export class TrainerDetailsComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        Swal.fire(
+        (Swal as any).fire(
           this.service.RemoveTrainerdetails(data).subscribe((Res) => {
             if (Res != null) {
               Swal("Trainer deleted ", "SuccessFully!", "success");

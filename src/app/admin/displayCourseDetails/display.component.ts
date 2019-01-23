@@ -33,6 +33,7 @@ export class DisplayComponent implements OnInit {
   public ToTime;
   public flag1 = 0;
   public cur;
+  public trainerid;
   constructor(private router: Router, private service: ServicesService, public datepipe: DatePipe) { }
 
   ngOnInit() {
@@ -52,8 +53,8 @@ export class DisplayComponent implements OnInit {
 
     console.log("Removable");
     console.log(id);
-    var data = { 'Course_ID': id }
-    Swal.fire({
+    var data = { 'Course_ID': id };
+    (Swal as any).fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
       type: 'warning',
@@ -63,7 +64,7 @@ export class DisplayComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        Swal.fire(
+        (Swal as any).fire(
           this.service.DeleteCourse(data).subscribe((Res) => {
             if (Res != null) {
               Swal("Course deleted ", "SuccessFully!", "success");
@@ -107,7 +108,7 @@ export class DisplayComponent implements OnInit {
     this.service.CourseByID(data).subscribe((Response) => {
       if (Response != null) {
         this.service.GetEnrollMasterById(data).subscribe((res) => {
-          console.log(res);
+          console.log("Getting response",res);
           this.CourseName = Response[0].Course_Name;
           this.Discreption = Response[0].Description;
           this.Dureation = Response[0].Duration;
@@ -129,10 +130,11 @@ export class DisplayComponent implements OnInit {
     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    var data = { 'Course_ID': this.courseid, 'Course_Name': this.CourseName, 'Trainer_ID': this.id, 'Description': this.Discreption, 'Duration': diffDays }
+    console.log(this.id);
+    var data = { 'Course_ID': this.courseid, 'Course_Name': this.CourseName, 'Trainer_ID': this.trainerid, 'Description': this.Discreption, 'Duration': diffDays }
     this.service.UpdateCourse(data).subscribe((Response) => {
       if (Response) {
-        var data1 = { "Trainer_ID": this.id, "Course_ID": this.courseid, "FromDate": this.FromDate + this.FromTime, "ToDate": this.ToDate + this.ToTime, "Venue": this.Venue, "Last_date_to_enroll": this.LastDate, "Max_enroll": this.MaxEnroll, "Min_enroll": this.MiniumEnroll, "Status": 1 }
+        var data1 = { "Trainer_ID": this.trainerid, "Course_ID": this.courseid, "FromDate": this.FromDate, "ToDate": this.ToDate, "Venue": this.Venue, "Last_date_to_enroll": this.LastDate, "Max_enroll": this.MaxEnroll, "Min_enroll": this.MiniumEnroll, "Status": 1 }
         this.service.Updatemaster(data1).subscribe((Response) => {
           if (Response) {
             this.CourseName = null;
@@ -159,5 +161,9 @@ export class DisplayComponent implements OnInit {
   CloseDilog1() {
 
     this.display = 'none';
+  }
+  filterForeCasts(value)
+  {
+    this.trainerid=value;
   }
 }
