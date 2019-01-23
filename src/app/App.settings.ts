@@ -1,8 +1,7 @@
-var webApiUrl="http://localhost:60027/TrainingCalendar/"
-
+ var baseurl = "http://localhost:60027/TrainingCalendar/";
 
 export class Appsettings{
-    public static BASE_URL = webApiUrl;
+   public static BASE_URL = baseurl;
     //Login API 
     public static UserLogin = 'user/UserLogin';
     public static AdminLogin='user/AdminLogin';
@@ -13,7 +12,7 @@ export class Appsettings{
     public static checkforregister='user/checkforregister';
     //Course API
     public static AddCourse='Course/AddCourse';
-    public static AllCourse='Course/AllCourse';
+    public static AllCourse='Course/GetAllCourseWithEnrollMaster';
     public static CourseByToday='Course/GetBydate';
     public static UpdateCourse='Course/UpdateCourse';
     public static DeleteCourse='Course/DeleteCourse';
@@ -21,11 +20,15 @@ export class Appsettings{
     public static SaveFile='Course/Save';
     public static LastRecord='Course/LastRecord';
     public static GetCalendarDetails='Course/GetCalendarDetails'
+    public static Coursebyid='Course/GetByID'
+    public static GetRegisterEmployees='Course/GetRegisterEmployees';
+
     //Enroll Master API
     public static CreateEnrollmaster='Enrollmasters/CreateEnrollmaster';
     public static Updatemaster='Enrollmasters/Updatemaster';
     public static GetAllMasters='Enrollmasters/GetAllMasters';
     public static Removemaster='Enrollmasters/Removemaster';
+    public static GetEnrollMasterById='Enrollmasters/GetEnrollMasterById'
     //Trainers API
     public static CreateTrainers='Trainers/CreateTrainers';
     public static UpdateTrainers='Trainers/UpdateTrainers';

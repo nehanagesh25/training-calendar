@@ -7,42 +7,24 @@ button {
     font-size: 1.3rem;
 }
 .col-md-offset-1 {
-margin: 0px;;
+margin: 0px;
+/* text-align:center; */
 }
-.modal-open  {
-  position: initial !important;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #000;
+.panel-title{
+  font-size: 20px;
+  block-size: 3%;
   
 }
 
-.backdrop {
-  position: initial;
-  background-color:lightgrey;
-  position:fixed;
-  top:100px;
-  left:400px;
-  width:50%;
-  height:50vh;
-  align-items: center;
-  color: white;
-  border-style: solid,black;
-  border-width: 5px;
-  align-items: center;
-  text-align: justify;
-  opacity: 0.5;
-
-}
 .panel-table .panel-body{
     padding:0;
+    /* text-align:center; */
   }
   
   .panel-table .panel-body .table-bordered{
     border-style: none;
     margin:0;
+    /* text-align:center; */
   }
   
   .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type {
@@ -53,6 +35,7 @@ margin: 0px;;
   .panel-table .panel-body .table-bordered > thead > tr > th:last-of-type,
   .panel-table .panel-body .table-bordered > tbody > tr > td:last-of-type {
     border-right: 0px;
+    /* text-align:center; */
   }
   
   .panel-table .panel-body .table-bordered > thead > tr > th:first-of-type,
@@ -62,10 +45,12 @@ margin: 0px;;
   
   .panel-table .panel-body .table-bordered > tbody > tr:first-of-type > td{
     border-bottom: 0px;
+    /* text-align:center; */
   }
   
   .panel-table .panel-body .table-bordered > thead > tr:first-of-type > th{
     border-top: 0px;
+    text-align:center;
   }
   
   .panel-table .panel-footer .pagination{
@@ -88,5 +73,5 @@ margin: 0px;;
   .panel-table .panel-body .table-bordered > tbody > tr > td{
     line-height: 34px;
   }
- 
+  
   

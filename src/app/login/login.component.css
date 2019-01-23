@@ -21,7 +21,9 @@
 
 
 /* Login css */
-
+.panel {
+  margin-top: 80px;
+}
  p {
 	color:#CCC;
 }
@@ -41,7 +43,13 @@
     padding: 25px;
     margin-top: 20px;
 }
-
+.body {
+  background-image: url('https://cdn.stocksnap.io/img-thumbs/960w/4Q1B85IO2H.jpg');
+  background-color: #cccccc;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  overflow: hidden;
+ }
 
 .logo {
 	color:#CCC;

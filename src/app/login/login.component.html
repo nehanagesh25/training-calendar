@@ -1,57 +1,56 @@
 
 <div class="body">
- 
-   <div class="middlePage">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title">Please Sign In</h3>
-      </div>
-      <div class="panel-body">
+  <div class="middlePage">
+   <div class="panel panel-info">
+     <div class="panel-heading">
+       <h3 class="panel-title">Please Sign In</h3>
+     </div>
+     <div class="panel-body">
 
-        <div class="row">
+       <div class="row">
 
-          <div class="col-md-5">
-            <h5>Employee Must Login Through Google</h5>
-            <button class="loginBtn loginBtn--google" (click)="socialSignIn('google')">
-              Login with Google
-            </button>
+         <div class="col-md-5">
+           <h5>Employee Must Login Through Google</h5>
+           <button class="loginBtn loginBtn--google" (click)="socialSignIn('google')">
+             Login with Google
+           </button>
 
-          </div>
+         </div>
 
-          <div class="col-md-7" style="border-left:1px solid #ccc;height:160px">
-            <form class="form-horizontal">
-              <h3>Admin Login</h3>
-              <fieldset>
+         <div class="col-md-7" style="border-left:1px solid #ccc;height:160px">
+           <form class="form-horizontal">
+             <h3>Admin Login</h3>
+             <fieldset>
 
-                <input id="textinput" name="textinput" type="text" placeholder="Enter User Name" class="form-control input-md" [(ngModel)]="User_Name">
-                <br>
-                <input id="textinput" name="textinput" type="password" placeholder="Enter Password" class="form-control input-md" [(ngModel)]="Password">
-              <br>
-                <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right" (click)="AdminLogin()"> Sign In</button>
+               <input id="textinput" name="textinput" type="text" placeholder="Enter User Name" class="form-control input-md" [(ngModel)]="User_Name">
+               <br>
+               <input id="textinput" name="textinput" type="password" placeholder="Enter Password" class="form-control input-md" [(ngModel)]="Password">
+             <br>
+               <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right" (click)="AdminLogin()"> Sign In</button>
+               
 
+             </fieldset>
+           </form>
+         </div>
 
-              </fieldset>
-            </form>
-          </div>
+       </div>
 
-        </div>
-
-      </div>
-    </div>
-  </div>
+     </div>
+   </div>
+ </div>
 </div>
- 
+
 <!-- <div class="jumbotron bg-transparent text-center">
-  <div *ngIf="!user" class="card text-center">
-    <h6 class="card-header">
-      Login 
-    </h6>
-    <div class="card-block">
-      <h4 class="card-title">Not signed in</h4>
-      <p class="card-text">Sign in with</p>
-    </div>
-    <div class="card-block">
-      <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()">Google<span class="fa fa-google"></span></button>
-   
-    </div>
-  </div> -->
+ <div *ngIf="!user" class="card text-center">
+   <h6 class="card-header">
+     Login 
+   </h6>
+   <div class="card-block">
+     <h4 class="card-title">Not signed in</h4>
+     <p class="card-text">Sign in with</p>
+   </div>
+   <div class="card-block">
+     <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()">Google<span class="fa fa-google"></span></button>
+  
+   </div>
+ </div> -->
