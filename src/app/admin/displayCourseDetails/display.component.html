@@ -118,11 +118,7 @@
               <div class="form-group">
                 <label for="pwd">Select Trainer</label><br>
                 <select (change)="filterForeCasts($event.target.value)">
-<<<<<<< HEAD
-                  <option [value]="Trainer.Trainer_ID" [ngValue]="Trainer.value" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
-=======
                   <option [value]="Trainer.Trainer_ID" [ngValue]="trainerid"*ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
->>>>>>> 7fd742106e420ba6dfdfb046a08e78a031f10b46
                 </select>
                 {{trainerid}}
               </div>
@@ -135,20 +131,12 @@
                 <label for="pwd">FromDate</label>
                 <input type="date" class="form-control" id="pwd" min="{{cur | date:'yyyy-MM-dd'}}" [(ngModel)]="FromDate"
                   [value]="FromDate | date:'yyyy-MM-dd'">
-<<<<<<< HEAD
-               
-=======
             
->>>>>>> 7fd742106e420ba6dfdfb046a08e78a031f10b46
               </div>
               <div class="form-group">
                 <label for="pwd">ToDate</label>
                 <input type="date" class="form-control" id="pwd" min="{{FromDate | date:'yyyy-MM-dd'}}"[value]="ToDate | date:'yyyy-MM-dd'"[(ngModel)]="ToDate">
-<<<<<<< HEAD
-               
-=======
             
->>>>>>> 7fd742106e420ba6dfdfb046a08e78a031f10b46
               </div>
               <div class="form-group">
                 <label for="pwd">Maximum Enrollment</label>
@@ -164,11 +152,7 @@
                 <label for="pwd">LastDate To Enroll</label>
                 <input type="date" class="form-control" id="pwd"[value]="LastDate | date:'yyyy-MM-dd'" 
                   [(ngModel)]="LastDate">
-<<<<<<< HEAD
-              
-=======
                
->>>>>>> 7fd742106e420ba6dfdfb046a08e78a031f10b46
               </div>
               <div class="form-group">
                 <label for="pwd">Venue</label>
