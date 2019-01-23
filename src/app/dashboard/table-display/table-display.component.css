@@ -55,6 +55,7 @@ table {
   .example-element-description-attribution {
     opacity: 0.5;
   }
-  .far fa-registered{
+  .wrap-box{
+    display: flex;
     
   }

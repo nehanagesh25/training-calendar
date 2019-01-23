@@ -139,5 +139,9 @@ export class ServicesService {
         let url = Appsettings.BASE_URL + Appsettings.GetCalendarDetails;
         return this.http.post(url,name);
     }
+    public checkforregister(data){
+        let url=Appsettings.BASE_URL+Appsettings.checkforregister;
+        return this.http.post(url,data);
+    }
 
 }

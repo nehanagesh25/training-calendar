@@ -71,9 +71,6 @@ export class CalendarComponent implements OnInit {
     data.forEach((item) => {
       // var fromdate =  new Date(item.FromDate.slice(0, item.FromDate.lastIndexOf(" ")));
       // var todate = new Date(item.ToDate.slice(0, item.ToDate.lastIndexOf(" ")));
-
-
-
       var from = this.datepipe.transform(item.FromDate, 'MM-dd-yyyy');
       var to = this.datepipe.transform(item.ToDate, 'MM-dd-yyyy');
       console.log("from", from);
@@ -133,9 +130,4 @@ export class CalendarComponent implements OnInit {
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
   }
-
-
-
-  
-
 }
