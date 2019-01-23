@@ -52,8 +52,8 @@ export class DisplayComponent implements OnInit {
 
     console.log("Removable");
     console.log(id);
-    var data = { 'Course_ID': id }
-    Swal.fire({
+    var data = { 'Course_ID': id };
+    (Swal as any).fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
       type: 'warning',
@@ -63,7 +63,7 @@ export class DisplayComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        Swal.fire(
+        (Swal as any).fire(
           this.service.DeleteCourse(data).subscribe((Res) => {
             if (Res != null) {
               Swal("Course deleted ", "SuccessFully!", "success");
