@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using System.Web;
 using System.Web.Http;
-using TraingCalanderModel.Model;
+using TrainingCalendarModel.Model;
 using TrainingCalendarRepository.Model;
 using TrainingCalendarRepository.Repository.Abstract;
 
@@ -90,13 +90,13 @@ namespace TrainingCalanderService.Controllers
             DateTime dt = DateTime.Now;
             return Ok(_cr.GetBydate(dt));
         }
-        [Route("CalendarDetails")]
+        [Route("TableDetails")]
         [HttpGet]
-        public IHttpActionResult GetCalendarDetails()
+        public IHttpActionResult GetTableDetails()
         {
             try
             {
-                return Ok(_cr.GetCalendarDetails());
+                return Ok(_cr.GetTableDetails());
             }
             catch (Exception e)
             {
@@ -109,6 +109,20 @@ namespace TrainingCalanderService.Controllers
         public IHttpActionResult LastRecord()
         {
             return Ok(_cr.LastRecord());
+        }
+     
+        [Route("CalendarDetails")]
+        [HttpPost]
+        public IHttpActionResult GetClendarDetails(User username)
+        {
+            try
+            {
+                return Ok(_cr.GetCalendarDetails(username));
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

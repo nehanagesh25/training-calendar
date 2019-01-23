@@ -1,4 +1,4 @@
-﻿namespace TrainingCalanderModel.Model
+﻿namespace TrainingCalendarModel.Model
 {
     public  class AdminLogin
     {

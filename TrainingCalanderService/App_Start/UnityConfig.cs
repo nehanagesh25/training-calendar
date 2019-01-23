@@ -1,5 +1,4 @@
 using System;
-using Microsoft.Practices.Unity;
 using TrainingCalendarRepository.Repository;
 using TrainingCalendarRepository.Repository.Abstract;
 using Unity;

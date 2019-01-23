@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TraingCalanderModel.Model;
+using TrainingCalendarModel.Model;
 using TrainingCalendarRepository.Model;
 using TrainingCalendarRepository.Repository.Abstract;
 using Enrollment = TrainingCalendarRepository.Model.Enrollment;
-using UserLogin = TraingCalanderModel.Model.UserLogin;
+using UserLogin = TrainingCalendarModel.Model.UserLogin;
 
 namespace TrainingCalendarRepository.Repository
 {
@@ -57,6 +56,9 @@ namespace TrainingCalendarRepository.Repository
         {
             try
             {
+                //var User_ID =Convert.ToDecimal( from p in _db.UserLogins where p.User_Name == res.User_Name select p.User_ID);
+                //var Course_ID = Convert.ToDecimal(from p in _db.CourseDetails where p.Course_Name == res.Course_Name select p.Course_ID);
+                //var EnrollMaster_ID =Convert.ToDecimal( from p in _db.Enrollmasters where p.Course_ID == Course_ID select p.Enrollmaster_ID);
                 var User_ID = User_id(res.User_Name);
                 var Course_ID = Course_Id(res.Course_Name);
                 var EnrollMaster_ID = EnrollId(Course_ID);
@@ -93,8 +95,10 @@ namespace TrainingCalendarRepository.Repository
             }
           
         }
+        public bool CheckToRegister(Register res)        {
 
-      
+            var Course_ID = Course_Id(res.Course_Name);            var EnrollMaster_ID = EnrollId(Course_ID);            var result = _db.Enrollmasters.FirstOrDefault(r => r.Enrollmaster_ID == EnrollMaster_ID && r.Last_date_to_enroll < DateTime.Today);            if (result != null)            {                return true;            }            else            {                return false;            }        }
+
         public bool UnRegister(Register res)
         {
 
@@ -119,7 +123,7 @@ namespace TrainingCalendarRepository.Repository
         }
 
         //Getting ids from names 
-        private int EnrollId(int course_ID)
+        private int EnrollId(decimal course_ID)
         {
             var EnrollMaster_ID = Convert.ToInt32((from p in _db.Enrollmasters
                                                    where p.Course_ID == course_ID
@@ -157,6 +161,21 @@ namespace TrainingCalendarRepository.Repository
 
             return result.Distinct() as IEnumerable<UserLogin>;
 
+        }
+        public IEnumerable<CoursesAttended> GetCoursesAttended(UserLogin name)
+        {
+            var result = from p in _db.UserLogins
+                         join r in _db.Enrollments on p.User_ID equals r.User_ID
+                         join t in _db.Enrollmasters on r.EnrollMaster_ID equals t.Enrollmaster_ID
+                         join n in _db.CourseDetails on t.Course_ID equals n.Course_ID
+                         where p.User_Name == name.User_Name
+                         select new CoursesAttended
+                         {
+                             Course_Name = n.Course_Name,
+                             FromDate = t.FromDate,
+                             ToDate = t.ToDate
+                         };
+            return result.Distinct();
         }
     }
 }

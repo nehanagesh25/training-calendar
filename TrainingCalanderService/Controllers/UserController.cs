@@ -1,6 +1,6 @@
 ﻿using System.Net;
 using System.Web.Http;
-using TraingCalanderModel.Model;
+using TrainingCalendarModel.Model;
 using TrainingCalendarRepository.Repository.Abstract;
 
 namespace API.Controllers

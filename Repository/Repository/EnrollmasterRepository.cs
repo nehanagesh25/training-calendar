@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TrainingCalanderModel.Model;
+using TrainingCalendarModel.Model;
 using TrainingCalendarRepository.Model;
 using TrainingCalendarRepository.Repository.Abstract;
 
@@ -115,9 +115,9 @@ namespace TrainingCalendarRepository.Repository
                                                  where train.Trainer_ID == enroll.Trainer_ID
                                                  select train.Trainer_ID).FirstOrDefault());
 
-                int cousreID = Convert.ToInt32((from course in _db.TrainerDetails
-                                                where course.Course_ID == enroll.Course_ID
-                                                select course.Course_ID).FirstOrDefault());
+                //int cousreID = Convert.ToInt32((from course in _db.TrainerDetails
+                //                                where course.Course_ID == enroll.Course_ID
+                //                                select course.Course_ID).FirstOrDefault());
 
                 var result = from u in _db.Enrollmasters
                              where u.Enrollmaster_ID == enroll.Enrollmaster_ID
@@ -125,7 +125,6 @@ namespace TrainingCalendarRepository.Repository
                 foreach (Enrollmaster u in result)
                 {
                     u.Trainer_ID = trainerID;
-                    u.Course_ID = cousreID;
                     u.FromDate = fromdate;
                     u.ToDate = todate;
                     u.Venue = enroll.Venue;

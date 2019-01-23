@@ -76,9 +76,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="TraingCalanderModel">
-      <HintPath>..\TraingCalanderModel\bin\Debug\TraingCalanderModel.exe</HintPath>
-    </Reference>
     <Reference Include="Unity.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.Abstractions.dll</HintPath>
     </Reference>
@@ -187,6 +184,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Upload\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TraingCalanderModel\TrainingCalendarModel.csproj">
+      <Project>{78D5914C-DCE9-4C9C-8FBD-6623678A2D1B}</Project>
+      <Name>TrainingCalendarModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

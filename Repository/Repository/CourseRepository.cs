@@ -5,7 +5,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
-using TraingCalanderModel.Model;
+using TrainingCalendarModel.Model;
 using TrainingCalendarRepository.Model;
 using TrainingCalendarRepository.Repository.Abstract;
 
@@ -231,105 +231,54 @@ namespace TrainingCalendarRepository.Repository
             //GetCalendarDetails(result);
 
         }
-        public IEnumerable<CalendarDisplay> GetCalendarDetails()
+        public IEnumerable<CalendarDisplay> GetTableDetails()
         {
-            DateTime fromdate = new DateTime();
-            DateTime todate = new DateTime();
-            fromdate = DateTime.Now;
-            todate = DateTime.Now;
-            var max = _db.Enrollmasters.Select(m => m.Max_enroll);
-            var min = _db.Enrollmasters.Select(m => m.Min_enroll);
-            var avg = _db.Enrollmasters.Select(m => (m.Min_enroll + m.Min_enroll) / 2);
-
-           
             var query = (from p in _db.CourseDetails.AsEnumerable()
-                        join r in _db.Enrollmasters on p.Course_ID equals r.Course_ID
-                        join e in _db.Enrollments on r.Enrollmaster_ID equals e.EnrollMaster_ID
-
-                        select new CalendarDisplay
-                        {
-                            Course_ID = p.Course_ID,
-                            Course_Name = p.Course_Name,
-                            Description = p.Description,
-                            Duration = p.Duration,
-                            FromDate = r.FromDate.ToString("MMM-dd-yyyy"),
-                            ToDate = r.ToDate.ToString("MMM-dd-yyyy"),
-                            Last_date_to_enroll = r.Last_date_to_enroll.ToShortDateString(),
-                            Max_enroll = r.Max_enroll,
-                            Min_enroll = r.Min_enroll,
-                            Venue = r.Venue,
-                            ColorType = GetColorType(p.Course_ID)
-                        }).GroupBy(n => n.Course_ID).Select(c => c.First()).ToList();
-
-
+                         join r in _db.Enrollmasters on p.Course_ID equals r.Course_ID
+                         join t in _db.TrainerDetails on r.Trainer_ID equals t.Trainer_ID
+                         select new CalendarDisplay
+                         {
+                             Course_ID = p.Course_ID,
+                             Course_Name = p.Course_Name,
+                             Description = p.Description,
+                             Duration = p.Duration,
+                             FromDate = r.FromDate,
+                             ToDate = r.ToDate,
+                             Last_date_to_enroll = r.Last_date_to_enroll.ToString("MMM-dd-yyyy"),
+                             Max_enroll = r.Max_enroll,
+                             Min_enroll = r.Min_enroll,
+                             Venue = r.Venue,
+                             Trainer_Name = t.Trainer_Name,
+                             ColorType = GetColorType(p.Course_ID),
+                             File_Name = p.File_Name
+                         }).GroupBy(n => n.Course_ID).Select(c => c.First()).ToList();
+            return query;
+        }
+        public IEnumerable<CalendarDisplay> GetCalendarDetails(User username)
+        {
+            DateTime today = new DateTime();
+            var query = (from u in _db.UserLogins
+                         join p in _db.Enrollments on u.User_Name equals username.User_Name
+                         join r in _db.Enrollmasters on p.EnrollMaster_ID equals r.Enrollmaster_ID
+                         join s in _db.CourseDetails on r.Course_ID equals s.Course_ID
+                         select new CalendarDisplay
+                         {
+                             Course_ID = s.Course_ID,
+                             Course_Name = s.Course_Name,
+                             Description = s.Description,
+                             Duration = s.Duration,
+                             FromDate = r.FromDate,
+                             ToDate = r.ToDate,
+                             Last_date_to_enroll = r.Last_date_to_enroll.ToString(),
+                             Max_enroll = r.Max_enroll,
+                             Min_enroll = r.Min_enroll,
+                             Venue = r.Venue,
+                             ColorType = DateTime.Compare(r.FromDate, today)
+                         }).Distinct();
+           
 
             return query;
         }
-
-
-        //public IEnumerable GetColorType()
-        //{
-        //    var result = from r in _db.Enrollmasters
-        //                 join e in _db.Enrollments on r.Enrollmaster_ID equals e.EnrollMaster_ID                         
-        //    group new { e } by new
-        //    {
-        //        e.EnrollMaster_ID
-        //    } into t
-        //    select new
-        //    {
-        //        coursecount = t.Count()
-        //    };
-
-        //    //var mid = _db.Enrollmasters.Select(m =>( m.Min_enroll + m.Min_enroll)/2);
-
-        //    return result;
-
-        //    //GetCalendarDetails(result);
-
-        //}
-        //public IEnumerable<CalendarDisplay> GetCalendarDetails()
-        //{
-        //    var result = GetColorType();
-           
-
-        //    var query = from p in _db.CourseDetails
-        //                join r in _db.Enrollmasters on p.Course_ID equals r.Course_ID
-        //                join e in _db.Enrollments on r.Enrollmaster_ID equals e.EnrollMaster_ID
-        //                select new CalendarDisplay
-        //                {
-        //                    Course_ID = p.Course_ID,
-        //                    Course_Name = p.Course_Name,
-        //                    Description = p.Description,
-        //                    Duration = p.Duration,
-        //                    FromDate = r.FromDate.ToString(),
-        //                    ToDate = r.ToDate.ToString(),
-        //                    Last_date_to_enroll = r.Last_date_to_enroll.ToString(),
-        //                    Max_enroll = r.Max_enroll,
-        //                    Min_enroll = r.Min_enroll,
-        //                    Venue = r.Venue,
-        //                    ColorType = GetColorType(p.Course_ID)
-        //                };
-        //    foreach(var item in query)
-        //    {
-        //        var max = _db.Enrollmasters.Where(d => d.Course_ID == item.Course_ID).Select(m => m.Max_enroll);
-        //        var min = _db.Enrollmasters.Where(d => d.Course_ID == item.Course_ID).Select(m => m.Min_enroll);
-        //        var avg = _db.Enrollmasters.Where(d => d.Course_ID == item.Course_ID).Select(m => (m.Max_enroll + m.Min_enroll) / 2);
-        //        if(result == max)
-        //        {
-        //            item.ColorType = 1;   
-        //        }
-        //        else if (result <= max)
-        //        {
-
-        //        }
-        //    }
-
-            
-        //    return query;
-        //}
-
-      
-
         public IEnumerable LastRecord()
         {
             return (_db.CourseDetails
@@ -337,5 +286,6 @@ namespace TrainingCalendarRepository.Repository
                             .Select(r => r.Course_ID)
                             .First().ToString());
         }
+
     }
 }

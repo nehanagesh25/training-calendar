@@ -28,7 +28,7 @@ namespace TrainingCalendarRepository.Model
         public virtual DbSet<CourseDetail> CourseDetails { get; set; }
         public virtual DbSet<Enrollmaster> Enrollmasters { get; set; }
         public virtual DbSet<Enrollment> Enrollments { get; set; }
-        public virtual DbSet<TrainerDetail> TrainerDetails { get; set; }
         public virtual DbSet<UserLogin> UserLogins { get; set; }
+        public virtual DbSet<TrainerDetail> TrainerDetails { get; set; }
     }
 }

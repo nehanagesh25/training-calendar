@@ -101,10 +101,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="TraingCalanderModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\TraingCalanderModel\bin\Debug\TraingCalanderModel.exe</HintPath>
-    </Reference>
     <Reference Include="Unity.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.2.0\lib\net45\Unity.Abstractions.dll</HintPath>
     </Reference>
@@ -195,6 +191,10 @@
     <ProjectReference Include="..\Repository\TrainingCalendarRepository.csproj">
       <Project>{ACA11A96-13BE-48A4-957A-6BC5123CD807}</Project>
       <Name>TrainingCalendarRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TraingCalanderModel\TrainingCalendarModel.csproj">
+      <Project>{78D5914C-DCE9-4C9C-8FBD-6623678A2D1B}</Project>
+      <Name>TrainingCalendarModel</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

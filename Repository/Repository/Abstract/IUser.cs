@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TraingCalanderModel.Model;
+using TrainingCalendarModel.Model;
 
 namespace TrainingCalendarRepository.Repository.Abstract
 {

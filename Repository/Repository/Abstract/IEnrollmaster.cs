@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using TrainingCalanderModel.Model;
+using TrainingCalendarModel.Model;
 
 namespace TrainingCalendarRepository.Repository.Abstract
 {

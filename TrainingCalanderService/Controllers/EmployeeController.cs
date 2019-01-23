@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Web.Http;
-using TraingCalanderModel.Model;
+using TrainingCalendarModel.Model;
 using TrainingCalendarRepository.Repository.Abstract;
 
 namespace TrainingCalanderService.Controllers
@@ -20,14 +20,7 @@ namespace TrainingCalanderService.Controllers
         {
             try
             {
-                if (_EmpRepo.Check(res))
-                {
-                    return Ok("Success");
-                }
-                else
-                {
-                    return Content(HttpStatusCode.BadRequest, "Any object");
-                }
+                return Ok(_EmpRepo.Check(res));
             }
             catch (Exception e)
             {
@@ -85,5 +78,20 @@ namespace TrainingCalanderService.Controllers
             {
             public int Course_ID;
             }
+
+        [HttpPost]
+        [Route("CoursesAttended")]
+        public IHttpActionResult GetCoursesAttended(UserLogin name)
+        {
+            try
+            {
+                return Ok(_EmpRepo.GetCoursesAttended(name));
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+        [HttpPost]        [Route("checkforregister")]        public IHttpActionResult CheckForRegister(Register course)        {            try            {                if (_EmpRepo.CheckToRegister(course))                {                    return Ok("Success");                }                else                {                    return Content(HttpStatusCode.InternalServerError, "Error ");                }            }            catch (Exception e)            {                throw e;            }        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TrainingCalanderModel.Model
+namespace TrainingCalendarModel.Model
 {
     public partial class Trainerdetails
     {

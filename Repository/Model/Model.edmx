@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Training_CalendarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Training_CalendarModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CourseDetails">
           <Key>
             <PropertyRef Name="Course_ID" />
@@ -33,7 +33,7 @@
           <Property Name="FromDate" Type="datetime" Nullable="false" />
           <Property Name="ToDate" Type="datetime" Nullable="false" />
           <Property Name="Venue" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Last_date_to_enroll" Type="datetime" Nullable="false" />
+          <Property Name="Last_date_to_enroll" Type="date" Nullable="false" />
           <Property Name="Max_enroll" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Min_enroll" Type="numeric" Precision="18" Scale="0" />
           <Property Name="Created_On" Type="datetime" Nullable="false" />
@@ -44,7 +44,7 @@
           <Key>
             <PropertyRef Name="Enrollment_ID" />
           </Key>
-          <Property Name="Enrollment_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Enrollment_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EnrollMaster_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="User_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Reg_On" Type="datetime" Nullable="false" />
@@ -57,8 +57,8 @@
           <Key>
             <PropertyRef Name="Trainer_ID" />
           </Key>
-          <Property Name="Trainer_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Course_ID" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Trainer_ID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="User_ID" Type="numeric" Precision="18" Scale="0" />
           <Property Name="Trainer_Type" Type="bit" Nullable="false" />
           <Property Name="Trainer_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -100,8 +100,7 @@
             <End Role="Enrollment" EntitySet="Enrollment" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Training_CalendarModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -133,7 +132,7 @@
           <Property Name="FromDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ToDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Venue" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Last_date_to_enroll" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Last_date_to_enroll" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Max_enroll" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Min_enroll" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="3" />
@@ -153,19 +152,6 @@
           <Property Name="Created_On" Type="DateTime" Precision="3" />
           <Property Name="Updated_On" Type="DateTime" Precision="3" />
           <NavigationProperty Name="UserLogin" Relationship="Self.fk_UserLogin" FromRole="Enrollment" ToRole="UserLogin" />
-        </EntityType>
-        <EntityType Name="TrainerDetail">
-          <Key>
-            <PropertyRef Name="Trainer_ID" />
-          </Key>
-          <Property Name="Trainer_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Course_ID" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="User_ID" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Trainer_Type" Type="Boolean" Nullable="false" />
-          <Property Name="Trainer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Updated_On" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="UserLogin">
           <Key>
@@ -195,13 +181,26 @@
           <EntitySet Name="CourseDetails" EntityType="Self.CourseDetail" />
           <EntitySet Name="Enrollmasters" EntityType="Self.Enrollmaster" />
           <EntitySet Name="Enrollments" EntityType="Self.Enrollment" />
-          <EntitySet Name="TrainerDetails" EntityType="Self.TrainerDetail" />
           <EntitySet Name="UserLogins" EntityType="Self.UserLogin" />
           <AssociationSet Name="fk_UserLogin" Association="Self.fk_UserLogin">
             <End Role="UserLogin" EntitySet="UserLogins" />
             <End Role="Enrollment" EntitySet="Enrollments" />
           </AssociationSet>
+          <EntitySet Name="TrainerDetails" EntityType="Training_CalendarModel.TrainerDetail" />
         </EntityContainer>
+        <EntityType Name="TrainerDetail">
+          <Key>
+            <PropertyRef Name="Trainer_ID" />
+          </Key>
+          <Property Name="Trainer_ID" Type="Decimal" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="User_ID" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Trainer_Type" Type="Boolean" Nullable="false" />
+          <Property Name="Trainer_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Created_By" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Created_On" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Updated_On" Type="DateTime" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -259,20 +258,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TrainerDetails">
-            <EntityTypeMapping TypeName="Training_CalendarModel.TrainerDetail">
-              <MappingFragment StoreEntitySet="TrainerDetails">
-                <ScalarProperty Name="Trainer_ID" ColumnName="Trainer_ID" />
-                <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-                <ScalarProperty Name="Trainer_Type" ColumnName="Trainer_Type" />
-                <ScalarProperty Name="Trainer_Name" ColumnName="Trainer_Name" />
-                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
-                <ScalarProperty Name="Created_On" ColumnName="Created_On" />
-                <ScalarProperty Name="Updated_On" ColumnName="Updated_On" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UserLogins">
             <EntityTypeMapping TypeName="Training_CalendarModel.UserLogin">
               <MappingFragment StoreEntitySet="UserLogin">
@@ -282,6 +267,20 @@
                 <ScalarProperty Name="Last_Login" ColumnName="Last_Login" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrainerDetails">
+            <EntityTypeMapping TypeName="Training_CalendarModel.TrainerDetail">
+              <MappingFragment StoreEntitySet="TrainerDetails">
+                <ScalarProperty Name="Updated_On" ColumnName="Updated_On" />
+                <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Trainer_Name" ColumnName="Trainer_Name" />
+                <ScalarProperty Name="Trainer_Type" ColumnName="Trainer_Type" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Trainer_ID" ColumnName="Trainer_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

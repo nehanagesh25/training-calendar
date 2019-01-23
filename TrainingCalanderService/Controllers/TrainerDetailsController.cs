@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Http;
-using TrainingCalanderModel.Model;
+using TrainingCalendarModel.Model;
+using TrainingCalendarModel.Model;
 using TrainingCalendarRepository.Repository.Abstract;
 
 namespace TrainingCalanderService.Controllers

@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TraingCalanderModel.Model;
+using TrainingCalendarModel.Model;
 using TrainingCalendarRepository.Model;
 using TrainingCalendarRepository.Repository.Abstract;
-using UserLogin = TraingCalanderModel.Model.UserLogin;
+using UserLogin = TrainingCalendarModel.Model.UserLogin;
 
 namespace TrainingCalendarRepository.Repository
 {
@@ -78,7 +78,7 @@ namespace TrainingCalendarRepository.Repository
         {
             var result = from u in _db.UserLogins
                          where u.User_Name == admin.User_Name && u.Password == admin.Password
-                         select new TraingCalanderModel.Model.UserLogin
+                         select new UserLogin
                          {
                              User_Name = u.User_Name,
                              Password = u.Password
