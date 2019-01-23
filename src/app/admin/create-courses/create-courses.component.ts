@@ -66,10 +66,15 @@ public cur;
     this.router.navigate(['AdminDashboard'])
   }
   SubmitCourses() {
+var date1 = new Date(this.FromDate);
+var date2 = new Date(this.ToDate);
+var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+
     var date = this.datepipe.transform(this.FromDate, 'dd-MM-yyyy');
     console.log(date);
     debugger
-    var data = { 'Course_Name': this.CourseName, 'Trainer_ID': this.id, 'Description': this.Discreption, 'Duration': this.Dureation, 'Attachment': this.path }
+    var data = { 'Course_Name': this.CourseName, 'Trainer_ID': this.id, 'Description': this.Discreption, 'Duration':diffDays, 'Attachment': this.path }
     console.log(data);
     this.serv.AddCourse(data).subscribe((res) => {
       this.serv.GetCourseid().subscribe((res) => {
