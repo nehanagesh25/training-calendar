@@ -53,7 +53,7 @@ export class CalendarComponent implements OnInit {
   constructor(private modal: NgbModal, private authService: AuthService, private router: Router, public service: ServicesService, public datepipe: DatePipe) { } 
   ngOnInit() {
    
-    this.username=localStorage.getItem('LoggedInUser');
+    this.username=localStorage.getItem('isLoggedIn');
      var data={"User_Name":this.username}
     this.service.GetCalendarDetails(data).subscribe((res: any) => {
       console.log('calender data===>', res)
@@ -71,9 +71,6 @@ export class CalendarComponent implements OnInit {
     data.forEach((item) => {
       // var fromdate =  new Date(item.FromDate.slice(0, item.FromDate.lastIndexOf(" ")));
       // var todate = new Date(item.ToDate.slice(0, item.ToDate.lastIndexOf(" ")));
-
-
-
       var from = this.datepipe.transform(item.FromDate, 'MM-dd-yyyy');
       var to = this.datepipe.transform(item.ToDate, 'MM-dd-yyyy');
       console.log("from", from);
@@ -133,41 +130,4 @@ export class CalendarComponent implements OnInit {
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
   }
-  covertJsontoArray(valuedata) {
-    console.log(valuedata);
-    debugger;
-    return JSON.parse(valuedata);
-  }
-  Register() {
-    var data = { "User_Name": this.user }
-    this.service.Register(data).subscribe((Response) => {
-      if (Response) {
-        this.flag = 1;
-        Swal("Registration!", "Done!", "success");
-      }
-      else {
-        Swal("Registration Failed", "warning");
-      }
-    })
-  }
-  UnRegister() {
-    this.res = 1;
-  }
-  UnRegister1() {
-    var data = { "User_Name": this.user, "Course_Name": this.modalData.event.title, "Reason_For_Unreg": this.reson };
-    debugger
-    this.service.UnRegister(data).subscribe((Response) => {
-      if (Response) {
-        this.flag = 0;
-        this.reson = null;
-        this.res = 0;
-        Swal("DeRegistration!", "Done!", "success");
-      }
-      else {
-        Swal("DeRegistration!", "warning");
-      }
-    })
-  }
-  
-
 }

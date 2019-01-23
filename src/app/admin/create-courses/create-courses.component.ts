@@ -8,6 +8,7 @@ import { parse } from 'date-fns';
 import { DatePipe } from '@angular/common';
 import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { default as swal } from 'sweetalert2';
+import { toDate } from '@angular/common/src/i18n/format_date';
 const URL = Appsettings.BASE_URL + Appsettings.SaveFile;
 
 @Component({
@@ -66,6 +67,7 @@ public cur;
     this.router.navigate(['AdminDashboard'])
   }
   SubmitCourses() {
+    var oneDay = 24*60*60*1000;
     var date = this.datepipe.transform(this.FromDate, 'dd-MM-yyyy');
     console.log(date);
     debugger

@@ -8,7 +8,7 @@
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
 
-<div class="container">
+<div class="container" style="font-family:'Times New Roman', Times, serif; width:100%; height: 100;">
   <div class="row">
 
 
@@ -19,22 +19,22 @@
             <div class="col col-xs-6">
               <h3 class="panel-title" style="color:rgba(80, 90, 150, 0.918);font-weight:bold;">Course Details</h3>
             </div>
-            <input [(ngModel)]="searchText" placeholder="Search Course">
+            <input [(ngModel)]="searchText" placeholder="&nbsp;&nbsp;Search Course">
             <div class="col col-xs-6 text-right">
-              <button type="button" class="btn btn-sm btn-primary btn-create" (click)="CreateCourses()">CreateCourses</button>
+              <button type="button" class="btn btn-sm btn-primary btn-create" (click)="CreateCourses()">Create Courses</button>
             </div>
           </div>
         </div>
-        <div class="panel-body">
-          <table class="table table-striped table-bordered table-list">
+        <div class="panel-body" style="width:auto;">
+          <table class="table table-striped table-bordered table-list" style="size:100%">
             <thead>
               <tr align="center">
-                <th align="center">CourseName</th>
-                <th align="center"> Duration</th>
-                <th align="center">From Date</th>
-                <th align="center">To Date</th>
-                <th align="center">Venue</th>
-                <th class="text-center">Remove/Edit</th>
+                <th class="text-center" style="width:auto;">Course Name</th>
+                <th class="text-center" style="width:auto;"> Duration</th>
+                <th class="text-center" style="width:auto;">From Date</th>
+                <th class="text-center" style="width:auto;">To Date</th>
+                <th class="text-center" style="width:auto;">Venue</th>
+                <th class="text-center" style="width:auto;">Remove/Edit</th>
               </tr>
             </thead>
             <tbody>
@@ -50,7 +50,7 @@
                 <td>
 
                   <span class="table-remove">
-                    <button type="button" class="btn btn-sm btn-primary btn-create" (click)="remove(d.Course_ID)">Remove</button>
+                    <button type="button" class="btn btn-sm btn-primary btn-create" (click)="remove(d.Course_ID)">&nbsp;Remove</button>
                   </span>&nbsp;&nbsp;&nbsp;<i class="fas fa-edit" (click)="edit(d.Course_ID)" data-toggle="modal"
                     data-target="#myModal1"></i>
                 </td>
@@ -118,7 +118,7 @@
               <div class="form-group">
                 <label for="pwd">Select Trainer</label><br>
                 <select (change)="filterForeCasts($event.target.value)">
-                  <option [value]="Trainer.Trainer_ID" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
+                  <option [value]="Trainer.Trainer_ID" [ngValue]="Trainer.value" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
                 </select>
                 {{value}}
               </div>
@@ -136,12 +136,12 @@
                 <label for="pwd">FromDate</label>
                 <input type="date" class="form-control" id="pwd" min="{{cur | date:'yyyy-MM-dd'}}" [(ngModel)]="FromDate"
                   [value]="FromDate | date:'yyyy-MM-dd'">
-                {{FromDate}}
+               
               </div>
               <div class="form-group">
                 <label for="pwd">ToDate</label>
                 <input type="date" class="form-control" id="pwd" min="{{FromDate | date:'yyyy-MM-dd'}}"[value]="ToDate | date:'yyyy-MM-dd'"[(ngModel)]="ToDate">
-                {{ToDate | date:'yyyy-MM-dd'}}
+               
               </div>
               <div class="form-group">
                 <label for="pwd">Maximum Enrollment</label>
@@ -155,9 +155,9 @@
               </div>
               <div class="form-group">
                 <label for="pwd">LastDate To Enroll</label>
-                <input type="date" class="form-control" id="pwd"[value]="LastDate | date:'yyyy-MM-dd'" min="{{cur | date:'yyyy-MM-dd'}}" max="{{FromDate | date:'yyyy-MM-dd'}}"
+                <input type="date" class="form-control" id="pwd"[value]="LastDate | date:'yyyy-MM-dd'" 
                   [(ngModel)]="LastDate">
-                {{LastDate | date:'yyyy-MM-dd'}}
+              
               </div>
               <div class="form-group">
                 <label for="pwd">Venue</label>

@@ -117,6 +117,7 @@ export class DisplayComponent implements OnInit {
           this.MiniumEnroll = res[0].Min_enroll;
           this.ToDate = this.datepipe.transform(res[0].ToDate, 'yyyy-MM-dd');
           this.Venue = res[0].Venue;
+        
 
         })
       }

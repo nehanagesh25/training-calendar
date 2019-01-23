@@ -151,7 +151,7 @@ body {
   
 }
 .no-icon:hover{
-  cursor: -webkit-grab; cursor: grab;
+  cursor: -webkit-grab; cursor: grab; color: red; font-size:20px;
 }
 @keyframes spin {
   from {
