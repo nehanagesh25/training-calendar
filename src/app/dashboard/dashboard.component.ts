@@ -72,7 +72,6 @@ public username;
   }
   signOut(): void {
     this.authService.signOut();
-    debugger
     localStorage.removeItem("isLogin");
 
     this.router.navigate(['login']);

@@ -65,10 +65,11 @@ export class LoginComponent implements OnInit {
           console.log(response);
           if (response === 'Success') {
             localStorage.setItem('isLogin', 'true');
+            localStorage.setItem('isLoggedIn', userData.email);
             this.router.navigate(['dashboard']);
           }
           else {
-            swal("Not Aplicaable");
+            swal("Not Applicable");
           }
 
         })

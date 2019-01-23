@@ -1,3 +1,4 @@
+
  //declare var baseurl:any;
  var baseurl = "http://localhost:60027/TrainingCalendar/";
 
@@ -12,7 +13,9 @@ export class Appsettings{
     public static check='user/check';
     public static EnrolledEmployees='user/EnrolledEmployees';
     public static checkforregister='user/checkforregister';
+
    // public static GetCalendarDetails='Course/GetCalendarDetails';
+
     //Course API
     public static AddCourse='Course/AddCourse';
     public static AllCourse='Course/GetAllCourseWithEnrollMaster';
@@ -36,8 +39,10 @@ export class Appsettings{
     public static CreateTrainers='Trainers/CreateTrainers';
     public static UpdateTrainers='Trainers/UpdateTrainers';
     public static GetAllTrainers='Trainers/GetAllTrainers';
+
     public static RemoveTrainerdetails='Trainers/RemoveTrainerdetails';  
     public static GetTrainerById='Trainers/GetTrainerByID';  
+
     //courses attended
     public static CoursesAttended='user/CoursesAttended';
 }

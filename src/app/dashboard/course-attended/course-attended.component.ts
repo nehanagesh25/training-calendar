@@ -24,7 +24,7 @@ export class CourseAttendedComponent implements OnInit {
   constructor(private service: ServicesService) { }
 
   ngOnInit() {
-    this.username = localStorage.getItem('LoggedInUser');
+    this.username = localStorage.getItem('isLoggedIn');
     var name = { "User_Name": this.username }
     this.service.GetCoursesAttended(name).subscribe((res: any) => {
       console.log(res);
