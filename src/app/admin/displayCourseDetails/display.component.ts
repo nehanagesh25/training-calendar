@@ -66,14 +66,15 @@ export class DisplayComponent implements OnInit {
       if (result.value) {
         (Swal as any).fire(
           this.service.DeleteCourse(data).subscribe((Res) => {
-            if (Res != null) {
-              Swal("Course deleted ", "SuccessFully!", "success");
-              window.location.reload();
-            }
-            else {
-              Swal("Update Error", 'warning')
-            }
-
+            this.service.Removemaster(data).subscribe((res)=>{
+              if (Res != null) {
+                Swal("Course deleted ", "SuccessFully!", "success");
+                window.location.reload();
+              }
+              else {
+                Swal("Update Error", 'warning')
+              }
+            })      
           })
         )
       }
@@ -118,6 +119,7 @@ export class DisplayComponent implements OnInit {
           this.MiniumEnroll = res[0].Min_enroll;
           this.ToDate = this.datepipe.transform(res[0].ToDate, 'yyyy-MM-dd');
           this.Venue = res[0].Venue;
+          this.trainerid=res[0].Trainer_ID
 
         })
       }
