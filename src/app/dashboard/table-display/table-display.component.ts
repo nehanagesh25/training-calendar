@@ -113,16 +113,23 @@ export class TableDisplayComponent implements OnInit {
   };
   dataSource: any[];
   expandedElement: any[];
-  columnsToDisplay = ['CourseName', 'TrainerName', 'Duration', 'FromDate', 'ToDate', 'LastDateToEnroll', 'Venue'];
- 
-  Register(res) {
-    this.user=sessionStorage.getItem('User');
-  var data = { User_Name: this.user, Course_Name: res.CourseName };
-    console.log("user==",data);
-    this.service.Register(data).subscribe((Response) => {
-      if (Response) {
-        this.flag = 1;
-        Swal("Registration!", "Done!", "success");
+
+  columnsToDisplay = [
+    "CourseName",
+    "TrainerName",
+    "Duration",
+    "FromDate",
+    "ToDate",
+    "LastDateToEnroll",
+    "Venue"
+  ];
+  registerationClosed(res){
+    var data = {"User_Name":this.user,"Course_Name":res.CourseName}
+    var result = {"Course_Name":res.CourseName}
+    this.service.checkforregister(result).subscribe((Response)=>
+    {
+      if(Response === "Success"){
+        this.reg=1;
       }
       else{
         this.reg=0;
@@ -138,20 +145,22 @@ export class TableDisplayComponent implements OnInit {
   }
 
 
-  // Register(res) {
-  //   console.log(res);
 
-  //   var data = { User_Name: this.user, Course_Name: res.CourseName };
-  //   console.log("user==", data);
-  //   this.service.Register(data).subscribe(Response => {
-  //     if (Response) {
-  //       this.flag = 1;
-  //       Swal("Registeration!", "Done!", "success");
-  //     } else {
-  //       Swal("Registeration Failed", "warning");
-  //     }
-  //   });
-  // }
+  Register(res) {
+    console.log(res);
+
+    var data = { User_Name: this.user, Course_Name: res.CourseName };
+    console.log("user==", data);
+    this.service.Register(data).subscribe(Response => {
+      if (Response) {
+        this.flag = 1;
+        Swal("Registeration!", "Done!", "success");
+      } else {
+        Swal("Registeration Failed", "warning");
+      }
+    });
+  }
+  
   LeaveCourse(result) {
     var data = { User_Name: this.user, Course_Name: result.CourseName };
     debugger;
