@@ -115,9 +115,9 @@ export class TableDisplayComponent implements OnInit {
   expandedElement: any[];
   columnsToDisplay = ['CourseName', 'TrainerName', 'Duration', 'FromDate', 'ToDate', 'LastDateToEnroll', 'Venue'];
  
-  Register() {
+  Register(res) {
     this.user=sessionStorage.getItem('User');
-    var data = { "User_Name": this.user }
+  var data = { User_Name: this.user, Course_Name: res.CourseName };
     console.log("user==",data);
     this.service.Register(data).subscribe((Response) => {
       if (Response) {
