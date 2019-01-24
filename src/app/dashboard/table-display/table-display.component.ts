@@ -147,9 +147,9 @@ export class TableDisplayComponent implements OnInit {
 
 
   Register(res) {
-    console.log(res);
+    console.log("Register",res);
 
-    var data = { User_Name: this.user, Course_Name: res.CourseName };
+    var data = { User_Name: this.user, Course_ID: res };
     console.log("user==", data);
     this.service.Register(data).subscribe(Response => {
       if (Response) {
@@ -162,17 +162,17 @@ export class TableDisplayComponent implements OnInit {
   }
   
   LeaveCourse(result) {
-    var data = { User_Name: this.user, Course_Name: result.CourseName };
-    debugger;
+    var data = { User_Name: this.user, Course_ID: result };
+    
     this.service.check(data).subscribe(Response => {
       console.log("Response:", Response);
       // if(Response=trur)
     });
     this.res = 1;
   }
-  UnRegister() {
-    var data = { User_Name: this.user, Reason_For_Unreg: this.reason };
-    debugger;
+  UnRegister(res) {
+    var data = { User_Name: this.user, Reason_For_Unreg: this.reason,Course_ID:res.CourseName};
+    
     this.service.UnRegister(data).subscribe(Response => {
       if (Response) {
         this.flag = 0;

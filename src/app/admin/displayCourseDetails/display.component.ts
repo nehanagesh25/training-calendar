@@ -90,6 +90,24 @@ export class DisplayComponent implements OnInit {
 
 
     var data = { "Course_ID": value };
+    this.service.CourseByID(data).subscribe((Response) => {
+      if (Response != null) {
+        this.service.GetEnrollMasterById(data).subscribe((res) => {
+          console.log("Getting response",res);
+          this.CourseName = Response[0].Course_Name;
+          this.Discreption = Response[0].Description;
+          this.Dureation = Response[0].Duration;
+          this.FromDate = this.datepipe.transform(res[0].FromDate, 'yyyy-MM-dd');
+          this.LastDate = this.datepipe.transform(res[0].Last_date_to_enroll, 'yyyy-MM-dd');
+          this.MaxEnroll = res[0].Max_enroll;
+          this.MiniumEnroll = res[0].Min_enroll;
+          this.ToDate = this.datepipe.transform(res[0].ToDate, 'yyyy-MM-dd');
+          this.Venue = res[0].Venue;
+          this.trainerid=res[0].Trainer_ID
+        })
+      }
+    })
+
     this.service.GetRegisterEmployees(data).subscribe((Response) => {
       if (Response != null) {
         console.log(Response);
@@ -132,6 +150,7 @@ export class DisplayComponent implements OnInit {
     var timeDiff = Math.abs(date2.getTime() - date1.getTime());
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
     var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    diffDays=diffDays+1;
     console.log(this.id);
     var data = { 'Course_ID': this.courseid, 'Course_Name': this.CourseName, 'Trainer_ID': this.trainerid, 'Description': this.Discreption, 'Duration': diffDays }
     this.service.UpdateCourse(data).subscribe((Response) => {

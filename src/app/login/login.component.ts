@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("User", userData.email);
         sessionStorage.setItem("Userurl", userData.image);
         sessionStorage.setItem("Username", userData.name);
+        localStorage.setItem("isLoggedIn",userData.email);
         localStorage.setItem('isLogin', 'true');
         this.service.UserLogin(data1).subscribe((response: any) => {
           console.log(response);
