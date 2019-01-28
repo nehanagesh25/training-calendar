@@ -100,7 +100,7 @@ body {
 .main_sidebar ul li  {
   color:#fff;
   display:block;
-  font-family: 'Roboto Slab', serif;
+  /* font-family: 'Roboto Slab', serif; */
   margin-top: 20px;
   font-size:14px;
   cursor: pointer;
@@ -215,7 +215,7 @@ td,
 button.close {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  /* font-family: "Roboto", "Helvetica Neue", Arial, sans-serif; */
   font-weight: 400;
 }
 
@@ -230,7 +230,9 @@ h4,
   font-weight: 300;
   margin: 30px 0 15px;
 }
-
+.navbar navbar-expand-md{
+  overflow: hidden !important;
+}
 h1,
 .h1 {
   font-size: 52px;
@@ -543,7 +545,7 @@ body>.navbar-collapse .logo p {
   margin: 10px 10px;
   color: #FFFFFF;
   line-height: 20px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; */
 }
 
 .sidebar .logo .simple-text,

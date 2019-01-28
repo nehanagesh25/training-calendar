@@ -4,6 +4,9 @@
 html { height: 100%;
     /* overflow:hidden; */
 }
+/* body{
+    overflow: hidden !important;
+} */
 
 .modal-open {
     position: initial !important;

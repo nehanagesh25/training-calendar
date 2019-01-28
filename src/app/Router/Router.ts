@@ -14,10 +14,12 @@ import { DisplayComponent } from '../admin/displayCourseDetails/display.componen
 import { CourseAttendedComponent } from '../dashboard/course-attended/course-attended.component';
 import { TrainerDetailsComponent } from '../admin/trainer-details/trainer-details.component';
 import { CreateTrainersComponent } from '../admin/create-trainers/create-trainers.component';
+import { AdminLoginComponent } from '../admin-login/admin-login.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'admin', component:AdminLoginComponent },
   {
     path: 'dashboard', component: DashboardComponent, canActivate: [AuthGaurd],
     children: [

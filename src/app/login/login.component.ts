@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, SocialLoginModule } from 'angular-6-social-login';
+import { AuthService} from 'angular-6-social-login';
 import { SocialUser } from 'angular-6-social-login';
 import { GoogleLoginProvider } from 'angular-6-social-login';
 import { Router } from '@angular/router';
@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
           if (response === 'Success') {
             localStorage.setItem('isLogin', 'true');
             localStorage.setItem('isLoggedIn', userData.email);
-            this.router.navigate(['dashboard']);
+            this.router.navigate(['dashboard/table']);
           }
           else {
             swal("Not Applicable");

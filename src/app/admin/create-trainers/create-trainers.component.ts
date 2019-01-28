@@ -37,6 +37,7 @@ export class CreateTrainersComponent implements OnInit {
       console.log(res);
       if (res != null) {
         swal("Trainer added ", "SuccessFully!", "success");
+        this.router.navigate(['AdminDashboard/TrainerDetails']);
       }
       else {
         swal("Error in adding", 'warning')

@@ -10,7 +10,7 @@
       </div>
       <div class="form-group">
         <label for="pwd">Trainer Type</label><br>
-        <select [(ngModel)]="TrainerType">
+        <select [(ngModel)]="TrainerType" placeholder="Choose">
           <option *ngFor="let TrainerDetails of Trainer_Type" [ngValue]="TrainerDetails.value">{{TrainerDetails.name}}</option>
         </select>
       </div>

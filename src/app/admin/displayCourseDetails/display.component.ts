@@ -34,6 +34,7 @@ export class DisplayComponent implements OnInit {
   public flag1 = 0;
   public cur;
   public trainerid;
+  p: number = 1;
   constructor(private router: Router, private service: ServicesService, public datepipe: DatePipe) { }
 
   ngOnInit() {
