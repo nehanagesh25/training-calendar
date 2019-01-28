@@ -143,3 +143,6 @@ font-size: 1.3rem;
 .panel-default{
   width: 1000px;
 }
+.pagination{
+  float: right;
+}

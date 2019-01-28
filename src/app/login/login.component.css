@@ -1,5 +1,5 @@
 .body {
-  background-image: linear-gradient(to left bottom,rgba(0, 0, 0, 0.815), rgba(51, 42, 42, 0.575)), url('https://images.pexels.com/photos/1061588/pexels-photo-1061588.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-image: linear-gradient(to left bottom,rgba(0, 0, 0, 0.815), rgba(37, 31, 31, 0.575)), url('https://images.pexels.com/photos/1061588/pexels-photo-1061588.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
   background-color: #cccccc;
   background-repeat: no-repeat;
   background-size: cover;
@@ -20,7 +20,7 @@
     padding-bottom:7px;
 }
 .middlePage {
-  width: 300px;
+  width: 320px;
   height: 700px;
   margin-top: 10px;
   margin-left:555px ;
@@ -44,7 +44,7 @@
   background: white;
   color: #CCC;
   height: 200px;
-  box-shadow: 5px 8px gray ;
+  box-shadow: 8px 8px gray ;
   /* font-family:Arial, Helvetica, sans-serif; */
 
 }
@@ -86,7 +86,7 @@
 
 .loginBtn--google {
   /*font-family: "Roboto", Roboto, arial, sans-serif;*/
-  background: #e14414;
+  background: rgb(204, 55, 35);
 }
 .loginBtn--google:before {
   border-right:#e15914 1px solid;
@@ -116,7 +116,7 @@
   width:100%;
   margin-left: 50px;
 }
-h2{
+.title{
     display: block;
     color: black;
     margin-left: 50px;
@@ -124,9 +124,9 @@ h2{
 }
 h3{
     color: white;
-    margin-left: 45px;
+    margin-left: 25px;
 }
-h4{
+.admin{
   float: right;
   margin-top: 4px;
 }

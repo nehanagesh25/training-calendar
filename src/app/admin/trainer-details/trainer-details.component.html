@@ -36,7 +36,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let d of data | filter : 'Trainer_Name' : searchText | paginate: { itemsPerPage: 5, currentPage: p };">
+              <tr *ngFor="let d of data | filter : 'Trainer_Name' : searchText | paginate: { itemsPerPage: 7, currentPage: p };">
                 <td align="center">{{ d.Trainer_Type ? 'Accionite' : 'Guest' }}</td>
                 <td align="center">{{ d.Trainer_Name }}</td>
                 <td align="center">{{ d.Description }}</td>

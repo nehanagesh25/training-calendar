@@ -137,3 +137,6 @@ select{
 .panel-default{
   width: 1000px;
 }
+.pagination{
+  float: right;
+}
