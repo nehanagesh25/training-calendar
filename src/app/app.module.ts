@@ -183,7 +183,8 @@ export function getAuthServiceConfigs() {
   providers: [AuthService, {
     provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs
-  }, AuthGaurd,AuthGaurd1, DatePipe, { provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter }],
+  }, AuthGaurd,AuthGaurd1, DatePipe, { provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

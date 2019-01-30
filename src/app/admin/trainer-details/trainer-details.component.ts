@@ -80,7 +80,7 @@ export class TrainerDetailsComponent implements OnInit {
     this.trainerid = id;
   
     var data = { "Trainer_ID": this.trainerid }
-    debugger
+  
     this.service.GetTrainersByID(data).subscribe((Response) => {
       if (Response != null) 
           console.log(Response);

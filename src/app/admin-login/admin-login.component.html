@@ -1,0 +1,64 @@
+<div class="body" >
+  <img class="image" src="https://static1.squarespace.com/static/5ab6b93e5b409be7fa331cf1/t/5ac67b8c575d1f09cf1c833c/1528826021109/?format=1500w">
+  <div class="heading-primary">
+      <span class="heading-primary-main">Accion Training Calendar</span>
+      <!-- <span class="heading-primary-sub">Driving Outcomes Through Actions</span> -->
+    </div>
+<div class="middlePage">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title"> Sign In</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="row">
+
+        <!-- <div class="col-md-5">
+          <h5>&nbsp;&nbsp;&nbsp;&nbsp; Employee Must Login Here</h5>
+          <button class="loginBtn loginBtn--google" (click)="socialSignIn('google')">
+            Login with Google
+          </button>
+          <a class="Admin" [routerLink]="['/admin']">Admin?</a>
+
+        </div> -->
+
+        <div class="admin" style="border-left:1px solid #ccc;height:160px">
+          <form class="form-horizontal">
+            <h3 class="head">Admin Login</h3>
+            <fieldset>
+
+              <input id="textinput" name="textinput" type="text" placeholder="Enter User Name" class="form-control input-md"
+                [(ngModel)]="User_Name">
+              <br>
+              <input id="textinput" name="textinput" type="password" placeholder="Enter Password" class="form-control input-md"
+                [(ngModel)]="Password">
+              <br>
+              <button id="singlebutton" name="singlebutton" class="btn btn-info btn-sm pull-right" (click)="AdminLogin()">
+                Sign In</button>
+
+
+            </fieldset>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- <div class="jumbotron bg-transparent text-center">
+<div *ngIf="!user" class="card text-center">
+ <h6 class="card-header">
+   Login 
+ </h6>
+ <div class="card-block">
+   <h4 class="card-title">Not signed in</h4>
+   <p class="card-text">Sign in with</p>
+ </div>
+ <div class="card-block">
+   <button class="btn btn-social-icon btn-google mx-1" (click)="signInWithGoogle()">Google<span class="fa fa-google"></span></button>
+
+ </div>
+</div> -->

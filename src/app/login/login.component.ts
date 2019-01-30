@@ -3,7 +3,7 @@ import { AuthService} from 'angular-6-social-login';
 import { SocialUser } from 'angular-6-social-login';
 import { GoogleLoginProvider } from 'angular-6-social-login';
 import { Router } from '@angular/router';
-import { ServicesService } from '../Services/Service.services'
+import { ServicesService } from '../Services/Service.services';
 import { store } from '@angular/core/src/render3';
 import swal from 'sweetalert2';
 

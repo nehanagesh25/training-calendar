@@ -1,21 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours
-} from "date-fns";
-import { Subject, from } from "rxjs";
-import {
-  CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
-  CalendarView
-} from "angular-calendar";
+import { Component, OnInit ,ViewChild, AfterViewInit} from "@angular/core";
+
+
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AuthService } from "angular-6-social-login";
 import { Router } from "@angular/router";
@@ -30,6 +15,7 @@ import {
 import Swal from "sweetalert2";
 import { ServicesService } from "src/app/Services/Service.services";
 import { toDate } from "@angular/common/src/i18n/format_date";
+import { MatSort,MatPaginator,MatTableDataSource } from '@angular/material'
 
 export interface CourseDetails {
   CourseID: number;
@@ -60,8 +46,9 @@ export interface CourseDetails {
     ])
   ]
 })
-export class TableDisplayComponent implements OnInit {
-  view: CalendarView = CalendarView.Month;
+export class TableDisplayComponent implements OnInit, AfterViewInit {
+  @ViewChild(MatSort) sort: MatSort;
+ dataSource : MatTableDataSource<CourseDetails>
   viewDate: Date = new Date();
   public user = localStorage.getItem("isLoggedIn");
   public userurl;
@@ -88,6 +75,9 @@ export class TableDisplayComponent implements OnInit {
       this.getData(res);
     });
   }
+  ngAfterViewInit(): void {
+    // this.dataSource.sort = this.sort;
+  }
 
   getData = (data: any[]) => {
     let temp = [];
@@ -106,11 +96,11 @@ export class TableDisplayComponent implements OnInit {
       result.Venue = result.Venue;
       temp.push(result);
     });
-    this.dataSource = temp;
+    this.dataSource = new MatTableDataSource(temp);
 
     this.expandedElement = temp;
   };
-  dataSource: any[];
+  
   expandedElement: any[];
 
   columnsToDisplay = [
@@ -125,7 +115,8 @@ export class TableDisplayComponent implements OnInit {
   registerationClosed(res) {
     console.log("CourseID",res);
     var data = { "User_Name": this.user, "Course_ID":res };
-    debugger;
+    var result = { Course_ID: res};
+    
     this.service.checkforregister(data).subscribe(Response => {
       console.log("Checkfor regi",Response)
       if (Response == "Success") {
@@ -134,7 +125,6 @@ export class TableDisplayComponent implements OnInit {
         this.flag1 = 0;
       }
     });
-
     this.service.check(data).subscribe(Response => {
       console.log("Check",Response);
       if (Response == "Success") {
@@ -149,7 +139,6 @@ export class TableDisplayComponent implements OnInit {
 
   Register(res) {
     console.log(res);
-    debugger;
     var data = { User_Name: this.user, Course_ID: res};
     console.log("user==", data);
     this.service.Register(data).subscribe(Response => {

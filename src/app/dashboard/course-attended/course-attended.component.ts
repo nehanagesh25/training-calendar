@@ -22,7 +22,7 @@ export interface CourseDetails {
 })
 export class CourseAttendedComponent implements OnInit {
   public username;
-  constructor(private service: ServicesService,private datepipe:DatePipe) { }
+  constructor(private service: ServicesService , public datepipe:DatePipe) { }
 
   ngOnInit() {
     this.username = localStorage.getItem('isLoggedIn');
