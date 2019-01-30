@@ -1,5 +1,5 @@
 .body {
-  background-image:linear-gradient(to left top, rgba(3, 17, 2, 0.7),rgba(7, 76, 124, 0.1)), url('https://images.pexels.com/photos/515166/pexels-photo-515166.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-image: linear-gradient(to left bottom,rgba(0, 0, 0, 0.815), rgba(37, 31, 31, 0.575)), url('https://images.pexels.com/photos/1061588/pexels-photo-1061588.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
   background-color: #cccccc;
   background-repeat: no-repeat;
   background-size: cover;
@@ -12,38 +12,45 @@
   margin-top: 80px;
 }
  p {
-	color:#CCC;
+    color:#CCC;
 }
 
 .spacing {
-	padding-top:7px;
-	padding-bottom:7px;
+    padding-top:7px;
+    padding-bottom:7px;
 }
 .middlePage {
-  width: 600px;
-  height: 600px;
+  width: 320px;
+  height: 700px;
   margin-top: 10px;
-  margin-left:350px ;
-  opacity: 0.9;
+  margin-left:555px ;
+  opacity: 0.66;
   font-family: 'Times New Roman', Times, serif;
+  color: black;
+ 
 }
+
 .panel-info>.panel-heading{
-  color:whitesmoke;
-  background: rgb(3, 68, 77);
+  color:#3717b8;
+  background:rgb(173, 37, 13);
   border:  rgb(207, 66, 66);
-  font-weight: bold;
-  font-size: 19px;
-  
+  font-weight: 400;
+  font-size: 25px;
+}
+.panel-info{
+  border: green;
 }
 .panel-body{
-  background: rgb(28, 34, 33);
+  background: white;
   color: #CCC;
-  font-family:Arial, Helvetica, sans-serif;
+  height: 200px;
+  box-shadow: 8px 8px gray ;
+  /* font-family:Arial, Helvetica, sans-serif; */
 
 }
 
 .logo {
-	color:#CCC;
+    color:#CCC;
 }
 
 /* Login With google  */
@@ -79,15 +86,15 @@
 
 .loginBtn--google {
   /*font-family: "Roboto", Roboto, arial, sans-serif;*/
-  background: rgb(189, 58, 58);
+  background: rgb(204, 55, 35);
 }
 .loginBtn--google:before {
-  border-right: rgb(161, 39, 26) 1px solid;
+  border-right:#e15914 1px solid;
   background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_google.png') 5px 5px no-repeat;
 }
 .loginBtn--google:hover,
 .loginBtn--google:focus {
-  background: #E74B37;
+  background: rgb(204, 55, 35);
 }
 
 .heading-primary-main{
@@ -95,16 +102,34 @@
   padding-top: 10px;
   justify-content: center;
   font-size: 40px;
-  font-weight: bold;
+  font-weight: 400;
   letter-spacing: 5px;
   text-transform: uppercase;
-  color: rgb(168, 38, 38);
- 
+  color:rgb(236, 243, 247);
+  font-family: 'Lato', sans-serif;
 }
 .image{
   margin-top: 20px;
   width: 170px; 
 }
 .form-control{
-  width:80%;
+  width:100%;
+  margin-left: 50px;
+}
+.title{
+    display: block;
+    color: black;
+    margin-left: 50px;
+    margin-bottom: 12px;
+}
+h3{
+    color: white;
+    margin-left: 25px;
+}
+.admin{
+  float: right;
+  margin-top: 4px;
+}
+.row{
+  margin-top: 30px;
 }

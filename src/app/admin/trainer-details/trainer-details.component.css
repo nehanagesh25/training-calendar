@@ -9,9 +9,13 @@ button {
 .col-md-offset-1 {
 margin: 0px;;
 }
+.modal-content{
+  width:80%;
+}
+
 .form-group {
 display: inline-block;
-width: 50%;
+width: 70%;
 }
 .modal-open  {
 position: initial !important;
@@ -138,4 +142,7 @@ font-size: 1.3rem;
 
 .panel-default{
   width: 1000px;
+}
+.pagination{
+  float: right;
 }

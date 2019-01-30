@@ -68,7 +68,8 @@ export class TableDisplayComponent implements OnInit {
   public username;
   public res = 0;
   public flag = 0;
-  reg =0;
+  public flag1 = 0;
+  reg = 0;
   public reason;
   course: CourseDetails;
   constructor(
@@ -86,8 +87,6 @@ export class TableDisplayComponent implements OnInit {
       console.log(res);
       this.getData(res);
     });
-
-  
   }
 
   getData = (data: any[]) => {
@@ -123,64 +122,64 @@ export class TableDisplayComponent implements OnInit {
     "LastDateToEnroll",
     "Venue"
   ];
-  registerationClosed(res){
-    var data = {"User_Name":this.user,"Course_Name":res.CourseName}
-    var result = {"Course_Name":res.CourseName}
-    this.service.checkforregister(result).subscribe((Response)=>
-    {
-      if(Response === "Success"){
-        this.reg=1;
+  registerationClosed(res) {
+    console.log("CourseID",res);
+    var data = { "User_Name": this.user, "Course_ID":res };
+    debugger;
+    this.service.checkforregister(data).subscribe(Response => {
+      console.log("Checkfor regi",Response)
+      if (Response == "Success") {
+        this.flag1 = 1;
+      } else {
+        this.flag1 = 0;
       }
-      else{
-        this.reg=0;
-      }
-    })
-    this.service.check(data).subscribe((Response) => {
-      console.log(Response);
+    });
+
+    this.service.check(data).subscribe(Response => {
+      console.log("Check",Response);
       if (Response == "Success") {
         this.flag = 1;
       }
-    });
-
-  }
-
-
-
-  Register(res) {
-    console.log("Register",res);
-
-    var data = { User_Name: this.user, Course_ID: res };
-    console.log("user==", data);
-    this.service.Register(data).subscribe(Response => {
-      if (Response) {
-        this.flag = 1;
-        Swal("Registeration!", "Done!", "success");
-      } else {
-        Swal("Registeration Failed", "warning");
+      else
+      {
+        this.flag=0;
       }
     });
   }
-  
-  LeaveCourse(result) {
-    var data = { User_Name: this.user, Course_ID: result };
-    
-    this.service.check(data).subscribe(Response => {
-      console.log("Response:", Response);
-      // if(Response=trur)
+
+  Register(res) {
+    console.log(res);
+    debugger;
+    var data = { User_Name: this.user, Course_ID: res};
+    console.log("user==", data);
+    this.service.Register(data).subscribe(Response => {
+      if (Response==="Success") {
+        this.flag=1;
+        Swal("Registration!", "Done!", "success");
+      } else {
+        Swal("Registration Failed", "warning");
+      }
     });
+  }
+
+  LeaveCourse() {
     this.res = 1;
   }
   UnRegister(res) {
-    var data = { User_Name: this.user, Reason_For_Unreg: this.reason,Course_ID:res.CourseName};
-    
+    var data = {
+      User_Name: this.user,
+      Reason_For_Unreg: this.reason,
+      Course_ID: res
+    };
+
     this.service.UnRegister(data).subscribe(Response => {
-      if (Response) {
+      if (Response==="Success") {
         this.flag = 0;
         this.reason = null;
         this.res = 0;
-        Swal("Left Course!", "Done!", "success");
+        Swal("DeRegistration!", "Done!", "success");
       } else {
-        Swal("Left Course!", "warning");
+        Swal("DeRegistration!", "warning");
       }
     });
   }

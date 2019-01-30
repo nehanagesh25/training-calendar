@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
+import { NgxPaginationModule } from 'ngx-pagination';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AppRoutingModule } from './Router/Router';
 import { Appsettings } from './App.settings';
@@ -71,6 +72,7 @@ import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { TrainerDetailsComponent } from './admin/trainer-details/trainer-details.component';
 import { CreateTrainersComponent } from './admin/create-trainers/create-trainers.component';
 import { FilterPipe} from './filter.pipe';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 /**
  * Example of a String Time adapter
  */
@@ -125,7 +127,8 @@ export function getAuthServiceConfigs() {
     CourseAttendedComponent,
     TrainerDetailsComponent,
     CreateTrainersComponent,
-    FilterPipe
+    FilterPipe,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -176,6 +179,7 @@ export function getAuthServiceConfigs() {
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    NgxPaginationModule
   ],
   providers: [AuthService, {
     provide: AuthServiceConfig,

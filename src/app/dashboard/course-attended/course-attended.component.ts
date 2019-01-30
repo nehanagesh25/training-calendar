@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesService } from 'src/app/Services/Service.services';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { DatePipe } from '@angular/common';
 
 export interface CourseDetails {
   CourseName: string;
@@ -21,7 +22,7 @@ export interface CourseDetails {
 })
 export class CourseAttendedComponent implements OnInit {
   public username;
-  constructor(private service: ServicesService) { }
+  constructor(private service: ServicesService,private datepipe:DatePipe) { }
 
   ngOnInit() {
     this.username = localStorage.getItem('isLoggedIn');
@@ -39,8 +40,10 @@ export class CourseAttendedComponent implements OnInit {
     data.forEach((result) => {
       console.log("result=", result);
       result.CourseName = result.Course_Name;
-      result.FromDate = result.FromDate;
-      result.ToDate = result.ToDate;
+      var from = result.FromDate;
+      result.FromDate = this.datepipe.transform(from, "MMM-dd-yyyy");
+      var to = result.ToDate;
+      result.ToDate = this.datepipe.transform(to, "MMM-dd-yyyy");
 
       temp.push(result);
     })
