@@ -1,11 +1,41 @@
 .router-container{
   margin-left:210px;
 }
+ul.nav navbar-nav mr-auto{
+  position: fixed;
+  z-index: 9999999;
+  right: 47px;
+  top: 39px;
+
+}
+navbar navbar-expand-lg{
+  background: #293749;
+    height: 80px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 83%;
+    margin-left: 199px;
+    z-index: 1;
+}
+.navbar-nav>li>a{
+  padding: 0%;
+}
+.nav>li>a:hover, .nav>li>a:focus{
+  background-color: transparent;
+}
+.nav>li>a>img{
+  max-height:40px;
+  max-width:40px;
+  border-radius: 50%;
+  }
+  
 body {
   margin:0px;
   padding:0px;
   box-sizing:border-box;
   background:#354545;
+  overflow:hidden;
 }
 .main_sidebar {
   min-height:100vh;

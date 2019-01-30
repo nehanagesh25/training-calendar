@@ -1,21 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import {
-  startOfDay,
-  endOfDay,
-  subDays,
-  addDays,
-  endOfMonth,
-  isSameDay,
-  isSameMonth,
-  addHours
-} from "date-fns";
-import { Subject, from } from "rxjs";
-import {
-  CalendarEvent,
-  CalendarEventAction,
-  CalendarEventTimesChangedEvent,
-  CalendarView
-} from "angular-calendar";
+import { Component, OnInit ,ViewChild, AfterViewInit} from "@angular/core";
+
+
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { AuthService } from "angular-6-social-login";
 import { Router } from "@angular/router";
@@ -30,6 +15,7 @@ import {
 import Swal from "sweetalert2";
 import { ServicesService } from "src/app/Services/Service.services";
 import { toDate } from "@angular/common/src/i18n/format_date";
+import { MatSort,MatPaginator,MatTableDataSource } from '@angular/material'
 
 export interface CourseDetails {
   CourseID: number;
@@ -60,15 +46,17 @@ export interface CourseDetails {
     ])
   ]
 })
-export class TableDisplayComponent implements OnInit {
-  view: CalendarView = CalendarView.Month;
+export class TableDisplayComponent implements OnInit, AfterViewInit {
+  @ViewChild(MatSort) sort: MatSort;
+ dataSource : MatTableDataSource<CourseDetails>
   viewDate: Date = new Date();
   public user = localStorage.getItem("isLoggedIn");
   public userurl;
   public username;
   public res = 0;
   public flag = 0;
-  reg =0;
+  public flag1 = 0;
+  reg = 0;
   public reason;
   course: CourseDetails;
   constructor(
@@ -86,8 +74,9 @@ export class TableDisplayComponent implements OnInit {
       console.log(res);
       this.getData(res);
     });
-
-  
+  }
+  ngAfterViewInit(): void {
+    // this.dataSource.sort = this.sort;
   }
 
   getData = (data: any[]) => {
@@ -107,11 +96,11 @@ export class TableDisplayComponent implements OnInit {
       result.Venue = result.Venue;
       temp.push(result);
     });
-    this.dataSource = temp;
+    this.dataSource = new MatTableDataSource(temp);
 
     this.expandedElement = temp;
   };
-  dataSource: any[];
+  
   expandedElement: any[];
 
   columnsToDisplay = [
@@ -123,64 +112,64 @@ export class TableDisplayComponent implements OnInit {
     "LastDateToEnroll",
     "Venue"
   ];
-  registerationClosed(res){
-    var data = {"User_Name":this.user,"Course_Name":res.CourseName}
-    var result = {"Course_Name":res.CourseName}
-    this.service.checkforregister(result).subscribe((Response)=>
-    {
-      if(Response === "Success"){
-        this.reg=1;
+  registerationClosed(res) {
+    console.log("CourseID",res);
+    var data = { "User_Name": this.user, "Course_ID":res };
+    var result = { Course_ID: res};
+    
+    this.service.checkforregister(data).subscribe(Response => {
+      console.log("Checkfor regi",Response)
+      if (Response == "Success") {
+        this.flag1 = 1;
+      } else {
+        this.flag1 = 0;
       }
-      else{
-        this.reg=0;
-      }
-    })
-    this.service.check(data).subscribe((Response) => {
-      console.log(Response);
+    });
+    this.service.check(data).subscribe(Response => {
+      console.log("Check",Response);
       if (Response == "Success") {
         this.flag = 1;
       }
+      else
+      {
+        this.flag=0;
+      }
     });
-
   }
-
-
 
   Register(res) {
     console.log(res);
 
-    var data = { User_Name: this.user, Course_Name: res.CourseName };
+    var data = { User_Name: this.user, Course_ID: res};
     console.log("user==", data);
     this.service.Register(data).subscribe(Response => {
-      if (Response) {
-        this.flag = 1;
-        Swal("Registeration!", "Done!", "success");
+      if (Response==="Success") {
+        this.flag=1;
+        Swal("Registration!", "Done!", "success");
       } else {
-        Swal("Registeration Failed", "warning");
+        Swal("Registration Failed", "warning");
       }
     });
   }
-  
-  LeaveCourse(result) {
-    var data = { User_Name: this.user, Course_Name: result.CourseName };
-    debugger;
-    this.service.check(data).subscribe(Response => {
-      console.log("Response:", Response);
-      // if(Response=trur)
-    });
+
+  LeaveCourse() {
     this.res = 1;
   }
-  UnRegister() {
-    var data = { User_Name: this.user, Reason_For_Unreg: this.reason };
-    debugger;
+  UnRegister(res) {
+    var data = {
+      User_Name: this.user,
+      Reason_For_Unreg: this.reason,
+      Course_ID: res
+    };
+
     this.service.UnRegister(data).subscribe(Response => {
-      if (Response) {
+      if (Response==="Success") {
         this.flag = 0;
         this.reason = null;
         this.res = 0;
-        Swal("Left Course!", "Done!", "success");
+        Swal("DeRegistration!", "Done!", "success");
       } else {
-        Swal("Left Course!", "warning");
+        Swal("DeRegistration!", "warning");
       }
     });
   }

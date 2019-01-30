@@ -71,6 +71,14 @@ import { NgbTimeStruct, NgbTimeAdapter } from '@ng-bootstrap/ng-bootstrap';
 import { TrainerDetailsComponent } from './admin/trainer-details/trainer-details.component';
 import { CreateTrainersComponent } from './admin/create-trainers/create-trainers.component';
 import { FilterPipe} from './filter.pipe';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+ 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 /**
  * Example of a String Time adapter
  */
@@ -125,11 +133,13 @@ export function getAuthServiceConfigs() {
     CourseAttendedComponent,
     TrainerDetailsComponent,
     CreateTrainersComponent,
-    FilterPipe
+    FilterPipe,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
     SocialLoginModule,
+    PerfectScrollbarModule,
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -180,7 +190,11 @@ export function getAuthServiceConfigs() {
   providers: [AuthService, {
     provide: AuthServiceConfig,
     useFactory: getAuthServiceConfigs
-  }, AuthGaurd,AuthGaurd1, DatePipe, { provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter }],
+  }, AuthGaurd,AuthGaurd1, DatePipe, { provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter }, {
+    provide: PERFECT_SCROLLBAR_CONFIG,
+    useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

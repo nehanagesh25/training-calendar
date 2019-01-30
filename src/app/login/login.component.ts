@@ -3,7 +3,7 @@ import { AuthService, SocialLoginModule } from 'angular-6-social-login';
 import { SocialUser } from 'angular-6-social-login';
 import { GoogleLoginProvider } from 'angular-6-social-login';
 import { Router } from '@angular/router';
-import { ServicesService } from '../Services/Service.services'
+import { ServicesService } from '../Services/Service.services';
 import { store } from '@angular/core/src/render3';
 import swal from 'sweetalert2';
 
@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
         sessionStorage.setItem("User", userData.email);
         sessionStorage.setItem("Userurl", userData.image);
         sessionStorage.setItem("Username", userData.name);
+        localStorage.setItem("isLoggedIn",userData.email);
         localStorage.setItem('isLogin', 'true');
         this.service.UserLogin(data1).subscribe((response: any) => {
           console.log(response);

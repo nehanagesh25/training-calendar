@@ -3,6 +3,17 @@ table {
     width: 100%;
     font-family: 'Sarabun', sans-serif; 
     font-size:16px;
+    align-items: center;
+    
+    
+  }
+  .hide{
+    display: none;
+  }
+  mat-footer-row mat-footer-cell{
+    justify-content: center;
+    align-items: center;
+    font-style: italic;
   }
   th.mat-header-cell{
     font-family: 'Sarabun', sans-serif; 
