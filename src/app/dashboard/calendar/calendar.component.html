@@ -1,76 +1,84 @@
-<div class="calendar-container">
-    <div class="modal">
-        <ng-template #modalContent let-close="close">
-            <div class="modal-header">
-                <h5 class="modal-title">Course</h5>
-                <button type="button" class="close" (click)="close()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div>
-                    <strong> Course Name </strong> : {{modalData?.event.Course_Name}}<br>
-                    <strong> Description </strong> : {{modalData?.event.Description}}<br>
-                    <strong>Duration</strong> : {{modalData?.event.Duration}}<br>
-                    <strong>FromDate</strong> : {{modalData?.event.FromDate }}<br>
-                    <strong>ToDate</strong> : {{modalData?.event.ToDate }}<br>
-                    <strong>Venue</strong> : {{modalData?.event.Venue}}<br>
-                    <strong>Last Date To Enroll</strong>:{{modalData?.event.Last_date_to_enroll}}<br>
-                    <strong>Maximum Enroll </strong> : {{modalData?.event.Max_enroll}}<br>
-                    <strong>Minimum Enroll</strong> : {{modalData?.event.Min_enroll}}<br>
-                    Attachment : <a href="" target="_blank">link</a>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
-            </div>
-        </ng-template>
-    </div>
+<!-- <div class="row" style="width:100%; height: 100%;"> -->
+    <!-- <div class="class=" col-md-6> -->
+        <div class="calendar-container" style="widows: 800px;">
 
-    <div class="row text-center">
-        <div class="col-md-4">
-            <div class="btn-group">
-                <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
-                    (viewDateChange)="activeDayIsOpen = false">
-                    Previous
+            <div class="modal">
+                <ng-template #modalContent let-close="close">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Course</h5>z
+                        <button type="button" class="close" (click)="close()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <strong> Course Name </strong> : {{modalData?.event.Course_Name}}<br>
+                            <strong> Description </strong> : {{modalData?.event.Description}}<br>
+                            <strong>Duration</strong> : {{modalData?.event.Duration}}<br>
+                            <strong>FromDate</strong> : {{modalData?.event.FromDate }}<br>
+                            <strong>ToDate</strong> : {{modalData?.event.ToDate }}<br>
+                            <strong>Venue</strong> : {{modalData?.event.Venue}}<br>
+                            <strong>Last Date To Enroll</strong>:{{modalData?.event.Last_date_to_enroll}}<br>
+                            <strong>Maximum Enroll </strong> : {{modalData?.event.Max_enroll}}<br>
+                            <strong>Minimum Enroll</strong> : {{modalData?.event.Min_enroll}}<br>
+                            Attachment : <a href="" target="_blank">link</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" (click)="close()">OK</button>
+                    </div>
+                </ng-template>
+            </div>
+
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="btn-group">
+                        <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                            (viewDateChange)="activeDayIsOpen = false">
+                            Previous
+                        </div>
+                        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                            Today
+                        </div>
+                        <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                            (viewDateChange)="activeDayIsOpen = false">
+                            Next
+                        </div>
+                    </div>
                 </div>
-                <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
-                    Today
+                <div class="col-md-4">
+                    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
                 </div>
-                <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
-                    (viewDateChange)="activeDayIsOpen = false">
-                    Next
+                <div class="col-md-4">
+                    <div class="btn-group">
+                        <div class="btn btn-primary" (click)="view = CalendarView.Month" [class.active]="view === CalendarView.Month">
+                            Month
+                        </div>
+                        <div class="btn btn-primary" (click)="view = CalendarView.Week" [class.active]="view === CalendarView.Week">
+                            Week
+                        </div>
+                        <div class="btn btn-primary" (click)="view = CalendarView.Day" [class.active]="view === CalendarView.Day">
+                            Day
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
-        </div>
-        <div class="col-md-4">
-            <div class="btn-group">
-                <div class="btn btn-primary" (click)="view = CalendarView.Month" [class.active]="view === CalendarView.Month">
-                    Month
-                </div>
-                <div class="btn btn-primary" (click)="view = CalendarView.Week" [class.active]="view === CalendarView.Week">
-                    Week
-                </div>
-                <div class="btn btn-primary" (click)="view = CalendarView.Day" [class.active]="view === CalendarView.Day">
-                    Day
-                </div>
+            <br>
+            <div [ngSwitch]="view">
+                <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+                    [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+                    (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                </mwl-calendar-month-view>
+                <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
+                    [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                </mwl-calendar-week-view>
+                <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"
+                    [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+                </mwl-calendar-day-view>
             </div>
         </div>
-    </div>
-    <br>
-    <div [ngSwitch]="view">
-        <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
-            [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
-            (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
-        </mwl-calendar-month-view>
-        <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
-            [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
-        </mwl-calendar-week-view>
-        <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"
-            [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
-        </mwl-calendar-day-view>
-    </div>
-</div>
+    <!-- </div>  -->
+    <!-- <div class="col-md-6">
+        <app-course-attended></app-course-attended>
+    </div> -->
+ <!-- </div> -->

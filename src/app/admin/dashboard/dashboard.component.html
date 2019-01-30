@@ -14,16 +14,16 @@
                     <div class="card ">
 
                         <div class="card-header ">
-                            <h4 class="card-title">Todays Events</h4>
+                            <h4 class="card-title" style="font-weight: bold;font-size: 20px;" >Todays Events</h4>
 
                             <p class="card-category"></p>
                         </div>
-                        <div class="card-body ">
-                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth" *ngIf="Todaydata.length>0">
+                        <div class="card-body " style="font-size: 18px">
+                            <div id="chartPreferences" style="font-size: 18px"class="ct-chart ct-perfect-fourth" *ngIf="Todaydata.length>0">
                                 <div *ngFor='let course of Todaydata'>
-                                    Course Name :-{{course.Course_Name}}<br>
-                                    Description :-{{course.Description}}<br>
-                                    Duration :-{{course.Duration}} Days<br><br>
+                                    Course Name : {{course.Course_Name}}<br>
+                                    Description : {{course.Description}}<br>
+                                    Duration : {{course.Duration}} Days<br><br>
 
                                 </div>
                             </div>
@@ -37,11 +37,11 @@
                 <div class="col-md-8">
                     <div class="card ">
                         <div class="card-header ">
-                            <h4 class="card-title">Registered Employees</h4>
+                            <h4 class="card-title" style="font-weight: bold; font-size: 20px;">Registered Employees</h4>
                             <p class="card-category"></p>
                         </div>
                         <div class="card-body ">
-                            <div id="chartPreferences" class="ct-chart ct-perfect-fourth" *ngIf='show.length>0'>
+                            <div id="chartPreferences"style="font-size: 18px" class="ct-chart ct-perfect-fourth" *ngIf='show.length>0'>
 
                                 <div *ngFor='let course of show'>
                                     {{course.User_Name}}<br>

@@ -21,6 +21,7 @@ export class TrainerDetailsComponent implements OnInit {
   public TrainerData:any;
   public Trainer_Type: any = [{ name: 'Accionite', value: true }, { name: 'Guest', value: false }];
   public searchText;
+  p: number = 1;
   constructor(private router: Router, private service: ServicesService) { }
 
   ngOnInit() {

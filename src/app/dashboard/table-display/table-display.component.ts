@@ -139,7 +139,6 @@ export class TableDisplayComponent implements OnInit, AfterViewInit {
 
   Register(res) {
     console.log(res);
-
     var data = { User_Name: this.user, Course_ID: res};
     console.log("user==", data);
     this.service.Register(data).subscribe(Response => {
