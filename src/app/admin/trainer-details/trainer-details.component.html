@@ -43,7 +43,7 @@
                 <td align="center">{{ d.Created_On | date : "dd.MM.y" }}</td>
                 <td>
                   <span class="table-remove" style="align-items:center;">
-                    <button type="button" class="btn btn-sm btn-primary btn-create" (click)="remove(d.Trainer_ID)">Remove</button>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style ="color: red"class="fas fa-trash"(click)="remove(d.Trainer_ID)"></i>
                   </span>&nbsp;&nbsp;&nbsp;<i class="fas fa-edit" (click)="edit(d.Trainer_ID)" data-toggle="modal"
                     data-target="#myModal1"></i>
                 </td>
