@@ -25,10 +25,10 @@
       <label for="pwd">Maximum Enrollment</label>
       <!-- <input type="number" class="form-control" id="pwd" [(ngModel)]="MaxEnroll"> -->
       <input type="number"  min="1" step="1" class="form-control" placeholder="Enter MaxEnroll" [(ngModel)]="MaxEnroll"aria-label="Input group example" aria-describedby="btnGroupAddon">
-    </div>
+      </div>
     <div class="form-group">
       <label for="pwd">Minimum Enrollment</label>
-       <input type="number" min="1" step="1" class="form-control" placeholder="Enter MiniumEnroll" [(ngModel)]="MiniumEnroll"aria-label="Input group example" aria-describedby="btnGroupAddon">
+       <input type="number" min="1" step="5" max="20" class="form-control" placeholder="Enter MiniumEnroll" [(ngModel)]="MiniumEnroll"aria-label="Input group example" aria-describedby="btnGroupAddon">       
     </div>
     <div class="form-group">
       <label for="pwd">LastDate To Enroll</label>
@@ -41,7 +41,8 @@
     <div class="form-group">
       <label for="pwd">Select Trainer</label><br>
       <select (change)="filterForeCasts($event.target.value)">
-        <option [value]="Trainer.Trainer_ID" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
+          <!-- <option value="0" selected disabled>Select Trainer</option> -->
+        <option [selected]="Trainer.Trainer_ID" [value]="Trainer.Trainer_ID" *ngFor="let Trainer of Trainers">{{Trainer.Trainer_Name}}</option>
       </select>
     </div>
     <br>
