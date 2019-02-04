@@ -128,11 +128,6 @@
                 </select>
               </div>             
               <div class="form-group">
-                <label for="pwd">Description</label>
-                <input type="text" class="form-control" id="pwd" placeholder="Enter Discription" aria-label="Input group example"
-                  aria-describedby="btnGroupAddon" [(ngModel)]="Discreption">
-              </div>
-              <div class="form-group">
                 <label for="pwd">FromDate</label>
                 <input type="date" class="form-control" id="pwd" min="{{cur | date:'yyyy-MM-dd'}}" [(ngModel)]="FromDate"
                   [value]="FromDate | date:'yyyy-MM-dd'">
@@ -164,7 +159,12 @@
                 <input type="text" class="form-control" id="pwd" placeholder="Enter Venue" aria-label="Input group example"
                   aria-describedby="btnGroupAddon" [(ngModel)]="Venue">
               </div>
-
+              <div class="form-group">
+                <label for="pwd">Description</label>
+                <textarea class="form-control" rows="5" id="comment" [(ngModel)]="Discreption"></textarea>
+                <!-- <input type="text" class="form-control" placeholder="Enter Discreption" aria-label="Input group example" aria-describedby="btnGroupAddon" [(ngModel)]="Discreption"> -->
+                <!-- <input type="text area" class="form-control" id="pwd" [(ngModel)]="Discreption"> -->
+              </div>
             </section>
             <div class="btn">
               <button type="button" class="btn btn-sm btn-primary btn-create" (click)="UpdateCourses()">Save</button>

@@ -8,7 +8,9 @@
     float: center;
     text-align: center;
 }
-
+.form-control{
+    margin-left: 18px;
+}
 .wrap-create-course {
     padding: 5px;
     
