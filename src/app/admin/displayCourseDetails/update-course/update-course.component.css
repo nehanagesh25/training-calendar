@@ -1,0 +1,70 @@
+button {
+    padding: 10px;
+    /* margin-left: 30px; */
+    /* background-color: #ddd; */
+    border: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.3rem;
+}
+.col-md-offset-1 {
+margin: 0px;;
+}
+.form-group {
+  display: inline-block;
+  width: 49%;
+}
+.modal-open  {
+  position: initial !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #000;
+  
+}
+
+.backdrop {
+  position: initial;
+  background-color:lightgrey;
+  position:fixed;
+  top:100px;
+  left:400px;
+  width:50%;
+  height:50vh;
+  align-items: center;
+  color: white;
+  border-style: solid,black;
+  border-width: 5px;
+  align-items: center;
+  text-align: justify;
+  opacity: 0.5;
+
+}
+
+
+ .wrap-create-course {
+  padding: 5px 20px;
+  
+}
+.modal-header{
+  text-align: center;
+}
+
+input {
+  width: 50%;
+}
+
+select{
+  width: 40%;
+  display: inline-block;
+  padding: .4rem;     
+}
+
+
+
+.panel-default{
+  width: 1000px;
+}
+.pagination{
+  float: right;
+}

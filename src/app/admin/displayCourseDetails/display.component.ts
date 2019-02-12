@@ -89,7 +89,7 @@ export class DisplayComponent implements OnInit {
   }
   events(value) {
 
-
+    this.id=value;
     var data = { "Course_ID": value };
     this.service.CourseByID(data).subscribe((Response) => {
       if (Response != null) {
@@ -122,7 +122,7 @@ export class DisplayComponent implements OnInit {
   }
   edit(id) {
     this.courseid = id;
-
+    this.router.navigate(['AdminDashboard/UpdateCourse/',id]);
     var data = { "Course_ID": this.courseid }
     debugger
     this.service.CourseByID(data).subscribe((Response) => {

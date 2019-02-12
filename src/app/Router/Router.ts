@@ -15,6 +15,7 @@ import { CourseAttendedComponent } from '../dashboard/course-attended/course-att
 import { TrainerDetailsComponent } from '../admin/trainer-details/trainer-details.component';
 import { CreateTrainersComponent } from '../admin/create-trainers/create-trainers.component';
 import { AdminLoginComponent } from '../admin-login/admin-login.component';
+import { UpdateCourseComponent } from '../admin/displayCourseDetails/update-course/update-course.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -35,7 +36,8 @@ export const routes: Routes = [
       { path: 'AddCourse', component: CreateCoursesComponent },
       { path: 'DisplayCourse', component: DisplayComponent },
       { path: 'TrainerDetails', component: TrainerDetailsComponent },
-      { path: 'CreateTrainers', component: CreateTrainersComponent }
+      { path: 'CreateTrainers', component: CreateTrainersComponent },
+      {path:'UpdateCourse/:id',component:UpdateCourseComponent}
     ]
   },
   { path: '**', component: LoginComponent }

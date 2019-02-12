@@ -82,15 +82,15 @@
             </div>
             <div class="form-group">
               <label class="label" for="pwd">Trainer Type</label><br>
-              <select [(ngModel)]="TrainerData" aria-describedby="btnGroupAddon">
+              <select [(ngModel)]="TrainerData" aria-describedby="btnGroupAddon" class="form-control" style="width:50%">
                 <option *ngFor="let TrainerDetails of Trainer_Type" [ngValue]="TrainerDetails.value">{{TrainerDetails.name}}</option>
               </select>
             </div>
           </section>
           <div class="btn">
-            <button type="button" class="btn btn-sm btn-primary btn-create" (click)="UpdateTrainers()">Submit</button>
+            <button type="button" class="btn btn-sm btn-primary btn-create" (click)="UpdateTrainers()">Save</button>
           </div>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 
         </div>
 

@@ -73,6 +73,7 @@ import { TrainerDetailsComponent } from './admin/trainer-details/trainer-details
 import { CreateTrainersComponent } from './admin/create-trainers/create-trainers.component';
 import { FilterPipe} from './filter.pipe';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { UpdateCourseComponent } from './admin/displayCourseDetails/update-course/update-course.component';
 /**
  * Example of a String Time adapter
  */
@@ -128,7 +129,8 @@ export function getAuthServiceConfigs() {
     TrainerDetailsComponent,
     CreateTrainersComponent,
     FilterPipe,
-    AdminLoginComponent
+    AdminLoginComponent,
+    UpdateCourseComponent
   ],
   imports: [
     BrowserModule,
